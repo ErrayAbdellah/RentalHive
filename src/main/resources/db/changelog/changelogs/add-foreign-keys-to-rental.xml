@@ -1,0 +1,21 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.0.xsd">
+
+    <changeSet id="addForeignKeysToRental" author="YourName">
+        <addForeignKeyConstraint baseColumnNames="equipment_id"
+                                 baseTableName="rental_records"
+                                 constraintName="fk_equipment_id"
+                                 referencedColumnNames="equipment_id"
+                                 referencedTableName="equipments" />
+
+        <addForeignKeyConstraint baseColumnNames="user_id"
+                                 baseTableName="rental_records"
+                                 constraintName="fk_user_id"
+                                 referencedColumnNames="user_id"
+                                 referencedTableName="users" />
+    </changeSet>
+
+</databaseChangeLog>
