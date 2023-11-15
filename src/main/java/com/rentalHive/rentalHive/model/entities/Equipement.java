@@ -22,6 +22,10 @@ public class Equipement
         this.status = status;
     }
 
+    public Equipement() {
+
+    }
+
     public Integer getId() {
         return Id;
     }
