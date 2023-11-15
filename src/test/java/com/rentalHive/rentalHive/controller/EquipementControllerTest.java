@@ -44,7 +44,6 @@ public class EquipementControllerTest {
 
         verify(equipementRepo, times(1)).findById(Math.toIntExact(equipmentId));
         verify(equipementRepo, times(1)).save(existingEquipment);
-
         assertNotNull(responseEntity);
         assertEquals("Equipment updated successfully.", responseEntity.getBody());
     }
