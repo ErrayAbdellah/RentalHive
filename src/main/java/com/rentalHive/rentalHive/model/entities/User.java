@@ -1,8 +1,9 @@
 package com.rentalHive.rentalHive.model.entities;
 
-import java.util.*;
-import lombok.*;
-import javax.persistence.*;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
