@@ -9,6 +9,7 @@ public class Equipement
     @Id
     @GeneratedValue(strategy =  GenerationType.IDENTITY)
     private Integer Id;
+    @Column(name = "")
     private  String name;
     private double price;
     private  int quantity;
