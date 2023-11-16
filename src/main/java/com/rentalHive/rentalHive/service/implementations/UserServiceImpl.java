@@ -1,4 +1,8 @@
 package com.rentalHive.rentalHive.service.implementations;
 
-public class UserServiceImpl {
+import com.rentalHive.rentalHive.service.IUserService;
+import org.springframework.stereotype.Component;
+
+@Component
+public class UserServiceImpl implements IUserService {
 }

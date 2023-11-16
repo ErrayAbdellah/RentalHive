@@ -1,19 +1,21 @@
 package com.rentalHive.rentalHive.model.entities;
 
 import java.util.*;
+
+import jakarta.persistence.*;
 import lombok.*;
 
-import javax.persistence.*;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Builder
 public class RentalRecord {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "reservation_id")
-    private Long reservationId;
+    private long reservationId;
 
     @ManyToOne
     @JoinColumn(name = "equipment_id")

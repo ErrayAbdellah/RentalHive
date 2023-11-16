@@ -3,5 +3,5 @@ package com.rentalHive.rentalHive.service;
 import org.springframework.stereotype.Service;
 
 @Service
-public interface IUserService {
+public interface IEquipmentService {
 }

@@ -20,4 +20,5 @@
             <column name="return_date" type="TIMESTAMP" />
         </createTable>
     </changeSet>
+
 </databaseChangeLog>

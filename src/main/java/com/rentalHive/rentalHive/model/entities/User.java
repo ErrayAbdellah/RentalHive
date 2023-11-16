@@ -1,19 +1,20 @@
 package com.rentalHive.rentalHive.model.entities;
 
+import java.util.*;
+
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Builder
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
-    private int userId;
+    private long userId;
 
     @Column(name = "name")
     private String name;
@@ -29,5 +30,9 @@ public class User {
 
     @Column(name = "role")
     private int role;
+
+    @OneToMany(mappedBy = "user")
+    private List<RentalRecord> rentalRecords ;
+
 
 }
