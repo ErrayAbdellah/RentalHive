@@ -1,13 +1,15 @@
 package com.rentalHive.rentalHive.model.entities;
 
 import java.util.*;
+
+import jakarta.persistence.*;
 import lombok.*;
-import javax.persistence.*;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Builder
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

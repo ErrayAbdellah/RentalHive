@@ -1,15 +1,17 @@
 package com.rentalHive.rentalHive.model.entities;
 
-import com.rentalHive.rentalHive.model.enums.Status;
+import com.rentalHive.rentalHive.model.entities.enums.Status;
+import jakarta.persistence.*;
 import lombok.*;
 
-import javax.persistence.*;
 import java.util.List;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @Entity
+@Table(name = "equipment")
 public class Equipment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

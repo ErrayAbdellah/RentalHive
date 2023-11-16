@@ -1,6 +1,6 @@
 package com.rentalHive.rentalHive.model.dto;
 
-import com.rentalHive.rentalHive.model.enums.Status;
+import com.rentalHive.rentalHive.model.entities.enums.Status;
 import lombok.*;
 
 @Data
