@@ -22,7 +22,7 @@ public class EquipementControllerTest {
     private EquipementRepo equipementRepo;
 
     @InjectMocks
-    private EquipementController equipementController;
+    private EquipmentController equipmentController;
 
     @Test
     void testUpdateEquipment() {
@@ -40,7 +40,7 @@ public class EquipementControllerTest {
 
         when(equipementRepo.findById(Math.toIntExact(equipmentId))).thenReturn(Optional.of(existingEquipment));
 
-        ResponseEntity<String> responseEntity = equipementController.updateEquipment(equipmentId, equipmentDTO);
+        ResponseEntity<String> responseEntity = equipmentController.updateEquipment(equipmentId, equipmentDTO);
 
         verify(equipementRepo, times(1)).findById(Math.toIntExact(equipmentId));
         verify(equipementRepo, times(1)).save(existingEquipment);
