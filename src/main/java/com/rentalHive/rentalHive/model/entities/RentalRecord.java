@@ -13,7 +13,7 @@ public class RentalRecord {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "reservation_id")
-    private Long reservationId;
+    private long reservationId;
 
     @ManyToOne
     @JoinColumn(name = "equipment_id")

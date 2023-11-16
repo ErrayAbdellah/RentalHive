@@ -1,18 +1,20 @@
 package com.rentalHive.rentalHive.model.entities;
 
-import com.rentalHive.rentalHive.model.entities.enums.Status;
+import com.rentalHive.rentalHive.model.enums.Status;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Entity
 public class Equipment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "equipment_id")
-    private Long equipmentId;
+    private long equipmentId;
 
     @Column(name = "name")
     private String name;
@@ -26,4 +28,7 @@ public class Equipment {
     @Enumerated(EnumType.STRING)
     @Column(name = "status")
     private Status status;
+
+    @OneToMany(mappedBy = "equipment")
+    private List<RentalRecord> rentalRecords ;
 }

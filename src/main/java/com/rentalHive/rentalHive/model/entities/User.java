@@ -12,7 +12,7 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
-    private int userId;
+    private long userId;
 
     @Column(name = "name")
     private String name;
@@ -28,5 +28,9 @@ public class User {
 
     @Column(name = "role")
     private int role;
+
+    @OneToMany(mappedBy = "user")
+    private List<RentalRecord> rentalRecords ;
+
 
 }
