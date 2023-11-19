@@ -7,5 +7,4 @@
     <changeSet id="renameEquipmentTable" author="YourName">
         <renameTable oldTableName="equipment" newTableName="equipments"/>
     </changeSet>
-
 </databaseChangeLog>

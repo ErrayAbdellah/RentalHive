@@ -6,7 +6,7 @@
                         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.0.xsd">
 
     <changeSet id="createTable-rental-records" author="Boutaina">
-        <createTable tableName="rental_records">
+        <createTable tableName="rental_record">
             <column name="reservation_id" type="BIGINT">
                 <constraints primaryKey="true" nullable="false" />
             </column>
