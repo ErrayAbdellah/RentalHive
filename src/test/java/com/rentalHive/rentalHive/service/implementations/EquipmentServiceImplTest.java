@@ -9,9 +9,10 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
 @SpringBootTest
@@ -64,5 +65,14 @@ public class EquipmentServiceImplTest {
                 )
         ), result);
 
+    }
+
+    @Test
+    public void testFindEquipmentByStatus() {
+        Status status = Status.AVAILABLE;
+
+        List<EquipmentDTO> equipmentDTOList = equipmentService.findEquipmentByStatus(status);
+
+        assertNotNull(equipmentDTOList);
     }
 }
