@@ -12,8 +12,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public class EquipmentDTO {
-    @NotNull
-    private long equipmentId;
+
     @NotBlank
     private String name;
     @Positive

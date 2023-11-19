@@ -47,7 +47,12 @@ public class EquipmentController {
 
         if (optionalEquipment.isPresent()) {
             Equipment existingEquipment = optionalEquipment.get();
-            BeanUtils.copyProperties(equipmentDTO, existingEquipment);
+
+            existingEquipment.setName(equipmentDTO.getName());
+            existingEquipment.setPrice(equipmentDTO.getPrice());
+            existingEquipment.setQuantity(equipmentDTO.getQuantity());
+            existingEquipment.setStatus(equipmentDTO.getStatus());
+
             equipementRepo.save(existingEquipment);
 
             return ResponseEntity.ok("Equipment updated successfully.");
