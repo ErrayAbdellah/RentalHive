@@ -3,6 +3,7 @@ package com.rentalHive.rentalHive.controller;
 import com.rentalHive.rentalHive.model.dto.EquipmentDTO;
 import com.rentalHive.rentalHive.model.entities.Equipment;
 import com.rentalHive.rentalHive.repository.EquipementRepo;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,7 @@ public class EquipmentController {
         this.equipementRepo = equipementRepo;
     }
     @PostMapping
-    public ResponseEntity<String> createEquipement(@RequestBody EquipmentDTO equipmentDTO)
+    public ResponseEntity<String> createEquipement(@Valid @RequestBody EquipmentDTO equipmentDTO)
     {
         Equipment newEquipment = new Equipment();
         BeanUtils.copyProperties(equipmentDTO,newEquipment);
