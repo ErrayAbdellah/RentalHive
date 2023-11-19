@@ -11,5 +11,6 @@ public interface EquipementRepo extends JpaRepository<Equipment,Integer>
     Optional<Equipment> findByName(String name);
     List<Equipment> findByStatus(String status);
     List<Equipment> findByQuantityGreaterThan(int quantity);
+    List<Equipment> findAll();
 
 }
