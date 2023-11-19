@@ -12,4 +12,5 @@ public class EquipmentDTO {
     private double price;
     private int quantity;
     private Status status;
+
 }
