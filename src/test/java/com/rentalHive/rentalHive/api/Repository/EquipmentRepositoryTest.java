@@ -2,7 +2,7 @@ package com.rentalHive.rentalHive.api.Repository;
 
 import com.rentalHive.rentalHive.model.entities.Equipment;
 import com.rentalHive.rentalHive.model.entities.enums.Status;
-import com.rentalHive.rentalHive.repository.EquipementRepo;
+import com.rentalHive.rentalHive.repository.EquipmentRepo;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,10 +17,10 @@ import java.util.List;
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 public class EquipmentRepositoryTest {
 
-    private EquipementRepo equipementRepo;
+    private EquipmentRepo equipmentRepo;
     @Autowired
-    public EquipmentRepositoryTest(EquipementRepo equipementRepo) {
-        this.equipementRepo = equipementRepo;
+    public EquipmentRepositoryTest(EquipmentRepo equipmentRepo) {
+        this.equipmentRepo = equipmentRepo;
     }
 
 
@@ -36,7 +36,7 @@ public class EquipmentRepositoryTest {
                 .build();
 
         // Act
-        Equipment savedEquipment = equipementRepo.save(equipment);
+        Equipment savedEquipment = equipmentRepo.save(equipment);
 
         //Test
         Assertions.assertThat(savedEquipment).isNotNull();
@@ -52,9 +52,9 @@ public class EquipmentRepositoryTest {
                 .status(Status.AVAILABLE)
                 .name("Engine n° 2")
                 .build();
-        equipementRepo.save(equipment);
+        equipmentRepo.save(equipment);
         //Act
-        List<Equipment> equipmentList = equipementRepo.findByStatus(Status.AVAILABLE);
+        List<Equipment> equipmentList = equipmentRepo.findByStatus(Status.AVAILABLE);
         // Test
         Assertions.assertThat(equipmentList).isNotEmpty();
     }

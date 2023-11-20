@@ -16,8 +16,6 @@ public class Equipment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "equipment_id")
-
-
     private long equipmentId;
 
     @Column(name = "name")

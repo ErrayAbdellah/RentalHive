@@ -2,11 +2,15 @@ package com.rentalHive.rentalHive.controller;
 import com.rentalHive.rentalHive.model.dto.EquipmentDTO;
 import com.rentalHive.rentalHive.model.entities.Equipment;
 import com.rentalHive.rentalHive.model.entities.enums.Status;
-import com.rentalHive.rentalHive.repository.EquipementRepo;
 import jakarta.validation.Valid;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import com.rentalHive.rentalHive.repository.EquipmentRepo;
 import com.rentalHive.rentalHive.service.implementations.EquipmentServiceImpl;
+import jakarta.validation.Valid;
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.http.HttpStatus;
 
 import org.springframework.http.ResponseEntity;
@@ -18,29 +22,30 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/equipment")
 public class EquipmentController {
-    private EquipementRepo equipementRepo;
+    private EquipmentRepo equipmentRepo;
     private final EquipmentServiceImpl equipmentService;
     public EquipmentController(EquipmentServiceImpl equipmentService) {
         this.equipmentService = equipmentService;
     }
 
     @Autowired
-    public void EquipementController(EquipementRepo equipementRepo)
-    {
-        this.equipementRepo = equipementRepo;
+    public void EquipementController(EquipmentRepo equipmentRepo) {
+        this.equipmentRepo = equipmentRepo;
     }
+
     @PostMapping
     public ResponseEntity<String> createEquipement(@Valid @RequestBody EquipmentDTO equipmentDTO)
     {
         Equipment newEquipment = new Equipment();
         BeanUtils.copyProperties(equipmentDTO,newEquipment);
-        equipementRepo.save(newEquipment);
-        equipementRepo.save(newEquipment);
+        equipmentRepo.save(newEquipment);
+        equipmentRepo.save(newEquipment);
+        equipmentRepo.save(newEquipment);
         return  ResponseEntity.ok("Equipement created succesfully");
     }
     @GetMapping("/all")
     public ResponseEntity<List<Equipment>> getAllEquipment() {
-        List<Equipment> equipment = equipementRepo.findAll();
+        List<Equipment> equipment = equipmentRepo.findAll();
         return ResponseEntity.ok(equipment);
     }
 
@@ -49,7 +54,7 @@ public class EquipmentController {
             @PathVariable Long equipmentId,
             @RequestBody EquipmentDTO equipmentDTO) {
 
-        Optional<Equipment> optionalEquipment = equipementRepo.findById(Math.toIntExact(equipmentId));
+        Optional<Equipment> optionalEquipment = equipmentRepo.findById((long) Math.toIntExact(equipmentId));
 
         if (optionalEquipment.isPresent()) {
             Equipment existingEquipment = optionalEquipment.get();
@@ -59,15 +64,13 @@ public class EquipmentController {
             existingEquipment.setQuantity(equipmentDTO.getQuantity());
             existingEquipment.setStatus(equipmentDTO.getStatus());
 
-            equipementRepo.save(existingEquipment);
+            equipmentRepo.save(existingEquipment);
 
             return ResponseEntity.ok("Equipment updated successfully.");
         } else {
             return ResponseEntity.notFound().build();
         }
     }
-
-
 
 
     @GetMapping("/findByName/{name}")

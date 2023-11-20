@@ -17,6 +17,9 @@
             <column name="role" type="INT" />
         </createTable>
 
+        <addAutoIncrement columnDataType="INT"
+                          columnName="user_id"
+                          tableName="user"/>
     </changeSet>
 
 </databaseChangeLog>
