@@ -34,9 +34,20 @@ public class Equipment {
     @OneToMany(mappedBy = "equipment")
     private List<RentalRecord> rentalRecords;
 
-
-
     public List<RentalRecord> getRentalRecords() {
         return rentalRecords;
+    }
+
+    @Override
+    public String toString() {
+        return "Equipment{" +
+                "equipmentId=" + equipmentId +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                ", quantity=" + quantity +
+                ", status=" + status +
+                // Exclude Optional field from toString
+//                ", rentalRecords=" + rentalRecords.map(r -> "RentalRecords{...}").orElse(null) +
+                '}';
     }
 }

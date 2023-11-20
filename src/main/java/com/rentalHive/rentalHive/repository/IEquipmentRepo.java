@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 import java.util.Optional;
 
-public interface EquipmentRepo extends JpaRepository<Equipment,Long>
+public interface IEquipmentRepo extends JpaRepository<Equipment,Long>
 {
     Optional<Equipment> findByName(String name);
     List<Equipment> findByStatus(Status status);

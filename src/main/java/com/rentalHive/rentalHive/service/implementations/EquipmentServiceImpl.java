@@ -3,7 +3,7 @@ package com.rentalHive.rentalHive.service.implementations;
 import com.rentalHive.rentalHive.model.dto.EquipmentDTO;
 import com.rentalHive.rentalHive.model.entities.Equipment;
 import com.rentalHive.rentalHive.model.entities.enums.Status;
-import com.rentalHive.rentalHive.repository.EquipmentRepo;
+import com.rentalHive.rentalHive.repository.IEquipmentRepo;
 
 import com.rentalHive.rentalHive.service.IEquipmentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,16 +16,16 @@ import java.util.stream.Collectors;
 
 @Component
 public class EquipmentServiceImpl implements IEquipmentService {
-    private final EquipmentRepo equipmentRepository;
+    private final IEquipmentRepo IEquipmentRepository;
 
     @Autowired
-    public EquipmentServiceImpl(EquipmentRepo equipmentRepository) {
-        this.equipmentRepository = equipmentRepository;
+    public EquipmentServiceImpl(IEquipmentRepo IEquipmentRepository) {
+        this.IEquipmentRepository = IEquipmentRepository;
     }
 
     @Override
     public Optional<EquipmentDTO> findEquipmentByName(String name) {
-        Optional<Equipment> equipmentOptional = equipmentRepository.findByName(name);
+        Optional<Equipment> equipmentOptional = IEquipmentRepository.findByName(name);
 
         return equipmentOptional.map(equipment ->
                 new EquipmentDTO(
@@ -39,7 +39,7 @@ public class EquipmentServiceImpl implements IEquipmentService {
 
     @Override
     public List<EquipmentDTO> findEquipmentByStatus(Status status) {
-        List<Equipment> equipmentList = equipmentRepository.findByStatus(status);
+        List<Equipment> equipmentList = IEquipmentRepository.findByStatus(status);
 
         if (!equipmentList.isEmpty()) {
             return equipmentList.stream().map(equipment ->
@@ -64,11 +64,10 @@ public class EquipmentServiceImpl implements IEquipmentService {
                 .quantity(equipmentDTO.getQuantity())
                 .status(equipmentDTO.getStatus())
                 .build();
-        Equipment createdEquipment = equipmentRepository.save(equipment);
+        Equipment createdEquipment = IEquipmentRepository.save(equipment);
         return convertToDTO(createdEquipment);
     }
 
-    //Helper functions
     private void validatePriceAndQuantity(double price, int quantity) {
         if (price <= 0) {
             throw new IllegalArgumentException("Price must be greater than 0");

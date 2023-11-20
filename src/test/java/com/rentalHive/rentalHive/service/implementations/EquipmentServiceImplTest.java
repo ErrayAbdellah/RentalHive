@@ -4,7 +4,7 @@ import com.rentalHive.rentalHive.model.dto.EquipmentDTO;
 import com.rentalHive.rentalHive.model.entities.Equipment;
 import com.rentalHive.rentalHive.model.entities.RentalRecord;
 import com.rentalHive.rentalHive.model.entities.enums.Status;
-import com.rentalHive.rentalHive.repository.EquipmentRepo;
+import com.rentalHive.rentalHive.repository.IEquipmentRepo;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -21,7 +21,7 @@ import static org.mockito.Mockito.when;
 public class EquipmentServiceImplTest {
 
     @Mock
-    private EquipmentRepo equipmentRepository;
+    private IEquipmentRepo IEquipmentRepository;
 
     @InjectMocks
     private EquipmentServiceImpl equipmentService;
@@ -33,7 +33,7 @@ public class EquipmentServiceImplTest {
         Equipment sampleEquipment = new Equipment(1L, equipmentName, 100.0, 5, Status.AVAILABLE,rentalRecords);
         Optional<Equipment> optionalEquipment = Optional.of(sampleEquipment);
 
-        when(equipmentRepository.findByName(equipmentName)).thenReturn(optionalEquipment);
+        when(IEquipmentRepository.findByName(equipmentName)).thenReturn(optionalEquipment);
 
         Optional<EquipmentDTO> result = equipmentService.findEquipmentByName(equipmentName);
 
@@ -53,7 +53,7 @@ public class EquipmentServiceImplTest {
 
         Optional<Equipment>optionalEquipment = Optional.empty();
 
-        when(equipmentRepository.findByName(equipmentName)).thenReturn(optionalEquipment);
+        when(IEquipmentRepository.findByName(equipmentName)).thenReturn(optionalEquipment);
 
         Optional<EquipmentDTO> result = equipmentService.findEquipmentByName(equipmentName);
 
