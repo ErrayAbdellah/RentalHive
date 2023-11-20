@@ -3,7 +3,7 @@ package com.rentalHive.rentalHive.controller;
 import com.rentalHive.rentalHive.model.dto.RentalRecordDTO;
 import com.rentalHive.rentalHive.model.entities.Equipment;
 import com.rentalHive.rentalHive.model.entities.RentalRecord;
-import com.rentalHive.rentalHive.repository.EquipementRepo;
+import com.rentalHive.rentalHive.repository.EquipmentRepo;
 import com.rentalHive.rentalHive.repository.IRentalRecordRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;
@@ -19,12 +19,12 @@ import java.util.Optional;
 @RequiredArgsConstructor
 @RequestMapping("/api/equipment")
 public class RentalRecordController {
-    private final EquipementRepo equipementRepo;
+    private final EquipmentRepo equipmentRepo;
     private final IRentalRecordRepo rentalRecordRepo;
 
     @GetMapping("/{equipmentId}/rental-history")
     public ResponseEntity<List<RentalRecordDTO>> getEquipmentRentalHistory(@PathVariable Long equipmentId) {
-        Optional<Equipment> optionalEquipment = equipementRepo.findById(Math.toIntExact(equipmentId));
+        Optional<Equipment> optionalEquipment = equipmentRepo.findById((long) Math.toIntExact(equipmentId));
 
         if (optionalEquipment.isPresent()) {
             Equipment equipment = optionalEquipment.get();
@@ -49,14 +49,14 @@ public class RentalRecordController {
     }
 //        private final IRentalRecordService rentalRecordService ;
 
-        @PostMapping("/save")
-        public ResponseEntity record () throws ParseException {
-//        User user=new User();
-//        Equipment equipment= new Equipment();
-
-            return rentalRecordRepo.record(1, 1);
-
-
-        }
+//        @PostMapping("/save")
+//        public ResponseEntity record () throws ParseException {
+////        User user=new User();
+////        Equipment equipment= new Equipment();
+//
+//            return rentalRecordRepo.record(1, 1);
+//
+//
+//        }
 
 }

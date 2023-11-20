@@ -19,7 +19,7 @@
 
         <addAutoIncrement columnDataType="INT"
                           columnName="user_id"
-                          tableName="users"/>
+                          tableName="user"/>
     </changeSet>
 
 </databaseChangeLog>

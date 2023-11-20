@@ -20,19 +20,19 @@
 
         <addAutoIncrement columnDataType="BIGINT"
                           columnName="reservation_id"
-                          tableName="rental_records"/>
+                          tableName="rental_record"/>
 
         <addForeignKeyConstraint baseColumnNames="equipment_id"
-                                 baseTableName="rental_records"
+                                 baseTableName="rental_record"
                                  constraintName="fk_equipment_id"
                                  referencedColumnNames="equipment_id"
                                  referencedTableName="equipment" />
 
         <addForeignKeyConstraint baseColumnNames="user_id"
-                                 baseTableName="rental_records"
+                                 baseTableName="rental_record"
                                  constraintName="fk_user_id"
                                  referencedColumnNames="user_id"
-                                 referencedTableName="users" />
+                                 referencedTableName="user" />
     </changeSet>
 
 </databaseChangeLog>

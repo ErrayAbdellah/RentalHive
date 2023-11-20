@@ -30,5 +30,9 @@ public class Equipment {
     @Enumerated(EnumType.STRING)
     @Column(name = "status")
     private Status status;
-
+    @OneToMany(mappedBy = "equipment")
+    private List<RentalRecord> rentalRecords;
+    public List<RentalRecord> getRentalRecords() {
+        return rentalRecords;
+    }
 }

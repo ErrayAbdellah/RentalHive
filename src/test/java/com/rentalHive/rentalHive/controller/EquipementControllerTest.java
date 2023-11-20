@@ -1,13 +1,11 @@
 package com.rentalHive.rentalHive.controller;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rentalHive.rentalHive.model.dto.EquipmentDTO;
 import com.rentalHive.rentalHive.model.entities.Equipment;
-import com.rentalHive.rentalHive.repository.EquipementRepo;
+import com.rentalHive.rentalHive.repository.EquipmentRepo;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.springframework.beans.BeanUtils;
 import org.springframework.http.ResponseEntity;
 
 import java.util.Optional;
@@ -19,7 +17,7 @@ import static org.mockito.Mockito.*;
 public class EquipementControllerTest {
 
     @Mock
-    private EquipementRepo equipementRepo;
+    private EquipmentRepo equipmentRepo;
 
     @InjectMocks
     private EquipmentController equipmentController;
@@ -38,12 +36,12 @@ public class EquipementControllerTest {
         existingEquipment.setPrice(100.0);
         existingEquipment.setQuantity(5);
 
-        when(equipementRepo.findById(Math.toIntExact(equipmentId))).thenReturn(Optional.of(existingEquipment));
+        when(equipmentRepo.findById(Math.toIntExact(equipmentId))).thenReturn(Optional.of(existingEquipment));
 
         ResponseEntity<String> responseEntity = equipmentController.updateEquipment(equipmentId, equipmentDTO);
 
-        verify(equipementRepo, times(1)).findById(Math.toIntExact(equipmentId));
-        verify(equipementRepo, times(1)).save(existingEquipment);
+        verify(equipmentRepo, times(1)).findById(Math.toIntExact(equipmentId));
+        verify(equipmentRepo, times(1)).save(existingEquipment);
         assertNotNull(responseEntity);
         assertEquals("Equipment updated successfully.", responseEntity.getBody());
     }

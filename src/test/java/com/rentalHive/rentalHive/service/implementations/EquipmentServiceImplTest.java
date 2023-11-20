@@ -3,7 +3,7 @@ package com.rentalHive.rentalHive.service.implementations;
 import com.rentalHive.rentalHive.model.dto.EquipmentDTO;
 import com.rentalHive.rentalHive.model.entities.Equipment;
 import com.rentalHive.rentalHive.model.entities.enums.Status;
-import com.rentalHive.rentalHive.repository.EquipementRepo;
+import com.rentalHive.rentalHive.repository.EquipmentRepo;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -19,7 +19,7 @@ import static org.mockito.Mockito.when;
 public class EquipmentServiceImplTest {
 
     @Mock
-    private EquipementRepo equipmentRepository;
+    private EquipmentRepo equipmentRepository;
 
     @InjectMocks
     private EquipmentServiceImpl equipmentService;

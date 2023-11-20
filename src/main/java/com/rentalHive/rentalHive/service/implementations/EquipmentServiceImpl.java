@@ -3,11 +3,10 @@ package com.rentalHive.rentalHive.service.implementations;
 import com.rentalHive.rentalHive.model.dto.EquipmentDTO;
 import com.rentalHive.rentalHive.model.entities.Equipment;
 import com.rentalHive.rentalHive.model.entities.enums.Status;
-import com.rentalHive.rentalHive.repository.EquipementRepo;
-import com.rentalHive.rentalHive.repository.
+import com.rentalHive.rentalHive.repository.EquipmentRepo;
+
 import com.rentalHive.rentalHive.service.IEquipmentService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 
 import java.util.Collections;
@@ -17,10 +16,10 @@ import java.util.stream.Collectors;
 
 @Component
 public class EquipmentServiceImpl implements IEquipmentService {
-    private final EquipementRepo equipmentRepository;
+    private final EquipmentRepo equipmentRepository;
 
     @Autowired
-    public EquipmentServiceImpl(EquipementRepo equipmentRepository) {
+    public EquipmentServiceImpl(EquipmentRepo equipmentRepository) {
         this.equipmentRepository = equipmentRepository;
     }
 

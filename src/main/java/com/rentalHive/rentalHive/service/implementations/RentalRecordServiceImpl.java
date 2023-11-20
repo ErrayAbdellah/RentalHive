@@ -3,7 +3,7 @@ package com.rentalHive.rentalHive.service.implementations;
 import com.rentalHive.rentalHive.model.entities.Equipment;
 import com.rentalHive.rentalHive.model.entities.RentalRecord;
 import com.rentalHive.rentalHive.model.entities.User;
-import com.rentalHive.rentalHive.repository.IEquipmentRepo;
+import com.rentalHive.rentalHive.repository.EquipmentRepo;
 import com.rentalHive.rentalHive.repository.IRentalRecordRepo;
 import com.rentalHive.rentalHive.repository.IUserRepo;
 import com.rentalHive.rentalHive.service.IRentalRecordService;
@@ -20,7 +20,7 @@ import java.util.Optional;
 public class RentalRecordServiceImpl implements IRentalRecordService {
     private final IRentalRecordRepo rentalRecordRepo ;
     private final IUserRepo userRepo ;
-    private final IEquipmentRepo equipmentRepo ;
+    private final EquipmentRepo equipmentRepo ;
     private SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
 
 
