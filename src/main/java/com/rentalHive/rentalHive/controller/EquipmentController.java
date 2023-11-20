@@ -1,23 +1,14 @@
 package com.rentalHive.rentalHive.controller;
-
 import com.rentalHive.rentalHive.model.dto.EquipmentDTO;
 import com.rentalHive.rentalHive.model.entities.Equipment;
 import com.rentalHive.rentalHive.model.entities.enums.Status;
 import com.rentalHive.rentalHive.repository.EquipementRepo;
-<<<<<<< HEAD
 import jakarta.validation.Valid;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-=======
-import com.rentalHive.rentalHive.service.IEquipmentService;
 import com.rentalHive.rentalHive.service.implementations.EquipmentServiceImpl;
-import lombok.RequiredArgsConstructor;
-import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
->>>>>>> bfd91970d10f16438cb5fd27e24f458c1c7fd940
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -34,15 +25,16 @@ public class EquipmentController {
     }
 
     @Autowired
-    public void EquipementController(EquipementRepo equipementRepo) {
+    public void EquipementController(EquipementRepo equipementRepo)
+    {
         this.equipementRepo = equipementRepo;
     }
-<<<<<<< HEAD
     @PostMapping
     public ResponseEntity<String> createEquipement(@Valid @RequestBody EquipmentDTO equipmentDTO)
     {
         Equipment newEquipment = new Equipment();
         BeanUtils.copyProperties(equipmentDTO,newEquipment);
+        equipementRepo.save(newEquipment);
         equipementRepo.save(newEquipment);
         return  ResponseEntity.ok("Equipement created succesfully");
     }
@@ -51,9 +43,7 @@ public class EquipmentController {
         List<Equipment> equipment = equipementRepo.findAll();
         return ResponseEntity.ok(equipment);
     }
-=======
 
->>>>>>> bfd91970d10f16438cb5fd27e24f458c1c7fd940
     @PutMapping("/{equipmentId}")
     public ResponseEntity<String> updateEquipment(
             @PathVariable Long equipmentId,
@@ -77,9 +67,9 @@ public class EquipmentController {
         }
     }
 
-<<<<<<< HEAD
-}
-=======
+
+
+
     @GetMapping("/findByName/{name}")
     public ResponseEntity<EquipmentDTO> findEquipmentByName(@PathVariable String name) {
         Optional<EquipmentDTO> equipmentDTOOptional = equipmentService.findEquipmentByName(name);
@@ -101,4 +91,4 @@ public class EquipmentController {
     }
 
 }
->>>>>>> bfd91970d10f16438cb5fd27e24f458c1c7fd940
+
