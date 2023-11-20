@@ -17,7 +17,7 @@ public class RentalRecord {
     private long reservationId;
 
     @ManyToOne
-    @JoinColumn(name = "equipment_id")
+    @JoinColumn(name = "equipment_id", nullable = false)
     private Equipment equipment;
 
     @ManyToOne

@@ -36,11 +36,11 @@ public class EquipementControllerTest {
         existingEquipment.setPrice(100.0);
         existingEquipment.setQuantity(5);
 
-        when(equipmentRepo.findById(Math.toIntExact(equipmentId))).thenReturn(Optional.of(existingEquipment));
+        when(equipmentRepo.findById((long) Math.toIntExact(equipmentId))).thenReturn(Optional.of(existingEquipment));
 
         ResponseEntity<String> responseEntity = equipmentController.updateEquipment(equipmentId, equipmentDTO);
 
-        verify(equipmentRepo, times(1)).findById(Math.toIntExact(equipmentId));
+        verify(equipmentRepo, times(1)).findById((long) Math.toIntExact(equipmentId));
         verify(equipmentRepo, times(1)).save(existingEquipment);
         assertNotNull(responseEntity);
         assertEquals("Equipment updated successfully.", responseEntity.getBody());

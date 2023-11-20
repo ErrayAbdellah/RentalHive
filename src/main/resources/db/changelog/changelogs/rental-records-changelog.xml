@@ -18,9 +18,6 @@
             <column name="return_date" type="TIMESTAMP" />
         </createTable>
 
-        <addAutoIncrement columnDataType="BIGINT"
-                          columnName="reservation_id"
-                          tableName="rental_record"/>
 
         <addForeignKeyConstraint baseColumnNames="equipment_id"
                                  baseTableName="rental_record"
