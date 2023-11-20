@@ -13,5 +13,5 @@ public interface IEquipmentService {
     Optional<EquipmentDTO> findEquipmentByName(String name);
     List<EquipmentDTO> findEquipmentByStatus(Status status);
 
-    Equipment createEquipment(EquipmentDTO equipmentDTO);
+    EquipmentDTO createEquipment(EquipmentDTO equipmentDTO);
 }

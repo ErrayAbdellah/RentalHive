@@ -31,14 +31,14 @@ public class EquipmentController {
 
     @PostMapping(consumes = "application/json" )
     @ResponseStatus(value = HttpStatus.CREATED )
-    public ResponseEntity<CustomResponse<Equipment>> addEquipment(@RequestBody EquipmentDTO equipmentDTO){
+    public ResponseEntity<CustomResponse<EquipmentDTO>> addEquipment(@RequestBody EquipmentDTO equipmentDTO){
         try{
-            Equipment equipment= equipmentService.createEquipment(equipmentDTO);
-            CustomResponse<Equipment> response = new CustomResponse<>("Equipment Created successfully", equipment);
+            EquipmentDTO equipment= equipmentService.createEquipment(equipmentDTO);
+            CustomResponse<EquipmentDTO> response = new CustomResponse<>("Equipment Created successfully", equipment);
             return new ResponseEntity<>(response, HttpStatus.CREATED);
         }catch (IllegalArgumentException e){
             String errorMsg = "Invalid request : "+ e.getMessage();
-            CustomResponse<Equipment> response = new CustomResponse<>(errorMsg, null);
+            CustomResponse<EquipmentDTO> response = new CustomResponse<>(errorMsg, null);
             return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
         }catch (Exception e){
             String errorMsg = "Internal Server error : "+ e.getMessage();

@@ -59,7 +59,7 @@ public class EquipmentServiceImpl implements IEquipmentService {
     }
 
     @Override
-    public Equipment createEquipment(EquipmentDTO equipmentDTO) {
+    public EquipmentDTO createEquipment(EquipmentDTO equipmentDTO) {
         validateEquipmentDTO(equipmentDTO);
         Equipment equipment = Equipment.builder()
                 .name(equipmentDTO.getName())
@@ -67,7 +67,8 @@ public class EquipmentServiceImpl implements IEquipmentService {
                 .quantity(equipmentDTO.getQuantity())
                 .status(equipmentDTO.getStatus())
                 .build();
-        return equipmentRepository.save(equipment);
+        Equipment createdEquipment = equipmentRepository.save(equipment);
+        return convertToDTO(createdEquipment);
     }
 
     //Helper functions
@@ -78,6 +79,9 @@ public class EquipmentServiceImpl implements IEquipmentService {
 
         if (quantity < 0) {
             throw new IllegalArgumentException("Quantity cannot be negative");
+        }
+        if (quantity == 0) {
+            throw new IllegalArgumentException("Quantity cannot be less than 1");
         }
     }
 
@@ -90,7 +94,6 @@ public class EquipmentServiceImpl implements IEquipmentService {
     }
     private EquipmentDTO convertToDTO(Equipment equipment) {
         EquipmentDTO equipmentDTO = EquipmentDTO.builder()
-                .equipmentId(equipment.getEquipmentId())
                 .quantity(equipment.getQuantity())
                 .price(equipment.getQuantity())
                 .status(equipment.getStatus())
