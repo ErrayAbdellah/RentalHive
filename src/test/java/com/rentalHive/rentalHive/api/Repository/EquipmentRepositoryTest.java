@@ -27,7 +27,6 @@ public class EquipmentRepositoryTest {
 
     @Test
     public void EquipmentRepo_SaveEquipment_ReturnSavedEquipment(){
-        //Arrange
         Equipment equipment = Equipment.builder()
                 .price(106.5)
                 .status(Status.AVAILABLE)
@@ -35,10 +34,10 @@ public class EquipmentRepositoryTest {
                 .quantity(2)
                 .build();
 
-        // Act
+
         Equipment savedEquipment = equipmentRepo.save(equipment);
 
-        //Test
+
         Assertions.assertThat(savedEquipment).isNotNull();
         Assertions.assertThat(savedEquipment.getEquipmentId()).isGreaterThan(0);
     }
@@ -53,9 +52,7 @@ public class EquipmentRepositoryTest {
                 .name("Engine n° 2")
                 .build();
         equipmentRepo.save(equipment);
-        //Act
         List<Equipment> equipmentList = equipmentRepo.findByStatus(Status.AVAILABLE);
-        // Test
         Assertions.assertThat(equipmentList).isNotEmpty();
     }
 }

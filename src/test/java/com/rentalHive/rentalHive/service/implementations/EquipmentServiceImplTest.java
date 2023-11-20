@@ -50,9 +50,7 @@ public class EquipmentServiceImplTest {
     @Test
     public void testFindEquipmentByNameNotFound() {
         String equipmentName = "NonExistentEquipment";
-
         Optional<Equipment>optionalEquipment = Optional.empty();
-
         when(equipmentRepository.findByName(equipmentName)).thenReturn(optionalEquipment);
 
         Optional<EquipmentDTO> result = equipmentService.findEquipmentByName(equipmentName);

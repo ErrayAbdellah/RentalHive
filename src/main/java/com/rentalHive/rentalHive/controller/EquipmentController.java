@@ -22,17 +22,15 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/equipment")
 public class EquipmentController {
-    private EquipmentRepo equipmentRepo;
-    private final EquipmentServiceImpl equipmentService;
-    public EquipmentController(EquipmentServiceImpl equipmentService) {
-        this.equipmentService = equipmentService;
-    }
 
     @Autowired
-    public void EquipementController(EquipmentRepo equipmentRepo) {
+    private EquipmentRepo equipmentRepo;
+    private final EquipmentServiceImpl equipmentService;
+    @Autowired
+    public EquipmentController(EquipmentRepo equipmentRepo, EquipmentServiceImpl equipmentService) {
         this.equipmentRepo = equipmentRepo;
+        this.equipmentService = equipmentService;
     }
-
     @PostMapping
     public ResponseEntity<String> createEquipement(@Valid @RequestBody EquipmentDTO equipmentDTO)
     {
@@ -54,7 +52,7 @@ public class EquipmentController {
             @PathVariable Long equipmentId,
             @RequestBody EquipmentDTO equipmentDTO) {
 
-        Optional<Equipment> optionalEquipment = equipmentRepo.findById((long) Math.toIntExact(equipmentId));
+        Optional<Equipment> optionalEquipment = equipmentRepo.findById(equipmentId);
 
         if (optionalEquipment.isPresent()) {
             Equipment existingEquipment = optionalEquipment.get();
