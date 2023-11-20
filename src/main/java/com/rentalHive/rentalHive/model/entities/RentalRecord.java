@@ -16,11 +16,11 @@ public class RentalRecord {
     @Column(name = "reservation_id")
     private long reservationId;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "equipment_id", nullable = false)
     private Equipment equipment;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
 
@@ -29,5 +29,14 @@ public class RentalRecord {
 
     @Column(name = "return_date")
     private Date returnDate;
-
+    @Override
+    public String toString() {
+        return "RentalRecord{" +
+                "reservationId=" + reservationId +
+                ", equipment=" + (equipment != null ? equipment.getEquipmentId() : null) +
+                ", user=" + (user != null ? user.getUserId() : null) +
+                ", reservationDate=" + reservationDate +
+                ", returnDate=" + returnDate +
+                '}';
+    }
 }

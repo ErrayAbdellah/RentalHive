@@ -35,4 +35,15 @@ public class User {
     private List<RentalRecord> rentalRecords ;
 
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "userId=" + userId +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", telephone='" + telephone + '\'' +
+                ", role=" + role +
+                '}';
+    }
 }
