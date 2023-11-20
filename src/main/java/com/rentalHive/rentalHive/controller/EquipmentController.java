@@ -1,6 +1,6 @@
 package com.rentalHive.rentalHive.controller;
 
-import com.rentalHive.rentalHive.dto.EquipmentDTO;
+import com.rentalHive.rentalHive.model.dto.EquipmentDTO;
 import com.rentalHive.rentalHive.model.entities.Equipment;
 import com.rentalHive.rentalHive.repository.EquipementRepo;
 import lombok.RequiredArgsConstructor;
@@ -22,8 +22,6 @@ public class EquipmentController {
     public void EquipementController(EquipementRepo equipementRepo) {
         this.equipementRepo = equipementRepo;
     }
-
-
     @PutMapping("/{equipmentId}")
     public ResponseEntity<String> updateEquipment(
             @PathVariable Long equipmentId,

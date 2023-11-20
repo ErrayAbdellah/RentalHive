@@ -1,7 +1,7 @@
 package com.rentalHive.rentalHive.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.rentalHive.rentalHive.dto.EquipmentDTO;
+import com.rentalHive.rentalHive.model.dto.EquipmentDTO;
 import com.rentalHive.rentalHive.model.entities.Equipment;
 import com.rentalHive.rentalHive.repository.EquipementRepo;
 import org.junit.jupiter.api.Test;
