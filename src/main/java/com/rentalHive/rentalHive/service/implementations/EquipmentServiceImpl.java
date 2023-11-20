@@ -65,7 +65,11 @@ public class EquipmentServiceImpl implements IEquipmentService {
                 .status(equipmentDTO.getStatus())
                 .build();
         Equipment createdEquipment = equipmentRepository.save(equipment);
-        return convertToDTO(createdEquipment);
+        if (createdEquipment != null) {
+            return convertToDTO(createdEquipment);
+        } else {
+            throw new IllegalStateException("Failed to save equipment. Returned object is null.");
+        }
     }
 
     //Helper functions
@@ -92,7 +96,7 @@ public class EquipmentServiceImpl implements IEquipmentService {
     private EquipmentDTO convertToDTO(Equipment equipment) {
         EquipmentDTO equipmentDTO = EquipmentDTO.builder()
                 .quantity(equipment.getQuantity())
-                .price(equipment.getQuantity())
+                .price(equipment.getPrice())
                 .status(equipment.getStatus())
                 .name(equipment.getName())
                 .build();

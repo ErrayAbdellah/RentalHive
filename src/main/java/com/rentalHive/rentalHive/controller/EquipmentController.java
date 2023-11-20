@@ -1,4 +1,5 @@
 package com.rentalHive.rentalHive.controller;
+import com.rentalHive.rentalHive.model.dto.CustomResponse;
 import com.rentalHive.rentalHive.model.dto.EquipmentDTO;
 import com.rentalHive.rentalHive.model.entities.Equipment;
 import com.rentalHive.rentalHive.model.entities.enums.Status;
@@ -33,15 +34,23 @@ public class EquipmentController {
         this.equipmentRepo = equipmentRepo;
     }
 
-    @PostMapping
-    public ResponseEntity<String> createEquipement(@Valid @RequestBody EquipmentDTO equipmentDTO)
-    {
-        Equipment newEquipment = new Equipment();
-        BeanUtils.copyProperties(equipmentDTO,newEquipment);
-        equipmentRepo.save(newEquipment);
-        equipmentRepo.save(newEquipment);
-        equipmentRepo.save(newEquipment);
-        return  ResponseEntity.ok("Equipement created succesfully");
+    @PostMapping(consumes = "application/json" )
+    @ResponseStatus(value = HttpStatus.CREATED )
+    public ResponseEntity<CustomResponse<EquipmentDTO>> addEquipment(@RequestBody EquipmentDTO equipmentDTO){
+        try{
+            EquipmentDTO equipment= equipmentService.createEquipment(equipmentDTO);
+            System.out.println("created equipment from controller : "+equipment);
+            CustomResponse<EquipmentDTO> response = new CustomResponse<>("Equipment Created successfully", equipment);
+            return new ResponseEntity<>(response, HttpStatus.CREATED);
+        }catch (IllegalArgumentException e){
+            String errorMsg = "Invalid request : "+ e.getMessage();
+            CustomResponse<EquipmentDTO> response = new CustomResponse<>(errorMsg, null);
+            return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+        }catch (Exception e) {
+            String errorMsg = "Internal Server error : " + e.getMessage();
+            CustomResponse<EquipmentDTO> response = new CustomResponse<>(errorMsg, null);
+            return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
     @GetMapping("/all")
     public ResponseEntity<List<Equipment>> getAllEquipment() {
