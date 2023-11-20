@@ -7,7 +7,7 @@
 
     <changeSet id="createTable-users" author="Team">
         <createTable tableName="user">
-            <column name="user_id" type="INT">
+            <column name="user_id" type="INT"  autoIncrement="true">
                 <constraints primaryKey="true" nullable="false" />
             </column>
             <column name="name" type="VARCHAR(255)" />
@@ -17,9 +17,6 @@
             <column name="role" type="INT" />
         </createTable>
 
-        <addAutoIncrement columnDataType="INT"
-                          columnName="user_id"
-                          tableName="users"/>
     </changeSet>
 
 </databaseChangeLog>

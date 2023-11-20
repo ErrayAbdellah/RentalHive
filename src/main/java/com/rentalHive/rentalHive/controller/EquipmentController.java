@@ -1,20 +1,14 @@
 package com.rentalHive.rentalHive.controller;
-
 import com.rentalHive.rentalHive.model.dto.EquipmentDTO;
 import com.rentalHive.rentalHive.model.entities.Equipment;
 import com.rentalHive.rentalHive.model.entities.enums.Status;
 import com.rentalHive.rentalHive.repository.EquipementRepo;
 import jakarta.validation.Valid;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import com.rentalHive.rentalHive.service.IEquipmentService;
 import com.rentalHive.rentalHive.service.implementations.EquipmentServiceImpl;
-import lombok.RequiredArgsConstructor;
-import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,7 +25,8 @@ public class EquipmentController {
     }
 
     @Autowired
-    public void EquipementController(EquipementRepo equipementRepo) {
+    public void EquipementController(EquipementRepo equipementRepo)
+    {
         this.equipementRepo = equipementRepo;
     }
     @PostMapping
@@ -40,6 +35,7 @@ public class EquipmentController {
         Equipment newEquipment = new Equipment();
         BeanUtils.copyProperties(equipmentDTO,newEquipment);
         equipementRepo.save(newEquipment);
+        equipementRepo.save(newEquipment);
         return  ResponseEntity.ok("Equipement created succesfully");
     }
     @GetMapping("/all")
@@ -47,7 +43,8 @@ public class EquipmentController {
         List<Equipment> equipment = equipementRepo.findAll();
         return ResponseEntity.ok(equipment);
     }
-   @PutMapping("/{equipmentId}")
+
+    @PutMapping("/{equipmentId}")
     public ResponseEntity<String> updateEquipment(
             @PathVariable Long equipmentId,
             @RequestBody EquipmentDTO equipmentDTO) {
@@ -71,6 +68,8 @@ public class EquipmentController {
     }
 
 
+
+
     @GetMapping("/findByName/{name}")
     public ResponseEntity<EquipmentDTO> findEquipmentByName(@PathVariable String name) {
         Optional<EquipmentDTO> equipmentDTOOptional = equipmentService.findEquipmentByName(name);
@@ -92,3 +91,4 @@ public class EquipmentController {
     }
 
 }
+

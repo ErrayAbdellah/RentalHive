@@ -25,7 +25,6 @@ public class EquipmentServiceImplTest {
     private EquipmentServiceImpl equipmentService;
 
 
-
     @Test
     public void testFindEquipmentByNameNotFound() {
         String equipmentName = "NonExistentEquipment";
