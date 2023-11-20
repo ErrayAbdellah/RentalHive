@@ -4,7 +4,7 @@ import com.rentalHive.rentalHive.model.dto.EquipmentDTO;
 import com.rentalHive.rentalHive.model.entities.Equipment;
 import com.rentalHive.rentalHive.model.entities.enums.Status;
 import com.rentalHive.rentalHive.repository.EquipementRepo;
-import com.rentalHive.rentalHive.repository.IEquipmentRepo;
+import com.rentalHive.rentalHive.repository.EquipementRepo;
 import com.rentalHive.rentalHive.service.IEquipmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -30,7 +30,6 @@ public class EquipmentServiceImpl implements IEquipmentService {
 
         return equipmentOptional.map(equipment ->
                 new EquipmentDTO(
-                        equipment.getEquipmentId(),
                         equipment.getName(),
                         equipment.getPrice(),
                         equipment.getQuantity(),
@@ -46,7 +45,6 @@ public class EquipmentServiceImpl implements IEquipmentService {
         if (!equipmentList.isEmpty()) {
             return equipmentList.stream().map(equipment ->
                     new EquipmentDTO(
-                            equipment.getEquipmentId(),
                             equipment.getName(),
                             equipment.getPrice(),
                             equipment.getQuantity(),
