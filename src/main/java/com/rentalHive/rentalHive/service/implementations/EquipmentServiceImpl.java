@@ -57,4 +57,45 @@ public class EquipmentServiceImpl implements IEquipmentService {
             return Collections.emptyList();
         }
     }
+
+    @Override
+    public Equipment createEquipment(EquipmentDTO equipmentDTO) {
+        validateEquipmentDTO(equipmentDTO);
+        Equipment equipment = Equipment.builder()
+                .name(equipmentDTO.getName())
+                .price(equipmentDTO.getPrice())
+                .quantity(equipmentDTO.getQuantity())
+                .status(equipmentDTO.getStatus())
+                .build();
+        return equipmentRepository.save(equipment);
+    }
+
+    //Helper functions
+    private void validatePriceAndQuantity(double price, int quantity) {
+        if (price <= 0) {
+            throw new IllegalArgumentException("Price must be greater than 0");
+        }
+
+        if (quantity < 0) {
+            throw new IllegalArgumentException("Quantity cannot be negative");
+        }
+    }
+
+    private void validateEquipmentDTO(EquipmentDTO equipmentDTO) {
+        if (equipmentDTO.getName() == null || equipmentDTO.getName().isEmpty()) {
+            throw new IllegalArgumentException("Equipment name cannot be empty");
+        }
+
+        validatePriceAndQuantity(equipmentDTO.getPrice(), equipmentDTO.getQuantity());
+    }
+    private EquipmentDTO convertToDTO(Equipment equipment) {
+        EquipmentDTO equipmentDTO = EquipmentDTO.builder()
+                .equipmentId(equipment.getEquipmentId())
+                .quantity(equipment.getQuantity())
+                .price(equipment.getQuantity())
+                .status(equipment.getStatus())
+                .name(equipment.getName())
+                .build();
+        return equipmentDTO;
+    }
 }

@@ -11,8 +11,10 @@ import org.springframework.boot.test.autoconfigure.data.jdbc.DataJdbcTest;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
+import java.util.List;
+
 @DataJpaTest
-@AutoConfigureTestDatabase(connection = EmbeddedDatabaseConnection.H2)
+@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 public class EquipmentRepositoryTest {
 
     private EquipementRepo equipementRepo;
@@ -42,8 +44,18 @@ public class EquipmentRepositoryTest {
     }
 
     @Test
-    public void EquipmentRepo_checkEquipmentExistence_returnTrueOrFalse(){
-        boolean exists = equipementRepo.existsById(100);
-        Assertions.assertThat(exists).isFalse();
+    public void EquipmentRepo_FindByStatus_ReturnsNotEmpty(){
+        //Arrange
+        Equipment equipment = Equipment.builder()
+                .price(200)
+                .quantity(1)
+                .status(Status.AVAILABLE)
+                .name("Engine n° 2")
+                .build();
+        equipementRepo.save(equipment);
+        //Act
+        List<Equipment> equipmentList = equipementRepo.findByStatus(Status.AVAILABLE);
+        // Test
+        Assertions.assertThat(equipmentList).isNotEmpty();
     }
 }

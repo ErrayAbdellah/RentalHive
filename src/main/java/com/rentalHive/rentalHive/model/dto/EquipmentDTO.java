@@ -6,6 +6,7 @@ import lombok.*;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class EquipmentDTO {
     private long equipmentId;
     private String name;
