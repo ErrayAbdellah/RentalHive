@@ -22,6 +22,8 @@ public class EquipmentController {
     public void EquipementController(EquipementRepo equipementRepo) {
         this.equipementRepo = equipementRepo;
     }
+
+
     @PutMapping("/{equipmentId}")
     public ResponseEntity<String> updateEquipment(
             @PathVariable Long equipmentId,

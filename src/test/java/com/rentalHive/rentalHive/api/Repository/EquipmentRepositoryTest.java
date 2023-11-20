@@ -3,7 +3,7 @@ package com.rentalHive.rentalHive.api.Repository;
 import com.rentalHive.rentalHive.model.entities.Equipment;
 import com.rentalHive.rentalHive.model.entities.enums.Status;
 import com.rentalHive.rentalHive.repository.EquipementRepo;
-import org.junit.jupiter.api.Assertions;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.jdbc.EmbeddedDatabaseConnection;
@@ -12,7 +12,7 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 @DataJpaTest
-@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
+@AutoConfigureTestDatabase(connection = EmbeddedDatabaseConnection.H2)
 public class EquipmentRepositoryTest {
 
     private EquipementRepo equipementRepo;
@@ -37,7 +37,13 @@ public class EquipmentRepositoryTest {
         Equipment savedEquipment = equipementRepo.save(equipment);
 
         //Test
-        Assertions.assertNotNull(savedEquipment);
-//        Assertions
+        Assertions.assertThat(savedEquipment).isNotNull();
+        Assertions.assertThat(savedEquipment.getEquipmentId()).isGreaterThan(0);
+    }
+
+    @Test
+    public void EquipmentRepo_checkEquipmentExistence_returnTrueOrFalse(){
+        boolean exists = equipementRepo.existsById(100);
+        Assertions.assertThat(exists).isFalse();
     }
 }
