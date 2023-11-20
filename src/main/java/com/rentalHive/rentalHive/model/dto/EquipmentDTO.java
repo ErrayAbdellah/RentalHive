@@ -22,4 +22,5 @@ public class EquipmentDTO {
     private int quantity;
     @Enumerated
     private Status status;
+
 }

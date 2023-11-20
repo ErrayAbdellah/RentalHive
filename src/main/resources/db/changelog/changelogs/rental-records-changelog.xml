@@ -7,7 +7,7 @@
 
     <changeSet id="createTable-rental-records" author="Team">
         <createTable tableName="rental_record">
-            <column name="reservation_id" type="BIGINT">
+            <column name="reservation_id" type="BIGINT"  autoIncrement="true">
                 <constraints primaryKey="true" nullable="false" />
             </column>
             <column name="equipment_id" type="BIGINT"/>
@@ -18,21 +18,18 @@
             <column name="return_date" type="TIMESTAMP" />
         </createTable>
 
-        <addAutoIncrement columnDataType="BIGINT"
-                          columnName="reservation_id"
-                          tableName="rental_records"/>
 
         <addForeignKeyConstraint baseColumnNames="equipment_id"
-                                 baseTableName="rental_records"
+                                 baseTableName="rental_record"
                                  constraintName="fk_equipment_id"
                                  referencedColumnNames="equipment_id"
                                  referencedTableName="equipment" />
 
         <addForeignKeyConstraint baseColumnNames="user_id"
-                                 baseTableName="rental_records"
+                                 baseTableName="rental_record"
                                  constraintName="fk_user_id"
                                  referencedColumnNames="user_id"
-                                 referencedTableName="users" />
+                                 referencedTableName="user" />
     </changeSet>
 
 </databaseChangeLog>

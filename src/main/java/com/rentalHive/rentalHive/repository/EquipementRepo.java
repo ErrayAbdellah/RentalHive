@@ -14,4 +14,5 @@ public interface EquipementRepo extends JpaRepository<Equipment,Integer>
     List<Equipment> findByQuantityGreaterThan(int quantity);
     List<Equipment> findAll();
 
+    boolean existsByName(String testEquipment);
 }

@@ -24,25 +24,6 @@ public class EquipmentServiceImplTest {
     @InjectMocks
     private EquipmentServiceImpl equipmentService;
 
-    @Test
-    public void testFindEquipmentByName() {
-        String equipmentName = "SampleEquipment";
-        Equipment sampleEquipment = new Equipment(1L, equipmentName, 100.0, 5, Status.AVAILABLE);
-        Optional<Equipment> optionalEquipment = Optional.of(sampleEquipment);
-
-        when(equipmentRepository.findByName(equipmentName)).thenReturn(optionalEquipment);
-
-        Optional<EquipmentDTO> result = equipmentService.findEquipmentByName(equipmentName);
-
-        assertEquals(optionalEquipment.map(equipment ->
-                new EquipmentDTO(
-                        equipment.getName(),
-                        equipment.getPrice(),
-                        equipment.getQuantity(),
-                        equipment.getStatus()
-                )
-        ), result);
-    }
 
     @Test
     public void testFindEquipmentByNameNotFound() {

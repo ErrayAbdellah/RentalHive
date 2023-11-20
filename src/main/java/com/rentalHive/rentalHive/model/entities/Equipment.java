@@ -16,6 +16,8 @@ public class Equipment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "equipment_id")
+
+
     private long equipmentId;
 
     @Column(name = "name")
@@ -31,4 +33,12 @@ public class Equipment {
     @Column(name = "status")
     private Status status;
 
+    @OneToMany(mappedBy = "equipment")
+    private List<RentalRecord> rentalRecords;
+
+
+
+    public List<RentalRecord> getRentalRecords() {
+        return rentalRecords;
+    }
 }

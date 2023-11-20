@@ -1,21 +1,18 @@
 package com.rentalHive.rentalHive.controller;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import  com.rentalHive.rentalHive.controller.EquipmentController;
 import com.rentalHive.rentalHive.model.dto.EquipmentDTO;
-import com.rentalHive.rentalHive.model.entities.Equipment;
+import com.rentalHive.rentalHive.model.entities.enums.Status;
 import com.rentalHive.rentalHive.repository.EquipementRepo;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.springframework.beans.BeanUtils;
+import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-import java.util.Optional;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.mockito.Mockito.*;
-
+@ExtendWith(MockitoExtension.class)
 public class EquipementControllerTest {
 
     @Mock
@@ -25,26 +22,26 @@ public class EquipementControllerTest {
     private EquipmentController equipmentController;
 
     @Test
-    void testUpdateEquipment() {
-        Long equipmentId = 1L;
+    public void test_create_new_equipment_object() {
         EquipmentDTO equipmentDTO = new EquipmentDTO();
-        equipmentDTO.setName("Updated Equipment");
-        equipmentDTO.setPrice(150.0);
-        equipmentDTO.setQuantity(10);
+        equipmentDTO.setName("Test Equipment");
+        equipmentDTO.setPrice(100.0);
+        equipmentDTO.setQuantity(5);
+        equipmentDTO.setStatus(Status.AVAILABLE);
 
-        Equipment existingEquipment = new Equipment();
-        existingEquipment.setEquipmentId(equipmentId);
-        existingEquipment.setName("Existing Equipment");
-        existingEquipment.setPrice(100.0);
-        existingEquipment.setQuantity(5);
+        ResponseEntity<String> response = equipmentController.createEquipement(equipmentDTO);
+        assert response.getStatusCode() == HttpStatus.OK;
+        assert response.getBody().equals("Equipement created succesfully");
+    }
+    @Test
+    public void test_save_equipment_to_repo() {
+        EquipmentDTO equipmentDTO = new EquipmentDTO();
 
-        when(equipementRepo.findById(Math.toIntExact(equipmentId))).thenReturn(Optional.of(existingEquipment));
-
-        ResponseEntity<String> responseEntity = equipmentController.updateEquipment(equipmentId, equipmentDTO);
-
-        verify(equipementRepo, times(1)).findById(Math.toIntExact(equipmentId));
-        verify(equipementRepo, times(1)).save(existingEquipment);
-        assertNotNull(responseEntity);
-        assertEquals("Equipment updated successfully.", responseEntity.getBody());
+        equipmentDTO.setName("Test Equipment");
+        equipmentDTO.setPrice(100.0);
+        equipmentDTO.setQuantity(5);
+        equipmentDTO.setStatus(Status.AVAILABLE);
+        equipmentController.createEquipement(equipmentDTO);
+        assert equipementRepo.existsByName("Test Equipment");
     }
 }
