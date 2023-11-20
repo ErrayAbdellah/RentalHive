@@ -2,7 +2,9 @@ package com.rentalHive.rentalHive.controller;
 
 import com.rentalHive.rentalHive.model.dto.EquipmentDTO;
 import com.rentalHive.rentalHive.model.entities.Equipment;
+import com.rentalHive.rentalHive.model.entities.enums.Status;
 import com.rentalHive.rentalHive.repository.EquipmentRepo;
+import com.rentalHive.rentalHive.service.implementations.EquipmentServiceImpl;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,6 +16,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.Assert.assertEquals;
@@ -30,6 +34,8 @@ public class EquipmentControllerTest {
 
     @Mock
     private EquipmentRepo equipmentRepoMock;
+    @Mock
+    private EquipmentServiceImpl equipmentService;
 
     @Test
     public void testUpdateEquipmentSuccessfully() {
@@ -65,5 +71,38 @@ public class EquipmentControllerTest {
 
         verify(equipmentRepoMock, never()).findById(anyLong());
         verify(equipmentRepoMock, never()).save(any(Equipment.class));
+    }
+    @Test
+    public void test_return_bad_request_response_if_name_is_blank() {
+        EquipmentDTO equipmentDTO = new EquipmentDTO();
+        equipmentDTO.setName("");
+        equipmentDTO.setPrice(100.0);
+        equipmentDTO.setQuantity(5);
+        equipmentDTO.setStatus(Status.AVAILABLE);
+
+        ResponseEntity<String> response = equipmentController.createEquipement(equipmentDTO);
+
+        assert response.getStatusCode() == HttpStatus.BAD_REQUEST;
+    }
+    @Test
+    public void test_return_bad_request_response_if_price_is_negative() {
+        EquipmentDTO equipmentDTO = new EquipmentDTO();
+        equipmentDTO.setName("Test Equipment");
+        equipmentDTO.setPrice(-100.0);
+        equipmentDTO.setQuantity(5);
+        equipmentDTO.setStatus(Status.AVAILABLE);
+
+        ResponseEntity<String> response = equipmentController.createEquipement(equipmentDTO);
+
+        assert response.getStatusCode() == HttpStatus.BAD_REQUEST;
+    }
+    @Test
+    public void test_returns_empty_list_when_database_empty() {
+        EquipmentController equipmentController = new EquipmentController(equipmentRepoMock, equipmentService);
+        List<Equipment> expectedEquipment = new ArrayList<>();
+        ResponseEntity<List<Equipment>> response = equipmentController.getAllEquipment();
+        List<Equipment> actualEquipment = response.getBody();
+        assert actualEquipment != null;
+        assert actualEquipment.equals(expectedEquipment);
     }
 }
