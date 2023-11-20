@@ -36,7 +36,6 @@ public class EquipmentServiceImplTest {
 
         assertEquals(optionalEquipment.map(equipment ->
                 new EquipmentDTO(
-                        equipment.getEquipmentId(),
                         equipment.getName(),
                         equipment.getPrice(),
                         equipment.getQuantity(),
@@ -57,7 +56,6 @@ public class EquipmentServiceImplTest {
 
         assertEquals(optionalEquipment.map(equipment ->
                 new EquipmentDTO(
-                    equipment.getEquipmentId(),
                     equipment.getName(),
                     equipment.getPrice(),
                     equipment.getQuantity(),

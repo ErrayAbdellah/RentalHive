@@ -31,6 +31,4 @@ public class Equipment {
     @Column(name = "status")
     private Status status;
 
-    //@OneToMany(mappedBy = "equipment")
-    //private List<RentalRecord> rentalRecords ;
 }

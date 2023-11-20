@@ -5,9 +5,9 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.0.xsd">
 
-    <changeSet id="createTable-equipment" author="Boutaina">
+    <changeSet id="createTable-equipment" author="Team">
         <createTable tableName="equipment">
-            <column name="equipment_id" type="BIGINT">
+            <column name="equipment_id" type="BIGINT" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false" />
             </column>
             <column name="name" type="VARCHAR(255)" />
