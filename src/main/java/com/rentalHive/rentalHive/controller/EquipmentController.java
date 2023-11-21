@@ -25,6 +25,13 @@ import java.util.Optional;
 public class EquipmentController {
     private EquipmentRepo equipmentRepo;
     private final EquipmentServiceImpl equipmentService;
+
+    @Autowired
+    public EquipmentController(EquipmentRepo equipmentRepo, EquipmentServiceImpl equipmentService) {
+        this.equipmentRepo = equipmentRepo;
+        this.equipmentService = equipmentService;
+    }
+
     public EquipmentController(EquipmentServiceImpl equipmentService) {
         this.equipmentService = equipmentService;
     }
