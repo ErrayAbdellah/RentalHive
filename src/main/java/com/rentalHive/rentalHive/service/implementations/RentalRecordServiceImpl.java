@@ -1,5 +1,6 @@
 package com.rentalHive.rentalHive.service.implementations;
 
+import com.rentalHive.rentalHive.model.dto.RentalRecordDTO;
 import com.rentalHive.rentalHive.model.entities.Equipment;
 import com.rentalHive.rentalHive.model.entities.RentalRecord;
 import com.rentalHive.rentalHive.model.entities.User;
@@ -11,7 +12,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -26,7 +26,8 @@ public class RentalRecordServiceImpl implements IRentalRecordService {
     private SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
 
     @Override
-    public ResponseEntity record(RentalRecord rentalRecord) throws ParseException {
+    public ResponseEntity record(RentalRecordDTO recordDTO){
+        RentalRecord  rentalRecord = RentalRecord.ToRentalRecord(recordDTO);
         Optional<User> user = userRepo.findById((rentalRecord.getUser().getUserId()));
         Optional<Equipment> equipment = iEquipmentRepo.findById(rentalRecord.getEquipment().getEquipmentId());
 
@@ -37,8 +38,7 @@ public class RentalRecordServiceImpl implements IRentalRecordService {
             return ResponseEntity.badRequest().body("user is not present");
         }else if(!checkDate(rentalRecord.getReservationDate(),rentalRecord.getReturnDate())){
             return ResponseEntity.badRequest().body("Return date should be after reservation date");
-        }
-        else if(!checkDateReserve(rentalRecord.getEquipment().getEquipmentId(),rentalRecord.getReservationDate(),rentalRecord.getReturnDate())){
+        }else if(!checkDateReserve(rentalRecord.getEquipment().getEquipmentId(),rentalRecord.getReservationDate(),rentalRecord.getReturnDate())){
             return ResponseEntity.badRequest().body("this equipment error");
         }
 
@@ -49,7 +49,6 @@ public class RentalRecordServiceImpl implements IRentalRecordService {
         rentalRecordRepo.save(record);
         return ResponseEntity.ok("record is successfully");
     }
-
 
     boolean checkDate(Date dateReservation, Date dateReturn){
             if (dateReservation.after(dateReturn)) {
@@ -82,5 +81,4 @@ public class RentalRecordServiceImpl implements IRentalRecordService {
             return ResponseEntity.notFound().build();
         }
     }
-
 }

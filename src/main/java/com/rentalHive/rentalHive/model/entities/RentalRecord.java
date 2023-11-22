@@ -2,6 +2,7 @@ package com.rentalHive.rentalHive.model.entities;
 
 import java.util.*;
 
+import com.rentalHive.rentalHive.model.dto.RentalRecordDTO;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -29,6 +30,16 @@ public class RentalRecord {
 
     @Column(name = "return_date")
     private Date returnDate;
+
+    public static RentalRecord ToRentalRecord(RentalRecordDTO recordDTO){
+        return RentalRecord.builder()
+                .reservationId(recordDTO.getReservationId())
+                .user(recordDTO.getUser())
+                .equipment(recordDTO.getEquipment())
+                .reservationDate(recordDTO.getReservationDate())
+                .returnDate(recordDTO.getReturnDate())
+                .build();
+    }
     @Override
     public String toString() {
         return "RentalRecord{" +

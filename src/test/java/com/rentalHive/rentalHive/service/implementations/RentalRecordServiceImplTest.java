@@ -1,4 +1,5 @@
 package com.rentalHive.rentalHive.service.implementations;
+import com.rentalHive.rentalHive.model.dto.RentalRecordDTO;
 import com.rentalHive.rentalHive.model.entities.Equipment;
 import com.rentalHive.rentalHive.model.entities.RentalRecord;
 import com.rentalHive.rentalHive.model.entities.User;
@@ -42,17 +43,17 @@ public class RentalRecordServiceImplTest {
         Equipment equipment = new Equipment();
         equipment.setEquipmentId(1L);
 
-        RentalRecord rentalRecord = new RentalRecord();
-        rentalRecord.setUser(user);
-        rentalRecord.setEquipment(equipment);
-        rentalRecord.setReservationDate(dateFormat.parse("2023-01-04"));
-        rentalRecord.setReturnDate(dateFormat.parse("2023-02-04"));
+        RentalRecordDTO rentalRecordDTO = new RentalRecordDTO();
+        rentalRecordDTO.setUser(user);
+        rentalRecordDTO.setEquipment(equipment);
+        rentalRecordDTO.setReservationDate(dateFormat.parse("2023-01-04"));
+        rentalRecordDTO.setReturnDate(dateFormat.parse("2023-02-04"));
 
         when(userRepo.findById(1L)).thenReturn(Optional.of(user));
         when(iEquipmentRepo.findById(1L)).thenReturn(Optional.of(equipment));
         when(rentalRecordRepo.save(any(RentalRecord.class))).thenReturn(new RentalRecord());
 
-        ResponseEntity response = rentalRecordService.record(rentalRecord);
+        ResponseEntity response = rentalRecordService.record(rentalRecordDTO);
 
         assertEquals(ResponseEntity.ok("record is successfully"), response);
 

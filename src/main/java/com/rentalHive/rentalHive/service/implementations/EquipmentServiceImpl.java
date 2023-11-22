@@ -7,6 +7,7 @@ import com.rentalHive.rentalHive.model.entities.enums.Status;
 import com.rentalHive.rentalHive.repository.IEquipmentRepo;
 import com.rentalHive.rentalHive.service.IEquipmentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
 import java.util.Collections;
@@ -16,19 +17,20 @@ import java.util.stream.Collectors;
 
 @Component
 public class EquipmentServiceImpl implements IEquipmentService {
-    private final IEquipmentRepo equipmentRepository;
+    private final IEquipmentRepo equipmentRepo;
 
     @Autowired
-    public EquipmentServiceImpl(IEquipmentRepo equipmentRepository) {
-        this.equipmentRepository = equipmentRepository;
+    public EquipmentServiceImpl(IEquipmentRepo equipmentRepo) {
+        this.equipmentRepo = equipmentRepo;
     }
 
     @Override
     public Optional<EquipmentDTO> findEquipmentByName(String name) {
-        Optional<Equipment> equipmentOptional = equipmentRepository.findByName(name);
+        Optional<Equipment> equipmentOptional = equipmentRepo.findByName(name);
 
         return equipmentOptional.map(equipment ->
                 new EquipmentDTO(
+                        equipment.getEquipmentId(),
                         equipment.getName(),
                         equipment.getPrice(),
                         equipment.getQuantity(),
@@ -39,11 +41,12 @@ public class EquipmentServiceImpl implements IEquipmentService {
 
     @Override
     public List<EquipmentDTO> findEquipmentByStatus(Status status) {
-        List<Equipment> equipmentList = equipmentRepository.findByStatus(status);
+        List<Equipment> equipmentList = equipmentRepo.findByStatus(status);
 
         if (!equipmentList.isEmpty()) {
             return equipmentList.stream().map(equipment ->
                     new EquipmentDTO(
+                            equipment.getEquipmentId(),
                             equipment.getName(),
                             equipment.getPrice(),
                             equipment.getQuantity(),
@@ -64,12 +67,21 @@ public class EquipmentServiceImpl implements IEquipmentService {
                 .quantity(equipmentDTO.getQuantity())
                 .status(equipmentDTO.getStatus())
                 .build();
-        Equipment createdEquipment = equipmentRepository.save(equipment);
+        Equipment createdEquipment = equipmentRepo.save(equipment);
         if (createdEquipment != null) {
             return convertToDTO(createdEquipment);
         } else {
             throw new IllegalStateException("Failed to save equipment. Returned object is null.");
         }
+    }
+
+    @Override
+    public ResponseEntity<List<Equipment>> getAllEquipment() {
+        List<Equipment> equipment = equipmentRepo.findAll();
+        if (equipment.isEmpty()){
+            return null;
+        }
+        return ResponseEntity.ok(equipment);
     }
 
     //Helper functions
@@ -94,12 +106,23 @@ public class EquipmentServiceImpl implements IEquipmentService {
         validatePriceAndQuantity(equipmentDTO.getPrice(), equipmentDTO.getQuantity());
     }
     private EquipmentDTO convertToDTO(Equipment equipment) {
-        EquipmentDTO equipmentDTO = EquipmentDTO.builder()
+        return  EquipmentDTO.builder()
                 .quantity(equipment.getQuantity())
                 .price(equipment.getPrice())
                 .status(equipment.getStatus())
                 .name(equipment.getName())
                 .build();
-        return equipmentDTO;
+//        return equipmentDTO;
+    }
+
+    public ResponseEntity<String> updateEquipment(EquipmentDTO equipmentDTO) {
+        Optional<Equipment> optionalEquipment = equipmentRepo.findById(equipmentDTO.getEquipmentId());
+        if (optionalEquipment.isPresent()) {
+            Equipment existingEquipment = Equipment.toEquipment(equipmentDTO);
+            equipmentRepo.save(existingEquipment);
+            return ResponseEntity.ok("Equipment updated successfully.");
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 }

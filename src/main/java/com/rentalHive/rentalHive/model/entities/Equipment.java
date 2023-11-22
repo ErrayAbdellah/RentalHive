@@ -1,5 +1,6 @@
 package com.rentalHive.rentalHive.model.entities;
 
+import com.rentalHive.rentalHive.model.dto.EquipmentDTO;
 import com.rentalHive.rentalHive.model.entities.enums.Status;
 import jakarta.persistence.*;
 import lombok.*;
@@ -38,6 +39,15 @@ public class Equipment {
         return rentalRecords;
     }
 
+    public static Equipment toEquipment(EquipmentDTO equipmentDTO){
+        return Equipment.builder()
+                .equipmentId(equipmentDTO.getEquipmentId())
+                .name(equipmentDTO.getName())
+                .price(equipmentDTO.getPrice())
+                .quantity(equipmentDTO.getQuantity())
+                .status(equipmentDTO.getStatus())
+                .build();
+    }
     @Override
     public String toString() {
         return "Equipment{" +
@@ -46,8 +56,6 @@ public class Equipment {
                 ", price=" + price +
                 ", quantity=" + quantity +
                 ", status=" + status +
-                // Exclude Optional field from toString
-//                ", rentalRecords=" + rentalRecords.map(r -> "RentalRecords{...}").orElse(null) +
                 '}';
     }
 }
