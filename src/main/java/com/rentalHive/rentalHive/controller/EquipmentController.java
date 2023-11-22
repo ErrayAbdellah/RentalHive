@@ -1,4 +1,5 @@
 package com.rentalHive.rentalHive.controller;
+import com.rentalHive.rentalHive.model.dto.CustomResponse;
 import com.rentalHive.rentalHive.model.dto.EquipmentDTO;
 import com.rentalHive.rentalHive.model.entities.Equipment;
 import com.rentalHive.rentalHive.model.entities.enums.Status;
@@ -7,6 +8,9 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.rentalHive.rentalHive.repository.IEquipmentRepo;
 import com.rentalHive.rentalHive.service.implementations.EquipmentServiceImpl;
+import jakarta.validation.Valid;
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.http.HttpStatus;
 
@@ -19,30 +23,38 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/equipment")
 public class EquipmentController {
-    private IEquipmentRepo IEquipmentRepo;
+    private IEquipmentRepo equipmentRepo;
     private final EquipmentServiceImpl equipmentService;
     public EquipmentController(EquipmentServiceImpl equipmentService) {
         this.equipmentService = equipmentService;
     }
 
     @Autowired
-    public void EquipementController(IEquipmentRepo IEquipmentRepo) {
-        this.IEquipmentRepo = IEquipmentRepo;
+    public void EquipementController(IEquipmentRepo equipmentRepo) {
+        this.equipmentRepo = equipmentRepo;
     }
 
-    @PostMapping
-    public ResponseEntity<String> createEquipement(@Valid @RequestBody EquipmentDTO equipmentDTO)
-    {
-        Equipment newEquipment = new Equipment();
-        BeanUtils.copyProperties(equipmentDTO,newEquipment);
-        IEquipmentRepo.save(newEquipment);
-        IEquipmentRepo.save(newEquipment);
-        IEquipmentRepo.save(newEquipment);
-        return  ResponseEntity.ok("Equipement created succesfully");
+    @PostMapping(consumes = "application/json" )
+    @ResponseStatus(value = HttpStatus.CREATED )
+    public ResponseEntity<CustomResponse<EquipmentDTO>> addEquipment(@RequestBody EquipmentDTO equipmentDTO){
+        try{
+            EquipmentDTO equipment= equipmentService.createEquipment(equipmentDTO);
+            System.out.println("created equipment from controller : "+equipment);
+            CustomResponse<EquipmentDTO> response = new CustomResponse<>("Equipment Created successfully", equipment);
+            return new ResponseEntity<>(response, HttpStatus.CREATED);
+        }catch (IllegalArgumentException e){
+            String errorMsg = "Invalid request : "+ e.getMessage();
+            CustomResponse<EquipmentDTO> response = new CustomResponse<>(errorMsg, null);
+            return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+        }catch (Exception e) {
+            String errorMsg = "Internal Server error : " + e.getMessage();
+            CustomResponse<EquipmentDTO> response = new CustomResponse<>(errorMsg, null);
+            return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
     @GetMapping("/all")
     public ResponseEntity<List<Equipment>> getAllEquipment() {
-        List<Equipment> equipment = IEquipmentRepo.findAll();
+        List<Equipment> equipment = equipmentRepo.findAll();
         return ResponseEntity.ok(equipment);
     }
 
@@ -51,7 +63,7 @@ public class EquipmentController {
             @PathVariable Long equipmentId,
             @RequestBody EquipmentDTO equipmentDTO) {
 
-        Optional<Equipment> optionalEquipment = IEquipmentRepo.findById((long) Math.toIntExact(equipmentId));
+        Optional<Equipment> optionalEquipment = equipmentRepo.findById((long) Math.toIntExact(equipmentId));
 
         if (optionalEquipment.isPresent()) {
             Equipment existingEquipment = optionalEquipment.get();
@@ -61,7 +73,7 @@ public class EquipmentController {
             existingEquipment.setQuantity(equipmentDTO.getQuantity());
             existingEquipment.setStatus(equipmentDTO.getStatus());
 
-            IEquipmentRepo.save(existingEquipment);
+            equipmentRepo.save(existingEquipment);
 
             return ResponseEntity.ok("Equipment updated successfully.");
         } else {

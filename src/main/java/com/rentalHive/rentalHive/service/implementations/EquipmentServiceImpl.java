@@ -3,8 +3,8 @@ package com.rentalHive.rentalHive.service.implementations;
 import com.rentalHive.rentalHive.model.dto.EquipmentDTO;
 import com.rentalHive.rentalHive.model.entities.Equipment;
 import com.rentalHive.rentalHive.model.entities.enums.Status;
-import com.rentalHive.rentalHive.repository.IEquipmentRepo;
 
+import com.rentalHive.rentalHive.repository.IEquipmentRepo;
 import com.rentalHive.rentalHive.service.IEquipmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -16,16 +16,16 @@ import java.util.stream.Collectors;
 
 @Component
 public class EquipmentServiceImpl implements IEquipmentService {
-    private final IEquipmentRepo IEquipmentRepository;
+    private final IEquipmentRepo equipmentRepository;
 
     @Autowired
-    public EquipmentServiceImpl(IEquipmentRepo IEquipmentRepository) {
-        this.IEquipmentRepository = IEquipmentRepository;
+    public EquipmentServiceImpl(IEquipmentRepo equipmentRepository) {
+        this.equipmentRepository = equipmentRepository;
     }
 
     @Override
     public Optional<EquipmentDTO> findEquipmentByName(String name) {
-        Optional<Equipment> equipmentOptional = IEquipmentRepository.findByName(name);
+        Optional<Equipment> equipmentOptional = equipmentRepository.findByName(name);
 
         return equipmentOptional.map(equipment ->
                 new EquipmentDTO(
@@ -39,7 +39,7 @@ public class EquipmentServiceImpl implements IEquipmentService {
 
     @Override
     public List<EquipmentDTO> findEquipmentByStatus(Status status) {
-        List<Equipment> equipmentList = IEquipmentRepository.findByStatus(status);
+        List<Equipment> equipmentList = equipmentRepository.findByStatus(status);
 
         if (!equipmentList.isEmpty()) {
             return equipmentList.stream().map(equipment ->
@@ -64,10 +64,15 @@ public class EquipmentServiceImpl implements IEquipmentService {
                 .quantity(equipmentDTO.getQuantity())
                 .status(equipmentDTO.getStatus())
                 .build();
-        Equipment createdEquipment = IEquipmentRepository.save(equipment);
-        return convertToDTO(createdEquipment);
+        Equipment createdEquipment = equipmentRepository.save(equipment);
+        if (createdEquipment != null) {
+            return convertToDTO(createdEquipment);
+        } else {
+            throw new IllegalStateException("Failed to save equipment. Returned object is null.");
+        }
     }
 
+    //Helper functions
     private void validatePriceAndQuantity(double price, int quantity) {
         if (price <= 0) {
             throw new IllegalArgumentException("Price must be greater than 0");
@@ -91,7 +96,7 @@ public class EquipmentServiceImpl implements IEquipmentService {
     private EquipmentDTO convertToDTO(Equipment equipment) {
         EquipmentDTO equipmentDTO = EquipmentDTO.builder()
                 .quantity(equipment.getQuantity())
-                .price(equipment.getQuantity())
+                .price(equipment.getPrice())
                 .status(equipment.getStatus())
                 .name(equipment.getName())
                 .build();
