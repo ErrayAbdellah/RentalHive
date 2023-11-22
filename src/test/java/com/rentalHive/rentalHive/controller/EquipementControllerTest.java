@@ -62,7 +62,7 @@ public class EquipementControllerTest {
 
         when(equipmentRepo.findById((long) Math.toIntExact(equipmentId))).thenReturn(Optional.of(existingEquipment));
 
-        ResponseEntity<String> responseEntity = equipmentController.updateEquipment(equipmentId, equipmentDTO);
+        ResponseEntity<String> responseEntity = equipmentController.updateEquipment(equipmentDTO);
 
         verify(equipmentRepo, times(1)).findById((long) Math.toIntExact(equipmentId));
         verify(equipmentRepo, times(1)).save(existingEquipment);

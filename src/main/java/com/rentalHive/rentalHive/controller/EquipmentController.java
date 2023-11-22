@@ -3,14 +3,9 @@ import com.rentalHive.rentalHive.model.dto.CustomResponse;
 import com.rentalHive.rentalHive.model.dto.EquipmentDTO;
 import com.rentalHive.rentalHive.model.entities.Equipment;
 import com.rentalHive.rentalHive.model.entities.enums.Status;
-import jakarta.validation.Valid;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.rentalHive.rentalHive.repository.IEquipmentRepo;
 import com.rentalHive.rentalHive.service.implementations.EquipmentServiceImpl;
-import jakarta.validation.Valid;
-import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.http.HttpStatus;
 
@@ -23,16 +18,15 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/equipment")
 public class EquipmentController {
-    private IEquipmentRepo equipmentRepo;
     private final EquipmentServiceImpl equipmentService;
     public EquipmentController(EquipmentServiceImpl equipmentService) {
         this.equipmentService = equipmentService;
     }
 
-    @Autowired
-    public void EquipementController(IEquipmentRepo equipmentRepo) {
-        this.equipmentRepo = equipmentRepo;
-    }
+//    @Autowired
+//    public void EquipementController(IEquipmentRepo equipmentRepo) {
+//        this.equipmentRepo = equipmentRepo;
+//    }
 
     @PostMapping(consumes = "application/json" )
     @ResponseStatus(value = HttpStatus.CREATED )
@@ -54,33 +48,13 @@ public class EquipmentController {
     }
     @GetMapping("/all")
     public ResponseEntity<List<Equipment>> getAllEquipment() {
-        List<Equipment> equipment = equipmentRepo.findAll();
-        return ResponseEntity.ok(equipment);
+        return equipmentService.getAllEquipment() ;
     }
 
-    @PutMapping("/{equipmentId}")
-    public ResponseEntity<String> updateEquipment(
-            @PathVariable Long equipmentId,
-            @RequestBody EquipmentDTO equipmentDTO) {
-
-        Optional<Equipment> optionalEquipment = equipmentRepo.findById((long) Math.toIntExact(equipmentId));
-
-        if (optionalEquipment.isPresent()) {
-            Equipment existingEquipment = optionalEquipment.get();
-
-            existingEquipment.setName(equipmentDTO.getName());
-            existingEquipment.setPrice(equipmentDTO.getPrice());
-            existingEquipment.setQuantity(equipmentDTO.getQuantity());
-            existingEquipment.setStatus(equipmentDTO.getStatus());
-
-            equipmentRepo.save(existingEquipment);
-
-            return ResponseEntity.ok("Equipment updated successfully.");
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+    @PutMapping("/update")
+    public ResponseEntity<String> updateEquipment(@RequestBody EquipmentDTO equipmentDTO) {
+       return equipmentService.updateEquipment(equipmentDTO);
     }
-
 
     @GetMapping("/findByName/{name}")
     public ResponseEntity<EquipmentDTO> findEquipmentByName(@PathVariable String name) {

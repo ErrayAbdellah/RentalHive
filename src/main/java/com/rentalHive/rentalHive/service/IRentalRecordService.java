@@ -1,15 +1,12 @@
 package com.rentalHive.rentalHive.service;
 
-import com.rentalHive.rentalHive.model.entities.RentalRecord;
+import com.rentalHive.rentalHive.model.dto.RentalRecordDTO;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.text.ParseException;
-import java.util.Date;
-
 @Service
 public interface IRentalRecordService {
-    ResponseEntity record(RentalRecord rentalRecord )throws ParseException;
+    ResponseEntity record(RentalRecordDTO recordDTO );
     ResponseEntity deleteRecord(Long recordId);
 
 }
