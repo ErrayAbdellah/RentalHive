@@ -2,12 +2,10 @@ package com.rentalHive.rentalHive.api.Repository;
 
 import com.rentalHive.rentalHive.model.entities.Equipment;
 import com.rentalHive.rentalHive.model.entities.enums.Status;
-import com.rentalHive.rentalHive.repository.EquipmentRepo;
+import com.rentalHive.rentalHive.repository.IEquipmentRepo;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.jdbc.EmbeddedDatabaseConnection;
-import org.springframework.boot.test.autoconfigure.data.jdbc.DataJdbcTest;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
@@ -15,12 +13,12 @@ import java.util.List;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-public class EquipmentRepositoryTest {
+public class IEquipmentRepositoryTest {
 
-    private EquipmentRepo equipmentRepo;
+    private IEquipmentRepo IEquipmentRepo;
     @Autowired
-    public EquipmentRepositoryTest(EquipmentRepo equipmentRepo) {
-        this.equipmentRepo = equipmentRepo;
+    public IEquipmentRepositoryTest(IEquipmentRepo IEquipmentRepo) {
+        this.IEquipmentRepo = IEquipmentRepo;
     }
 
 
@@ -36,7 +34,7 @@ public class EquipmentRepositoryTest {
                 .build();
 
         // Act
-        Equipment savedEquipment = equipmentRepo.save(equipment);
+        Equipment savedEquipment = IEquipmentRepo.save(equipment);
 
         //Test
         Assertions.assertThat(savedEquipment).isNotNull();
@@ -52,9 +50,9 @@ public class EquipmentRepositoryTest {
                 .status(Status.AVAILABLE)
                 .name("Engine n° 2")
                 .build();
-        equipmentRepo.save(equipment);
+        IEquipmentRepo.save(equipment);
         //Act
-        List<Equipment> equipmentList = equipmentRepo.findByStatus(Status.AVAILABLE);
+        List<Equipment> equipmentList = IEquipmentRepo.findByStatus(Status.AVAILABLE);
         // Test
         Assertions.assertThat(equipmentList).isNotEmpty();
     }

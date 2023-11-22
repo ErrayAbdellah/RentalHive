@@ -6,7 +6,7 @@ import com.rentalHive.rentalHive.model.entities.enums.Status;
 import jakarta.validation.Valid;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import com.rentalHive.rentalHive.repository.EquipmentRepo;
+import com.rentalHive.rentalHive.repository.IEquipmentRepo;
 import com.rentalHive.rentalHive.service.implementations.EquipmentServiceImpl;
 import jakarta.validation.Valid;
 import org.springframework.beans.BeanUtils;
@@ -23,21 +23,14 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/equipment")
 public class EquipmentController {
-    private EquipmentRepo equipmentRepo;
+    private IEquipmentRepo equipmentRepo;
     private final EquipmentServiceImpl equipmentService;
-
-    @Autowired
-    public EquipmentController(EquipmentRepo equipmentRepo, EquipmentServiceImpl equipmentService) {
-        this.equipmentRepo = equipmentRepo;
-        this.equipmentService = equipmentService;
-    }
-
     public EquipmentController(EquipmentServiceImpl equipmentService) {
         this.equipmentService = equipmentService;
     }
 
     @Autowired
-    public void EquipementController(EquipmentRepo equipmentRepo) {
+    public void EquipementController(IEquipmentRepo equipmentRepo) {
         this.equipmentRepo = equipmentRepo;
     }
 

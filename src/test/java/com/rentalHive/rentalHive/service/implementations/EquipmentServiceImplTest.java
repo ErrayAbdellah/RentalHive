@@ -4,7 +4,7 @@ import com.rentalHive.rentalHive.model.dto.EquipmentDTO;
 import com.rentalHive.rentalHive.model.entities.Equipment;
 import com.rentalHive.rentalHive.model.entities.RentalRecord;
 import com.rentalHive.rentalHive.model.entities.enums.Status;
-import com.rentalHive.rentalHive.repository.EquipmentRepo;
+import com.rentalHive.rentalHive.repository.IEquipmentRepo;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -26,7 +26,7 @@ import static org.mockito.Mockito.when;
 public class EquipmentServiceImplTest {
 
     @Mock
-    private EquipmentRepo equipmentRepository;
+    private IEquipmentRepo equipmentRepository;
 
     @InjectMocks
     private EquipmentServiceImpl equipmentService;

@@ -3,7 +3,7 @@ package com.rentalHive.rentalHive.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rentalHive.rentalHive.model.dto.EquipmentDTO;
 import com.rentalHive.rentalHive.model.entities.Equipment;
-import com.rentalHive.rentalHive.repository.EquipmentRepo;
+import com.rentalHive.rentalHive.repository.IEquipmentRepo;
 import com.rentalHive.rentalHive.service.implementations.EquipmentServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -41,7 +41,7 @@ public class EquipementControllerTest {
     @Autowired
     private ObjectMapper objectMapper;
     @Mock
-    private EquipmentRepo equipmentRepo;
+    private IEquipmentRepo equipmentRepo;
 
     @InjectMocks
     private EquipmentController equipmentController;

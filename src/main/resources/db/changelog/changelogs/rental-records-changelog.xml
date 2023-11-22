@@ -7,7 +7,7 @@
 
     <changeSet id="createTable-rental-records" author="Team">
         <createTable tableName="rental_record">
-            <column name="reservation_id" type="BIGINT">
+            <column name="reservation_id" type="BIGINT" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false" />
             </column>
             <column name="equipment_id" type="BIGINT"/>
