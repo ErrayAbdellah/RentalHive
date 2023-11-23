@@ -1,28 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<databaseChangeLog
-        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.0.xsd">
 
-    <!-- Existing changeSet for creating the 'equipment' table -->
-    <changeSet id="createTable-equipment" author="Team">
-        <createTable tableName="equipment">
-            <column name="equipment_id" type="BIGINT" autoIncrement="true">
+    <changeSet id="createTable-contrat" author="Team">
+        <createTable tableName="Contrat">
+            <column name="id" type="BIGINT" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false" />
             </column>
-            <column name="name" type="VARCHAR(255)" />
-            <column name="price" type="DOUBLE" />
-            <column name="quantity" type="INT" />
-            <column name="status" type="VARCHAR(50)" />
+            <column name="description" type="TEXT" />
+            <column name="ref_code" type="uuid" />
         </createTable>
-
-        <addAutoIncrement columnDataType="BIGINT"
-                          columnName="equipment_id"
-                          tableName="equipment"/>
     </changeSet>
 
-    <!-- Additional changeSet for creating the 'Condition' table -->
     <changeSet id="createTable-condition" author="Team">
         <createTable tableName="Condition">
             <column name="id" type="BIGINT" autoIncrement="true">
@@ -34,35 +25,12 @@
                 <constraints nullable="false" />
             </column>
 
-            <!-- Add any other columns as needed -->
         </createTable>
 
-        <!-- Create foreign key constraint using addForeignKeyConstraint -->
-        <addForeignKeyConstraint baseTableName="Condition"
-                                 baseColumnNames="contrat_id"
-                                 constraintName="fk_condition_contrat"
-                                 referencedTableName="Contrat"
-                                 referencedColumnNames="id"
-                                 onDelete="CASCADE"/>
-    </changeSet>
-
-    <!-- Additional changeSet for creating the 'Contrat' table -->
-    <changeSet id="createTable-contrat" author="Team">
-        <createTable tableName="Contrat">
-            <column name="id" type="BIGINT" autoIncrement="true">
-                <constraints primaryKey="true" nullable="false" />
-            </column>
-            <column name="description" type="TEXT" />
-            <column name="ref_code" type="uuid" />
-
-
-            <addForeignKeyConstraint baseTableName="Condition"
-                                     baseColumnNames="contrat_id"
-                                     constraintName="fk_condition_contrat_reverse"
-                                     referencedTableName="Contrat"
-                                     referencedColumnNames="id"
-                                     onDelete="CASCADE"/>
-        </createTable>
+        <createIndex indexName="fk_condition_contrat"
+                     tableName="Condition">
+            <column name="contrat_id"/>
+        </createIndex>
     </changeSet>
 
 </databaseChangeLog>
