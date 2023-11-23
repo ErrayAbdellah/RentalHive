@@ -13,26 +13,28 @@ import lombok.*;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "user_id")
+    @Column(name = "id")
     private long userId;
-
+    @OneToMany(mappedBy = "user")
+    private List<Demande> demandes;
     @Column(name = "name")
     private String name;
-
     @Column(name = "email")
     private String email;
-
     @Column(name = "password")
     private String password;
-
     @Column(name = "telephone")
     private String telephone;
-
     @Column(name = "role")
     private int role;
 
     @OneToMany(mappedBy = "user")
     private List<RentalRecord> rentalRecords ;
-
-
+    @ManyToMany
+    @JoinTable(
+            name = "user_role",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id")
+    )
+    private List<Role> roles;
 }

@@ -27,13 +27,12 @@ public class Equipment {
     @Column(name = "quantity")
     private int quantity;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "status")
-    private Status status;
-
     @OneToMany(mappedBy = "equipment")
     private List<RentalRecord> rentalRecords;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "type")
+    private String type;
 
 
     public List<RentalRecord> getRentalRecords() {
