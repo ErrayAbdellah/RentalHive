@@ -24,11 +24,14 @@ public class Equipment {
     @Column(name = "price")
     private double price;
 
+
+
     @OneToMany(mappedBy = "equipment")
     private List<RentalRecord> rentalRecords;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "type")
+
     private Type type;
 
     public List<RentalRecord> getRentalRecords() {

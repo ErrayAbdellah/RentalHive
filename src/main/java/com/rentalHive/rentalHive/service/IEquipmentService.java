@@ -16,4 +16,5 @@ public interface IEquipmentService {
     EquipmentDTO createEquipment(EquipmentDTO equipmentDTO);
     ResponseEntity<List<Equipment>> getAllEquipment();
     public ResponseEntity<String> updateEquipment(EquipmentDTO equipmentDTO);
+
 }

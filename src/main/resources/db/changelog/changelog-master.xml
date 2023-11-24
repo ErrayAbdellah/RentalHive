@@ -9,4 +9,5 @@
     <include file="db/changelog/changelogs/equipment-changelog.xml"/>
     <include file="db/changelog/changelogs/rental-records-changelog.xml"/>
 
+
 </databaseChangeLog>

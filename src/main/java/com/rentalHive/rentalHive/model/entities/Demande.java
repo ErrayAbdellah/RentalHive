@@ -11,6 +11,9 @@ import lombok.NoArgsConstructor;
 import java.util.Date;
 import java.util.List;
 
+import java.util.UUID;
+
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -22,27 +25,33 @@ public class Demande {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_demande")
     private long id;
+
     @ManyToOne
-    @JoinColumn(name ="user_id",nullable = false)
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
+
     @Column(name = "demande_date")
     private Date demande_date;
+
     @Column(name = "date_retour")
     private Date date_retour;
+
     @Column(name = "reference")
     private int reference;
+
     @Enumerated(EnumType.STRING)
     @Column(name = "priorite")
     private Priorite priorite;
+
     @Enumerated(EnumType.STRING)
-    @Column(name ="state")
+    @Column(name = "state")
     private State state;
+
     @ManyToMany
-    @JoinTable
-            (
-                    name = "demande_equipement",
-                    joinColumns = @JoinColumn(name = "demande_id"),
-                    inverseJoinColumns = @JoinColumn(name = "equipemnt_id")
-            )
+    @JoinTable(
+            name = "demande_equipement",
+            joinColumns = @JoinColumn(name = "demande_id"),
+            inverseJoinColumns = @JoinColumn(name = "equipment_id")  // Corrected the typo here
+    )
     private List<Equipment> equipment;
 }
