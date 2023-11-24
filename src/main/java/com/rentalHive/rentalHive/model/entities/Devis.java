@@ -13,27 +13,15 @@ public class Devis {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id", nullable = false)
+    private Long id;
 
     @OneToOne
     @JoinColumn(name = "demande_id", nullable = false, unique = true)
     private Demande demande;
-    private Long id;
+
     @Column(name = "total")
     private float totalPrix;
+
     @Column(name = "commentaire")
     private String commentaire;
-//=======
-//    private long id;
-//
-//    @Column(name = "total")
-//    private float totalPrix;
-//
-//    @Column(name = "commentaire")
-//    private String commentaire;
-//
-//    @OneToOne
-//    @MapsId
-//    @JoinColumn(name = "demande_id", nullable = false, unique = true)
-//    private Demande demande;
-//>>>>>>> 5899f876471af3e34c193c1d80da61954d703358
 }

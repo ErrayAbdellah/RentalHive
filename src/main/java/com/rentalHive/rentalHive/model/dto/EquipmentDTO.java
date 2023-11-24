@@ -29,7 +29,6 @@ public class EquipmentDTO {
                 .equipmentId(equipment.getEquipmentId())
                 .name(equipment.getName())
                 .price(equipment.getPrice())
-                .quantity(equipment.getQuantity())
                 .type(equipment.getType())
                 .build();
     }
