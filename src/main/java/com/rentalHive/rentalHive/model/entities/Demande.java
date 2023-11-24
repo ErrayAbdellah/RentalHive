@@ -1,7 +1,7 @@
 package com.rentalHive.rentalHive.model.entities;
 
-import com.rentalHive.rentalHive.enums.Priorite;
-import com.rentalHive.rentalHive.enums.State;
+import com.rentalHive.rentalHive.model.entities.enums.Priorite;
+import com.rentalHive.rentalHive.model.entities.enums.State;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -10,9 +10,7 @@ import lombok.NoArgsConstructor;
 
 import java.util.Date;
 import java.util.List;
-
 import java.util.UUID;
-
 
 @Data
 @AllArgsConstructor
@@ -24,34 +22,28 @@ public class Demande {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_demande")
-    private long id;
-
+    private Long id;
     @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name ="user_id",nullable = false)
     private User user;
-
     @Column(name = "demande_date")
     private Date demande_date;
-
     @Column(name = "date_retour")
     private Date date_retour;
-
     @Column(name = "reference")
     private int reference;
-
     @Enumerated(EnumType.STRING)
     @Column(name = "priorite")
     private Priorite priorite;
-
     @Enumerated(EnumType.STRING)
-    @Column(name = "state")
+    @Column(name ="state")
     private State state;
-
     @ManyToMany
-    @JoinTable(
-            name = "demande_equipement",
-            joinColumns = @JoinColumn(name = "demande_id"),
-            inverseJoinColumns = @JoinColumn(name = "equipment_id")  // Corrected the typo here
-    )
+    @JoinTable
+            (
+                    name = "demande_equipement",
+                    joinColumns = @JoinColumn(name = "demande_id"),
+                    inverseJoinColumns = @JoinColumn(name = "equipemnt_id")
+            )
     private List<Equipment> equipment;
 }

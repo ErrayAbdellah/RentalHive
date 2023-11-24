@@ -5,7 +5,7 @@
                         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.0.xsd">
 
     <changeSet id="createTable-devis" author="Team">
-        <createTable tableName="Devis">
+        <createTable tableName="devis">
             <column name="id" type="BIGINT" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false" />
             </column>
@@ -14,13 +14,19 @@
             </column>
             <column name="totalPrix" type="FLOAT" />
             <column name="commentaire" type="VARCHAR(255)" />
-
         </createTable>
 
         <createIndex indexName="fk_devis_demande"
-                     tableName="Devis">
+                     tableName="devis">
             <column name="demande_id"/>
         </createIndex>
+
+        <addForeignKeyConstraint baseColumnNames="demande_id"
+                                 baseTableName="devis"
+                                 constraintName="fk_devis_demande"
+                                 referencedColumnNames="demande_id"
+                                 referencedTableName="demande"
+                                 onDelete="CASCADE"/>
     </changeSet>
 
 </databaseChangeLog>
