@@ -1,8 +1,7 @@
 package com.rentalHive.rentalHive.model.dto;
 
 import com.rentalHive.rentalHive.model.entities.Equipment;
-import com.rentalHive.rentalHive.model.entities.User;
-import com.rentalHive.rentalHive.model.entities.enums.Status;
+import com.rentalHive.rentalHive.enums.Type;
 import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
@@ -23,7 +22,7 @@ public class EquipmentDTO {
     @Min(1)
     private int quantity;
     @Enumerated
-    private Status status;
+    private Type type;
 
     public static EquipmentDTO toDTO(Equipment equipment){
         return EquipmentDTO.builder()
@@ -31,7 +30,7 @@ public class EquipmentDTO {
                 .name(equipment.getName())
                 .price(equipment.getPrice())
                 .quantity(equipment.getQuantity())
-                .status(equipment.getStatus())
+                .type(equipment.getType())
                 .build();
     }
 }
