@@ -24,16 +24,12 @@ public class Equipment {
     @Column(name = "price")
     private double price;
 
-    @Column(name = "quantity")
-    private int quantity;
-
     @OneToMany(mappedBy = "equipment")
     private List<RentalRecord> rentalRecords;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "type")
     private Type type;
-
 
     public List<RentalRecord> getRentalRecords() {
         return rentalRecords;
