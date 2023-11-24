@@ -1,6 +1,7 @@
 package com.rentalHive.rentalHive.model.entities;
 
 import com.rentalHive.rentalHive.enums.Type;
+import com.rentalHive.rentalHive.model.dto.EquipmentDTO;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -33,5 +34,13 @@ public class Equipment {
 
     public List<RentalRecord> getRentalRecords() {
         return rentalRecords;
+    }
+    public static Equipment ToEquipment(EquipmentDTO equipmentDTO){
+        return Equipment.builder()
+                .equipmentId(equipmentDTO.getEquipmentId())
+                .name(equipmentDTO.getName())
+                .type(equipmentDTO.getType())
+                .price(equipmentDTO.getPrice())
+                .build();
     }
 }
