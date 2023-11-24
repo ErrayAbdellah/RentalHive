@@ -1,21 +1,7 @@
 package com.rentalHive.rentalHive.service.implementations;
 
-import com.rentalHive.rentalHive.model.dto.EquipmentDTO;
-import com.rentalHive.rentalHive.model.entities.Equipment;
-import com.rentalHive.rentalHive.model.entities.RentalRecord;
-import com.rentalHive.rentalHive.model.entities.enums.Status;
 import com.rentalHive.rentalHive.repository.EquipmentRepo;
-import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.when;
 
 @SpringBootTest
 public class EquipmentServiceImplTest {

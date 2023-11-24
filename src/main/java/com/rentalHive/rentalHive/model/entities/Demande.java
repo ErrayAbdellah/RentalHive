@@ -1,5 +1,7 @@
 package com.rentalHive.rentalHive.model.entities;
 
+import com.rentalHive.rentalHive.enums.Priorite;
+import com.rentalHive.rentalHive.enums.State;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -8,7 +10,9 @@ import lombok.NoArgsConstructor;
 
 import java.util.Date;
 import java.util.List;
+
 import java.util.UUID;
+
 
 @Data
 @AllArgsConstructor
@@ -20,7 +24,8 @@ public class Demande {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_demande")
-    private Long id;
+
+    private long id;
     @ManyToOne
     @JoinColumn(name ="user_id",nullable = false)
     private User user;
@@ -32,10 +37,12 @@ public class Demande {
     private int reference;
     @Enumerated(EnumType.STRING)
     @Column(name = "priorite")
-    private  String priorite;
+
+    private Priorite priorite;
     @Enumerated(EnumType.STRING)
     @Column(name ="state")
-    private String state;
+    private State state;
+
     @ManyToMany
     @JoinTable
             (

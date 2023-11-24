@@ -20,7 +20,7 @@ public class Contrat {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id", nullable = false)
-    private Long id;
+    private long id;
     @Column(columnDefinition = "TEXT" , name = "description")
     private  String description;
     @Column(name = "ref_code")
