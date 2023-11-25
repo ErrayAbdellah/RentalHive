@@ -25,12 +25,12 @@ public class Equipment {
     @Column(name = "price")
     private double price;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "type", columnDefinition = "VARCHAR(20) DEFAULT 'OfficeEquipment'")
+    private Type type;
     @OneToMany(mappedBy = "equipment")
     private List<RentalRecord> rentalRecords;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "type")
-    private Type type;
 
     public List<RentalRecord> getRentalRecords() {
         return rentalRecords;
