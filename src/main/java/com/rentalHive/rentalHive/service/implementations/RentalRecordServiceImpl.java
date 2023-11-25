@@ -9,10 +9,12 @@ import com.rentalHive.rentalHive.repository.IRentalRecordRepo;
 import com.rentalHive.rentalHive.repository.IUserRepo;
 import com.rentalHive.rentalHive.service.IRentalRecordService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.BeanUtils;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -22,14 +24,14 @@ import java.util.Optional;
 public class RentalRecordServiceImpl implements IRentalRecordService {
     private final IRentalRecordRepo rentalRecordRepo ;
     private final IUserRepo userRepo ;
-    private final IEquipmentRepo iEquipmentRepo;
+    private final IEquipmentRepo equipmentRepo;
     private SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
 
     @Override
     public ResponseEntity record(RentalRecordDTO recordDTO){
         RentalRecord  rentalRecord = RentalRecord.ToRentalRecord(recordDTO);
         Optional<User> user = userRepo.findById((rentalRecord.getUser().getUserId()));
-        Optional<Equipment> equipment = iEquipmentRepo.findById(rentalRecord.getEquipment().getEquipmentId());
+        Optional<Equipment> equipment = equipmentRepo.findById(rentalRecord.getEquipment().getEquipmentId());
 
         RentalRecord record = new RentalRecord();
         if (!equipment.isPresent()) {
@@ -81,4 +83,29 @@ public class RentalRecordServiceImpl implements IRentalRecordService {
             return ResponseEntity.notFound().build();
         }
     }
+
+    @Override
+    public ResponseEntity<List<RentalRecordDTO>> getEquipmentRentalHistory(long equipmentId) {
+        Optional<Equipment> optionalEquipment = equipmentRepo.findById(equipmentId);
+
+        if (optionalEquipment.isPresent()) {
+            Equipment equipment = optionalEquipment.get();
+            List<RentalRecordDTO> rentalHistory = getRentalHistoryForEquipment(equipment);
+            return ResponseEntity.ok(rentalHistory);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+    private List<RentalRecordDTO> getRentalHistoryForEquipment(Equipment equipment) {
+        List<RentalRecord> rentalRecords = equipment.getRentalRecords();
+        List<RentalRecordDTO> rentalRecordDTOs = new ArrayList<>();
+
+        for (RentalRecord rentalRecord : rentalRecords) {
+            RentalRecordDTO rentalRecordDTO = new RentalRecordDTO();
+            BeanUtils.copyProperties(rentalRecord, rentalRecordDTO);
+            rentalRecordDTOs.add(rentalRecordDTO);
+        }
+        return rentalRecordDTOs;
+    }
+
 }
