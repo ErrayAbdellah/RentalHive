@@ -43,6 +43,7 @@ public class DemandeServiceImpl implements IDemandeService {
         demande.setDate_retour(demandeDTO.getDateRetour());
         demande.setReference(demandeDTO.getReference());
         demande.setPriorite(demandeDTO.getPriorite());
+        demande.setState(demandeDTO.getState());
         demande.setUser(user);
 
         List<Equipment> equipmentList = equipmentRepo.findAllById(equipmentIds);
@@ -54,6 +55,17 @@ public class DemandeServiceImpl implements IDemandeService {
             return ResponseEntity.ok("Record has been created successfully");
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to create the record");
+        }
+    }
+
+    @Override
+    public ResponseEntity<List<Demande>> getAllDemandes() {
+        List<Demande> demandes = demandeRepo.findAll();
+
+        if (demandes.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        } else {
+            return ResponseEntity.ok(demandes);
         }
     }
 }

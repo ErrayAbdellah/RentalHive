@@ -2,6 +2,7 @@ package com.rentalHive.rentalHive.model.entities;
 
 import java.util.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -16,6 +17,7 @@ public class User {
     @Column(name = "user_id")
     private int userId;
     @OneToMany(mappedBy = "user")
+    @JsonIgnore
     private List<Demande> demandes;
     @Column(name = "name")
     private String name;
