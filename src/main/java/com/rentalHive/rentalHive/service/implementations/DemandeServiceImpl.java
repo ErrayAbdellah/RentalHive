@@ -1,10 +1,9 @@
-package com.rentalHive.rentalHive.service.implementations;// ... (other imports)
+package com.rentalHive.rentalHive.service.implementations;
+
 import com.rentalHive.rentalHive.model.dto.DemandeDTO;
 import com.rentalHive.rentalHive.model.entities.Demande;
-import com.rentalHive.rentalHive.model.entities.DemandeEquipment;
 import com.rentalHive.rentalHive.model.entities.Equipment;
 import com.rentalHive.rentalHive.model.entities.User;
-import com.rentalHive.rentalHive.repository.IDemandeEquipmentRepo;
 import com.rentalHive.rentalHive.repository.IDemandeRepo;
 import com.rentalHive.rentalHive.repository.IEquipmentRepo;
 import com.rentalHive.rentalHive.repository.IUserRepo;
@@ -13,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 
@@ -23,15 +21,13 @@ public class DemandeServiceImpl implements IDemandeService {
     private final IDemandeRepo demandeRepo;
     private final IUserRepo userRepo;
     private final IEquipmentRepo equipmentRepo;
-    private final IDemandeEquipmentRepo demandeEquipementRepo;
 
     @Autowired
     public DemandeServiceImpl(IDemandeRepo demandeRepo, IUserRepo userRepo,
-                              IEquipmentRepo equipmentRepo, IDemandeEquipmentRepo demandeEquipementRepo) {
+                              IEquipmentRepo equipmentRepo) {
         this.demandeRepo = demandeRepo;
         this.userRepo = userRepo;
         this.equipmentRepo = equipmentRepo;
-        this.demandeEquipementRepo = demandeEquipementRepo;
     }
 
     @Override
@@ -53,16 +49,7 @@ public class DemandeServiceImpl implements IDemandeService {
         demande.setEquipment(equipmentList);
 
         try {
-            demande = demandeRepo.save(demande);
-
-            for (Equipment equipment : equipmentList) {
-                DemandeEquipment demandeEquipment = DemandeEquipment.builder()
-                        .demande(demande)
-                        .equipment(equipment)
-                        .build();
-
-                demandeEquipementRepo.save(demandeEquipment);
-            }
+            demandeRepo.save(demande);
 
             return ResponseEntity.ok("Record has been created successfully");
         } catch (Exception e) {

@@ -1,9 +1,7 @@
 package com.rentalHive.rentalHive.model.dto;
 
 import com.rentalHive.rentalHive.model.entities.Equipment;
-import com.rentalHive.rentalHive.model.entities.User;
-import com.rentalHive.rentalHive.model.entities.enums.Status;
-import com.rentalHive.rentalHive.model.entities.enums.Type;
+import com.rentalHive.rentalHive.model.entities.enums.Category;
 import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Positive;
@@ -21,7 +19,7 @@ public class EquipmentDTO {
     @Positive
     private double price;
     @Enumerated
-    private Type type;
+    private Category category;
 
     public static EquipmentDTO toDTO(Equipment equipment){
         return EquipmentDTO.builder()

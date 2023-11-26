@@ -1,7 +1,6 @@
 package com.rentalHive.rentalHive.model.entities;
 
-import com.rentalHive.rentalHive.model.entities.enums.Priorite;
-import com.rentalHive.rentalHive.model.entities.enums.State;
+import com.rentalHive.rentalHive.model.entities.enums.*;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -43,7 +42,7 @@ public class Demande {
             (
                     name = "demande_equipement",
                     joinColumns = @JoinColumn(name = "demande_id"),
-                    inverseJoinColumns = @JoinColumn(name = "equipemnt_id")
+                    inverseJoinColumns = @JoinColumn(name = "equipment_id")
             )
     private List<Equipment> equipment;
 }

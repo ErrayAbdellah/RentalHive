@@ -1,8 +1,7 @@
 package com.rentalHive.rentalHive.model.entities;
 
 import com.rentalHive.rentalHive.model.dto.EquipmentDTO;
-import com.rentalHive.rentalHive.model.entities.enums.Status;
-import com.rentalHive.rentalHive.model.entities.enums.Type;
+import com.rentalHive.rentalHive.model.entities.enums.Category;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -33,8 +32,8 @@ public class Equipment {
     private List<RentalRecord> rentalRecords;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "type")
-    private Type type;
+    @Column(name = "category")
+    private Category category;
 
     public List<RentalRecord> getRentalRecords() {
         return rentalRecords;
@@ -44,7 +43,7 @@ public class Equipment {
         return Equipment.builder()
                 .equipmentId(equipmentDTO.getEquipmentId())
                 .name(equipmentDTO.getName())
-                .type(equipmentDTO.getType())
+                .category(equipmentDTO.getCategory())
                 .price(equipmentDTO.getPrice())
                 .build();
     }
