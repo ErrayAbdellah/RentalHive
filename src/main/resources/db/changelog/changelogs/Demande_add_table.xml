@@ -5,11 +5,11 @@
                         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.0.xsd">
 
     <changeSet id="createTable-demande" author="Team">
-        <createTable tableName="Demande">
-            <column name="id_demande" type="BIGINT" autoIncrement="true">
+        <createTable tableName="demande">
+            <column name="demande_id" type="BIGINT" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false" />
             </column>
-            <column name="user_id" type="BIGINT">
+            <column name="user_id" type="INT">
                 <constraints nullable="false" />
             </column>
             <column name="demande_date" type="DATE" />
@@ -17,39 +17,13 @@
             <column name="reference" type="INT" />
             <column name="priorite" type="VARCHAR(255)" />
             <column name="state" type="VARCHAR(255)" />
-
         </createTable>
 
         <addForeignKeyConstraint baseColumnNames="user_id"
-                                 baseTableName="Demande"
+                                 baseTableName="demande"
                                  constraintName="fk_demande_user"
                                  referencedColumnNames="user_id"
-                                 referencedTableName="User"
-                                 onDelete="CASCADE"/>
-    </changeSet>
-
-    <changeSet id="createTable-demande_equipement" author="Team">
-        <createTable tableName="demande_equipement">
-            <column name="demande_id" type="BIGINT">
-                <constraints primaryKey="true" nullable="false" />
-            </column>
-            <column name="equipemnt_id" type="BIGINT">
-                <constraints primaryKey="true" nullable="false" />
-            </column>
-        </createTable>
-
-        <addForeignKeyConstraint baseColumnNames="demande_id"
-                                 baseTableName="demande_equipement"
-                                 constraintName="fk_demande_equipement_demande"
-                                 referencedColumnNames="id_demande"
-                                 referencedTableName="Demande"
-                                 onDelete="CASCADE"/>
-
-        <addForeignKeyConstraint baseColumnNames="equipemnt_id"
-                                 baseTableName="demande_equipement"
-                                 constraintName="fk_demande_equipement_equipement"
-                                 referencedColumnNames="equipment_id"
-                                 referencedTableName="Equipment"
+                                 referencedTableName="user"
                                  onDelete="CASCADE"/>
     </changeSet>
 

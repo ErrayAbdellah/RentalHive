@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
+
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
@@ -17,5 +19,14 @@ public class Image {
     @ManyToOne
     @JoinColumn(name = "equipment_id", nullable = false)
     private Equipment equipment;
+    @Lob
+    @Column(name = "image_data", nullable = false)
+    private byte[] imageData;
+    @Column(name = "image_name", nullable = false)
+    private String imageName;
+    @Column(name = "image_format", nullable = false)
+    private String imageFormat;
+    @Column(name = "upload_date", nullable = false)
+    private Date uploadDate;
 
 }

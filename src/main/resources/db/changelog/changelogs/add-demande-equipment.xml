@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.0.xsd">
+
+    <changeSet id="createTable-demande_equipement" author="Team">
+        <createTable tableName="demande_equipement">
+            <column name="demande_equipement_id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="demande_id" type="BIGINT">
+                <constraints nullable="false" />
+            </column>
+            <column name="equipment_id" type="BIGINT">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint baseColumnNames="demande_id"
+                                 baseTableName="demande_equipement"
+                                 constraintName="fk_demande_equipement_demande"
+                                 referencedColumnNames="demande_id"
+                                 referencedTableName="demande"
+                                 onDelete="CASCADE"/>
+
+        <addForeignKeyConstraint baseColumnNames="equipment_id"
+                                 baseTableName="demande_equipement"
+                                 constraintName="fk_demande_equipement_equipment"
+                                 referencedColumnNames="equipment_id"
+                                 referencedTableName="equipment"
+                                 onDelete="CASCADE"/>
+    </changeSet>
+
+</databaseChangeLog>

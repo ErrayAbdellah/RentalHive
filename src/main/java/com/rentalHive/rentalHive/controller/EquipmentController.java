@@ -1,6 +1,22 @@
 package com.rentalHive.rentalHive.controller;
+import com.rentalHive.rentalHive.model.dto.EquipmentDTO;
+import com.rentalHive.rentalHive.model.entities.Equipment;
+import com.rentalHive.rentalHive.model.entities.enums.Status;
+import jakarta.validation.Valid;
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import com.rentalHive.rentalHive.service.implementations.EquipmentServiceImpl;
+import jakarta.validation.Valid;
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 
+import org.springframework.http.HttpStatus;
+
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/equipment")

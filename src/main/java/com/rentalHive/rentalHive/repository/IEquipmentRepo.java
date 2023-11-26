@@ -1,7 +1,7 @@
 package com.rentalHive.rentalHive.repository;
 
+import com.rentalHive.rentalHive.enums.Type;
 import com.rentalHive.rentalHive.model.entities.Equipment;
-import com.rentalHive.rentalHive.model.entities.enums.Status;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
