@@ -1,6 +1,7 @@
 package com.rentalHive.rentalHive.model.entities;
 
-import com.rentalHive.rentalHive.enums.Type;
+import com.rentalHive.rentalHive.model.entities.enums.Status;
+import com.rentalHive.rentalHive.model.entities.enums.Type;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -24,15 +25,16 @@ public class Equipment {
     @Column(name = "price")
     private double price;
 
-
+    @Column(name = "quantity")
+    private int quantity;
 
     @OneToMany(mappedBy = "equipment")
     private List<RentalRecord> rentalRecords;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "type")
-
     private Type type;
+
 
     public List<RentalRecord> getRentalRecords() {
         return rentalRecords;
