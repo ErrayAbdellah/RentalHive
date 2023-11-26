@@ -19,7 +19,7 @@ public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "role_id", nullable = false)
-    private long roleId;
+    private Long roleId;
     @Column(name = "name")
     private  String name;
     @ManyToMany(mappedBy = "roles")

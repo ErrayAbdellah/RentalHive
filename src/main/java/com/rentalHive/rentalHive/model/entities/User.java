@@ -14,7 +14,7 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private long userId;
+    private int userId;
     @OneToMany(mappedBy = "user")
     private List<Demande> demandes;
     @Column(name = "name")

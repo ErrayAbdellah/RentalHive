@@ -1,7 +1,7 @@
 package com.rentalHive.rentalHive.model.entities;
 
-
-import com.rentalHive.rentalHive.enums.State;
+import com.rentalHive.rentalHive.model.entities.enums.State;
+import com.rentalHive.rentalHive.model.entities.enums.Status;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -16,13 +16,11 @@ public class Condition {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id", nullable = false)
-
-    private long id;
+    private Long id;
     @Column(name = "description")
     private String description;
     @Enumerated(EnumType.STRING)
-    @Column(name = "State")
-
+    @Column(name = "state")
     private State state;
     @ManyToOne
     @JoinColumn(name = "contrat_id", nullable = false)
