@@ -6,7 +6,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.w3c.dom.Text;
 
 import java.util.List;
 import java.util.UUID;
@@ -20,7 +19,7 @@ public class Contrat {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id", nullable = false)
-    private long id;
+    private Long id;
     @Column(columnDefinition = "TEXT" , name = "description")
     private  String description;
     @Column(name = "ref_code")
