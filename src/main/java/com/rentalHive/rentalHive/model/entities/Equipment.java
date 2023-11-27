@@ -1,8 +1,9 @@
 package com.rentalHive.rentalHive.model.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.rentalHive.rentalHive.model.dto.EquipmentDTO;
-import com.rentalHive.rentalHive.model.entities.enums.Status;
-import com.rentalHive.rentalHive.model.entities.enums.Type;
+import com.rentalHive.rentalHive.model.entities.enums.Category;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -29,13 +30,23 @@ public class Equipment {
     @Column(name = "quantity")
     private int quantity;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "equipment")
     private List<RentalRecord> rentalRecords;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "type")
-    private Type type;
+    @Column(name = "category")
+    private Category category;
 
+    @ManyToMany(mappedBy = "equipment")
+    private List<Demande> demandes;
+
+    @JsonBackReference
+    public List<Demande> getDemandes() {
+        return demandes;
+    }
+
+    @JsonIgnore
     public List<RentalRecord> getRentalRecords() {
         return rentalRecords;
     }
@@ -44,8 +55,17 @@ public class Equipment {
         return Equipment.builder()
                 .equipmentId(equipmentDTO.getEquipmentId())
                 .name(equipmentDTO.getName())
-                .type(equipmentDTO.getType())
+                .category(equipmentDTO.getCategory())
                 .price(equipmentDTO.getPrice())
+                .build();
+    }
+
+    public EquipmentDTO toDTO() {
+        return EquipmentDTO.builder()
+                .equipmentId(equipmentId)
+                .name(name)
+                .price(price)
+                .category(category)
                 .build();
     }
 }

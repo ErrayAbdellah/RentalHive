@@ -1,6 +1,7 @@
 package com.rentalHive.rentalHive.controller;
 
 import com.rentalHive.rentalHive.model.dto.DemandeDTO;
+import com.rentalHive.rentalHive.model.entities.Demande;
 import com.rentalHive.rentalHive.service.IDemandeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +16,11 @@ public class DemandeController {
     @Autowired
     public DemandeController(IDemandeService demandeService) {
         this.demandeService = demandeService;
+    }
+
+    @GetMapping("/all")
+    public ResponseEntity<List<Demande>> getAllDemandes() {
+        return demandeService.getAllDemandes();
     }
 
     @PostMapping("/create/{userId}/{equipmentIds}")

@@ -8,4 +8,5 @@ import java.util.List;
 
 public interface IDemandeService {
     ResponseEntity<String> createDemande(DemandeDTO demandeDTO, List<Long> equipmentIds, int userId);
+    ResponseEntity<List<Demande>> getAllDemandes();
 }

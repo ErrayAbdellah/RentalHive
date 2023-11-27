@@ -1,9 +1,8 @@
 package com.rentalHive.rentalHive.service.implementations;
 
-import com.rentalHive.rentalHive.enums.Status;
-import com.rentalHive.rentalHive.enums.Type;
 import com.rentalHive.rentalHive.model.dto.EquipmentDTO;
 import com.rentalHive.rentalHive.model.entities.Equipment;
+import com.rentalHive.rentalHive.model.entities.enums.Category;
 import com.rentalHive.rentalHive.repository.IEquipmentRepo;
 import com.rentalHive.rentalHive.service.IEquipmentService;
 import lombok.RequiredArgsConstructor;
@@ -28,8 +27,8 @@ public class EquipmentServiceImpl implements IEquipmentService {
     }
 
     @Override
-    public ResponseEntity<List<EquipmentDTO>> findEquipmentByType(Type type) {
-        List<EquipmentDTO> equipmentList = equipmentRepo.findEquipmentByType(type);
+    public ResponseEntity<List<EquipmentDTO>> findEquipmentByType(Category type) {
+        List<EquipmentDTO> equipmentList = equipmentRepo.findEquipmentByCategory(type);
 
         if (!equipmentList.isEmpty()) {
             return new ResponseEntity<>(equipmentList, HttpStatus.OK);
