@@ -19,4 +19,5 @@
     <include file="db/changelog/changelogs/drop_column_equipment.xml"/>
     <include file="db/changelog/changelogs/rename_column_equipment.xml"/>
 
+
 </databaseChangeLog>

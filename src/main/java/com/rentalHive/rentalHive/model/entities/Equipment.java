@@ -1,5 +1,6 @@
 package com.rentalHive.rentalHive.model.entities;
 
+
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.rentalHive.rentalHive.model.dto.EquipmentDTO;
@@ -27,19 +28,20 @@ public class Equipment {
     @Column(name = "price")
     private double price;
 
-    @Column(name = "quantity")
-    private int quantity;
+
 
     @JsonIgnore
     @OneToMany(mappedBy = "equipment")
     private List<RentalRecord> rentalRecords;
 
     @Enumerated(EnumType.STRING)
+
     @Column(name = "category")
     private Category category;
 
     @ManyToMany(mappedBy = "equipment")
     private List<Demande> demandes;
+
 
     @JsonBackReference
     public List<Demande> getDemandes() {

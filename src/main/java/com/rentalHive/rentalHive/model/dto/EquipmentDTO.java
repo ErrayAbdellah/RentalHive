@@ -1,6 +1,7 @@
 package com.rentalHive.rentalHive.model.dto;
 
 import com.rentalHive.rentalHive.model.entities.Equipment;
+
 import com.rentalHive.rentalHive.model.entities.enums.Category;
 import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.NotBlank;

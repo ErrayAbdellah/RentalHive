@@ -14,7 +14,6 @@ public class Devis {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id", nullable = false)
     private Long id;
-
     @OneToOne
     @JoinColumn(name = "demande_id", nullable = false, unique = true)
     private Demande demande;
