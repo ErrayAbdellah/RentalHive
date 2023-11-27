@@ -12,7 +12,15 @@
             </column>
             <column name="description" type="TEXT"/>
             <column name="ref_code" type="UUID"/>
+            <column name="devis_id" type="BIGINT" />
         </createTable>
+        <addForeignKeyConstraint
+                baseTableName="contrat"
+                baseColumnNames="devis_id"
+                constraintName="fk_contrat_devis"
+                referencedTableName="devis"
+                referencedColumnNames="devis_id"
+                onDelete="CASCADE"
+                onUpdate="CASCADE"/>
     </changeSet>
-
 </databaseChangeLog>

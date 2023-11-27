@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
@@ -6,7 +5,7 @@
 
     <changeSet id="createTable-devis" author="Team">
         <createTable tableName="devis">
-            <column name="id" type="BIGINT" autoIncrement="true">
+            <column name="devis_id" type="BIGINT" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false" />
             </column>
             <column name="demande_id" type="BIGINT">
@@ -16,17 +15,13 @@
             <column name="commentaire" type="VARCHAR(255)" />
         </createTable>
 
-        <createIndex indexName="fk_devis_demande"
+        <createIndex indexName="fk_contrat_devis"
                      tableName="devis">
             <column name="demande_id"/>
         </createIndex>
 
-        <addForeignKeyConstraint baseColumnNames="demande_id"
-                                 baseTableName="devis"
-                                 constraintName="fk_devis_demande"
-                                 referencedColumnNames="demande_id"
-                                 referencedTableName="demande"
-                                 onDelete="CASCADE"/>
+
     </changeSet>
+
 
 </databaseChangeLog>

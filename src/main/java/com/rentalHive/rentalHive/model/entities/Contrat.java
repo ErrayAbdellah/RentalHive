@@ -1,6 +1,7 @@
 package com.rentalHive.rentalHive.model.entities;
 
 
+import com.rentalHive.rentalHive.enums.Status;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -24,6 +25,12 @@ public class Contrat {
     private  String description;
     @Column(name = "ref_code")
     private UUID ref_code;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status")
+    private Status status;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "devis_id", nullable = false, unique = true)
+    private Devis devis;
     @OneToMany(mappedBy = "contrat", cascade = CascadeType.ALL)
     private List<Condition> conditions;
 }

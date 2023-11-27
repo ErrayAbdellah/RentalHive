@@ -1,7 +1,7 @@
 package com.rentalHive.rentalHive.controller;
 import com.rentalHive.rentalHive.model.dto.EquipmentDTO;
 import com.rentalHive.rentalHive.model.entities.Equipment;
-import com.rentalHive.rentalHive.model.entities.enums.Status;
+import com.rentalHive.rentalHive.enums.Status;
 import jakarta.validation.Valid;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,7 +1,7 @@
 package com.rentalHive.rentalHive.model.entities;
 
-import com.rentalHive.rentalHive.model.entities.enums.State;
-import com.rentalHive.rentalHive.model.entities.enums.Status;
+import com.rentalHive.rentalHive.enums.State;
+import com.rentalHive.rentalHive.enums.Status;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
