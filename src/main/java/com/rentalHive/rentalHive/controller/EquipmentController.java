@@ -1,8 +1,8 @@
 package com.rentalHive.rentalHive.controller;
 
-import com.rentalHive.rentalHive.enums.Type;
 import com.rentalHive.rentalHive.model.dto.EquipmentDTO;
 import com.rentalHive.rentalHive.model.entities.Equipment;
+import com.rentalHive.rentalHive.model.entities.enums.Category;
 import com.rentalHive.rentalHive.service.IEquipmentService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -41,7 +41,7 @@ public class EquipmentController {
     }
 
     @GetMapping("/findByStatus/{status}")
-    public ResponseEntity<List<EquipmentDTO>> findEquipmentByStatus(@PathVariable Type type) {
+    public ResponseEntity<List<EquipmentDTO>> findEquipmentByStatus(@PathVariable Category type) {
        return equipmentService.findEquipmentByType(type);
     }
 
