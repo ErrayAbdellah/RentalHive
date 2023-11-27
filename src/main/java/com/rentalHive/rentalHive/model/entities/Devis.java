@@ -20,6 +20,7 @@ public class Devis {
 
     @Column(name = "total")
     private float totalPrix;
+
     @Column(name = "commentaire")
     private String commentaire;
 }

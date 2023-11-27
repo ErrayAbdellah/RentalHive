@@ -1,7 +1,8 @@
 package com.rentalHive.rentalHive.model.entities.enums;
 
 public enum State {
-    Approuve,
-    Rejete,
-    EnAttent
+    EN_ATTENTE,
+    EN_COURS,
+    COMPLETEE,
+    ANNULEE
 }

@@ -15,8 +15,9 @@
     <include file="db/changelog/changelogs/equipment-changelog.xml"/>
     <include file="db/changelog/changelogs/rental-record-changelog.xml"/>
     <include file="db/changelog/changelogs/add-demande-equipment.xml"/>
-    <include file="db/changelog/changelogs/add_image_table.xml"/>
-    <include file="db/changelog/changelogs/add_archive.xml"/>
+    <include file="db/changelog/changelogs/add_column_equipment.xml"/>
+    <include file="db/changelog/changelogs/drop_column_equipment.xml"/>
+    <include file="db/changelog/changelogs/rename_column_equipment.xml"/>
 
 
 </databaseChangeLog>

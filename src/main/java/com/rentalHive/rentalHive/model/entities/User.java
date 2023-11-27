@@ -2,6 +2,7 @@ package com.rentalHive.rentalHive.model.entities;
 
 import java.util.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -13,9 +14,10 @@ import lombok.*;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private long userId;
+    @Column(name = "user_id")
+    private int userId;
     @OneToMany(mappedBy = "user")
+    @JsonIgnore
     private List<Demande> demandes;
     @Column(name = "name")
     private String name;
