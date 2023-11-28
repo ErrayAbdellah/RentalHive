@@ -1,5 +1,6 @@
 package com.rentalHive.rentalHive.controller;
 
+import com.rentalHive.rentalHive.model.dto.ContratDTO;
 import com.rentalHive.rentalHive.model.entities.Contrat;
 import com.rentalHive.rentalHive.enums.Status;
 import com.rentalHive.rentalHive.repository.IContractRep;
@@ -8,10 +9,7 @@ import com.rentalHive.rentalHive.service.implementations.ContractServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -30,10 +28,16 @@ public class ContratController {
         this.contractService = contractService;
     }
 
-    @GetMapping("/status/{status}")
-    public List<Contrat> getContractsByStatus(@PathVariable Status status) {
-        List<Contrat> contracts = contractService.getContractsByStatus(status);
-        return ResponseEntity.ok(contracts).getBody();
+    @GetMapping("/actifs")
+
+
+    public ResponseEntity<List<ContratDTO>> getActiveContracts(@RequestParam Long userId) {
+        try {
+            List<ContratDTO> activeContracts = contractService.getActiveContractsForUser(userId);
+            return new ResponseEntity<>(activeContracts, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
     }
 

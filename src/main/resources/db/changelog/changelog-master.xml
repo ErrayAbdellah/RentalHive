@@ -5,17 +5,26 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.0.xsd">
 
-    <include file="db/changelog/changelogs/user-changelog.xml"/>
-    <include file="db/changelog/changelogs/add_role_table.xml"/>
-    <include file="db/changelog/changelogs/add_user_role_table.xml"/>
-    <include file="db/changelog/changelogs/demande_add_table.xml"/>
-    <include file="db/changelog/changelogs/equipment-changelog.xml"/>
-    <include file="db/changelog/changelogs/rental-record-changelog.xml"/>
-    <include file="db/changelog/changelogs/devis_add_table.xml"/>
-    <include file="db/changelog/changelogs/contrat_add_table.xml"/>
-    <include file="db/changelog/changelogs/add-demande-equipment.xml"/>
-    <include file="db/changelog/changelogs/add_image_table.xml"/>
-    <include file="db/changelog/changelogs/add_archive.xml"/>
-    <include file="db/changelog/changelogs/Add_Contract_column.xml"/>
+<!--    <include file="db/changelog/changelogs/user-changelog.xml"/>-->
+<!--    <include file="db/changelog/changelogs/add_role_table.xml"/>-->
+<!--    <include file="db/changelog/changelogs/add_user_role_table.xml"/>-->
+<!--    <include file="db/changelog/changelogs/demande_add_table.xml"/>-->
+<!--    <include file="db/changelog/changelogs/equipment-changelog.xml"/>-->
+<!--    <include file="db/changelog/changelogs/rental-record-changelog.xml"/>-->
+<!--    <include file="db/changelog/changelogs/devis_add_table.xml"/>-->
+<!--    <include file="db/changelog/changelogs/contrat_add_table.xml"/>-->
+<!--    <include file="db/changelog/changelogs/add-demande-equipment.xml"/>-->
+<!--    <include file="db/changelog/changelogs/add_image_table.xml"/>-->
+<!--    <include file="db/changelog/changelogs/add_archive.xml"/>-->
+<!--    <include file="db/changelog/changelogs/Add_Contract_column.xml"/>-->
 <!--    <include file="db/changelog/changelogs/condition_add_table.xml"/>-->
+<!--    <include file="db/changelog/2023/11/27-01-changelog.xml"/>-->
+<!--    <include file="db/changelog/2023/11/27-02-changelog.xml"/>-->
+<!--    <include file="db/changelog/2023/11/27-03-changelog.xml"/>-->
+<!--    <include file="db/changelog/2023/11/27-04-changelog.xml"/>-->
+<!--    <include file="db/changelog/2023/11/27-05-changelog.xml"/>-->
+<!--    <include file="db/changelog/2023/11/28-01-changelog.xml"/>-->
+<!--    <include file="db/changelog/2023/11/28-02-changelog.xml"/>-->
+<!--    <include file="db/changelog/2023/11/28-03-changelog.xml"/>-->
+    <include file="db/changelog/2023/11/28-04-changelog.xml"/>
 </databaseChangeLog>

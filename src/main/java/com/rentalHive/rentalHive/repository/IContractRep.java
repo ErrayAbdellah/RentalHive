@@ -10,4 +10,5 @@ import java.util.Optional;
 @Repository
 public interface IContractRep extends JpaRepository<Contrat,Long> {
     List<Contrat> findByStatus(Status status);
+    List<Contrat> findByUserIdAndStatus(Long userId, Status status);
 }

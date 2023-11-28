@@ -11,18 +11,20 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-
+@Table(name = "conditions")
 public class Condition {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name = "id", nullable = false)
+    @Column(name = "condition_id", nullable = false)
     private Long id;
     @Column(name = "description")
     private String description;
     @Enumerated(EnumType.STRING)
     @Column(name = "state")
     private State state;
+    @Column(name = "body")
+    private String body;
     @ManyToOne
-    @JoinColumn(name = "contrat_id", nullable = false)
+    @JoinColumn(name = "contrat_id", nullable = false, foreignKey = @ForeignKey(name = "FK_CONDITIONS_ON_CONTRAT_NEW"))
     private Contrat contrat;
 }
