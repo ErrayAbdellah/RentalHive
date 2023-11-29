@@ -7,6 +7,6 @@ import org.springframework.http.ResponseEntity;
 import java.util.List;
 
 public interface IDemandeService {
-    ResponseEntity<String> createDemande(DemandeDTO demandeDTO, List<Long> equipmentIds, int userId);
+    ResponseEntity<String> createDemande(DemandeDTO demandeDTO);
     ResponseEntity<List<Demande>> getAllDemandes();
 }

@@ -4,6 +4,7 @@ import com.rentalHive.rentalHive.model.dto.DemandeDTO;
 import com.rentalHive.rentalHive.model.entities.Demande;
 import com.rentalHive.rentalHive.service.IDemandeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,10 +24,8 @@ public class DemandeController {
         return demandeService.getAllDemandes();
     }
 
-    @PostMapping("/create/{userId}/{equipmentIds}")
-    public ResponseEntity<String> createDemande(@RequestBody DemandeDTO demandeDTO,
-                                                @PathVariable int userId,
-                                                @PathVariable List<Long> equipmentIds) {
-        return demandeService.createDemande(demandeDTO, equipmentIds, userId);
+    @PostMapping("/create")
+    public ResponseEntity<String> createDemande(@RequestBody DemandeDTO demandeDTO) {
+        return demandeService.createDemande(demandeDTO);
     }
 }
