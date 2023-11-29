@@ -1,5 +1,6 @@
 package com.rentalHive.rentalHive.model.entities;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.rentalHive.rentalHive.enums.Priorite;
 import com.rentalHive.rentalHive.enums.State;
 import jakarta.persistence.*;
@@ -10,7 +11,7 @@ import lombok.NoArgsConstructor;
 
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Data
 @AllArgsConstructor
@@ -18,10 +19,9 @@ import java.util.UUID;
 @Builder
 @Entity
 public class Demande {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_demande")
+    @Column(name = "demande_id")
     private Long id;
     @ManyToOne
     @JoinColumn(name ="user_id",nullable = false)
@@ -39,11 +39,12 @@ public class Demande {
     @Column(name ="state")
     private State state;
     @ManyToMany
-    @JoinTable
-            (
-                    name = "demande_equipement",
-                    joinColumns = @JoinColumn(name = "demande_id"),
-                    inverseJoinColumns = @JoinColumn(name = "equipemnt_id")
-            )
+    @JoinTable(
+            name = "demande_equipement",
+            joinColumns = @JoinColumn(name = "demande_id"),
+            inverseJoinColumns = @JoinColumn(name = "equipment_id")
+    )
+    @JsonManagedReference
     private List<Equipment> equipment;
+
 }

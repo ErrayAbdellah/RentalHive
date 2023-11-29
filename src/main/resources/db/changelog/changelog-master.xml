@@ -10,5 +10,8 @@
     <!--    <include file="db/changelog/2023/11/28-09-changelog.xml"/>-->
 <!--    <include file="db/changelog/2023/11/28-10-changelog.xml"/>-->
 <!--    <include file="db/changelog/2023/11/28-11-changelog.xml"/>-->
-    <include file="db/changelog/2023/11/29-01-changelog.xml"/>
+<!--    <include file="db/changelog/2023/11/29-01-changelog.xml"/>-->
+
+<!--    <include file="db/changelog/2023/11/29-02-changelog.xml"/>-->
+    <include file="db/changelog/2023/11/29-03-changelog.xml"/>
 </databaseChangeLog>

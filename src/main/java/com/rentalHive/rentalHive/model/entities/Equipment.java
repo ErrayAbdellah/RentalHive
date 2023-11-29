@@ -1,6 +1,11 @@
 package com.rentalHive.rentalHive.model.entities;
 
-import com.rentalHive.rentalHive.enums.Type;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.rentalHive.rentalHive.model.dto.EquipmentDTO;
+import com.rentalHive.rentalHive.enums.Category;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -26,15 +31,18 @@ public class Equipment {
 
 
 
+    @JsonIgnore
     @OneToMany(mappedBy = "equipment")
     private List<RentalRecord> rentalRecords;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "type")
 
-    private Type type;
+    @Column(name = "category")
+    private Category category;
 
-    public List<RentalRecord> getRentalRecords() {
-        return rentalRecords;
-    }
+    @JsonBackReference
+    @ManyToMany(mappedBy = "equipment")
+    private List<Demande> demandes;
+
+
 }

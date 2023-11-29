@@ -8,22 +8,27 @@ import com.rentalHive.rentalHive.model.entities.Condition;
 import com.rentalHive.rentalHive.model.entities.Contrat;
 import com.rentalHive.rentalHive.model.entities.Devis;
 import com.rentalHive.rentalHive.enums.Status;
+import com.rentalHive.rentalHive.model.entities.User;
 import com.rentalHive.rentalHive.repository.IContractRep;
 import com.rentalHive.rentalHive.service.IContractService;
+import com.rentalHive.rentalHive.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public class ContractServiceImpl implements IContractService {
 
     private final IContractRep iContractRep;
+    private final IUserService userService;
 
     @Autowired
-    public ContractServiceImpl(IContractRep iContractRep) {
+    public ContractServiceImpl(IContractRep iContractRep, IUserService userService) {
         this.iContractRep = iContractRep;
+        this.userService = userService;
     }
 
     @Override
@@ -46,17 +51,22 @@ public class ContractServiceImpl implements IContractService {
         }
         return contratDTOs;
     }
+    @Override
+    public Optional<Optional<User>> getUserById(Long userId) {
+        return Optional.ofNullable(userService.getUserById(userId));
+    }
 
     @Override
     public List<ContratDTO> getActiveContractsForUser(Long userId) {
-        List<Contrat> activeContracts = iContractRep.findByUserIdAndStatus(userId, Status.Actif);
+        Optional<User> user = userService.getUserById(userId);
+        List<Contrat> activeContracts = iContractRep.findAllByUserAndStatus(user, Status.Actif);
         List<ContratDTO> contratDTOs = new ArrayList<>();
-        System.out.println("getActiveContractsForUser  for the function"+contratDTOs);
         for (Contrat contrat : activeContracts) {
             contratDTOs.add(convertToDTO(contrat));
         }
         return contratDTOs;
     }
+
 
     public ContratDTO convertToDTO(Contrat contrat) {
         ContratDTO contratDTO = new ContratDTO();
@@ -65,9 +75,8 @@ public class ContractServiceImpl implements IContractService {
         contratDTO.setRef_code(contrat.getRef_code());
         contratDTO.setStatus(contrat.getStatus());
 
-
-        DevisDTO devisDTO = convertDevisToDTO(contrat.getDevis());
-        contratDTO.setDevis((List<DevisDTO>) devisDTO);
+        List<DevisDTO> devisDTOs = convertDevisListToDTO(contrat.getDevis());
+        contratDTO.setDevis(devisDTOs);
 
         List<ConditionDTO> conditionDTOs = new ArrayList<>();
         for (Condition condition : contrat.getConditions()) {
@@ -76,6 +85,16 @@ public class ContractServiceImpl implements IContractService {
         contratDTO.setConditions(conditionDTOs);
 
         return contratDTO;
+    }
+
+
+    private List<DevisDTO> convertDevisListToDTO(Devis devis) {
+        List<DevisDTO> devisDTOList = new ArrayList<>();
+
+        DevisDTO devisDTO = convertDevisToDTO(devis);
+        devisDTOList.add(devisDTO);
+
+        return devisDTOList;
     }
 
     private DevisDTO convertDevisToDTO(Devis devis) {
