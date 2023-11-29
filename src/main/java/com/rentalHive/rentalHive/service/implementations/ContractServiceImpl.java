@@ -9,15 +9,18 @@ import com.rentalHive.rentalHive.model.entities.Contrat;
 import com.rentalHive.rentalHive.model.entities.Devis;
 import com.rentalHive.rentalHive.enums.Status;
 import com.rentalHive.rentalHive.model.entities.User;
+
 import com.rentalHive.rentalHive.repository.IContractRep;
 import com.rentalHive.rentalHive.service.IContractService;
 import com.rentalHive.rentalHive.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Component
 public class ContractServiceImpl implements IContractService {
@@ -65,6 +68,53 @@ public class ContractServiceImpl implements IContractService {
             contratDTOs.add(convertToDTO(contrat));
         }
         return contratDTOs;
+    }
+    @Override
+    public ContratDTO createContract(Devis devis) {
+        Contrat contract = new Contrat();
+        contract.setDevis(devis);
+
+        contract.setDescription("Detailed contract description");
+        contract.setRef_code(UUID.randomUUID());
+        contract.setStatus(Status.Actif);
+
+        contract.setStartDate(LocalDate.now());
+        contract.setEndDate(LocalDate.now().plusDays(364));
+
+        Optional<User> optionalUser = userService.getUserById(devis.getDemande().getUser().getUserId());
+        optionalUser.ifPresent(contract::setUser);
+        addConditionsToContract(contract);
+        iContractRep.save(contract);
+        return null;
+    }
+    private void addConditionsToContract(Contrat contract) {
+        List<ConditionDTO> conditionsToAdd = generateConditions(); // Implement this method
+
+        List<Condition> conditions = convertConditionDTOsToEntities(conditionsToAdd);
+        contract.setConditions(conditions);
+    }
+    private List<ConditionDTO> generateConditions() {
+        List<ConditionDTO> conditions = new ArrayList<>();
+
+
+        ConditionDTO condition1 = new ConditionDTO();
+        ConditionDTO condition2 = new ConditionDTO();
+
+        conditions.add(condition1);
+        conditions.add(condition2);
+
+        return conditions;
+    }
+    private List<Condition> convertConditionDTOsToEntities(List<ConditionDTO> conditionDTOs) {
+        List<Condition> conditions = new ArrayList<>();
+        for (ConditionDTO conditionDTO : conditionDTOs) {
+            Condition condition = new Condition();
+            condition.setDescription(conditionDTO.getDescription());
+            condition.setState(conditionDTO.getState());
+            condition.setBody(conditionDTO.getBody());
+            conditions.add(condition);
+        }
+        return conditions;
     }
 
 

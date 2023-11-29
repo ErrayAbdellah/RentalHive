@@ -18,6 +18,9 @@ public class Devis {
     @JoinColumn(name = "demande_id", nullable = false, unique = true)
     private Demande demande;
 
+    @Column(name = "approved")
+    private boolean approved;
+
     @Column(name = "total")
     private float totalPrix;
 

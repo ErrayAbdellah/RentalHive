@@ -8,6 +8,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
@@ -45,6 +46,27 @@ public class Contrat {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
+    
+    @Column(name="StartDate")
+    private LocalDate StartDate;
+    @Column(name = "EndDate")
+    private LocalDate EndDate;
+
+    public LocalDate getStartDate() {
+        return StartDate;
+    }
+
+    public void setStartDate(LocalDate startDate) {
+        StartDate = startDate;
+    }
+
+    public LocalDate getEndDate() {
+        return EndDate;
+    }
+
+    public void setEndDate(LocalDate endDate) {
+        EndDate = endDate;
+    }
 
     public String getDescription() {
         return description;

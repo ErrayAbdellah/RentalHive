@@ -8,6 +8,11 @@ public class ConditionDTO {
     private State state;
     private String body;
 
+    public ConditionDTO() {
+        this.description = description;
+        this.state = state;
+        this.body = body;
+    }
     public Long getId() {
         return id;
     }
