@@ -3,8 +3,9 @@ package com.rentalHive.rentalHive.model.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.rentalHive.rentalHive.model.dto.EquipmentDTO;
-import com.rentalHive.rentalHive.model.entities.enums.Category;
+import com.rentalHive.rentalHive.enums.Category;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -39,35 +40,9 @@ public class Equipment {
     @Column(name = "category")
     private Category category;
 
+    @JsonBackReference
     @ManyToMany(mappedBy = "equipment")
     private List<Demande> demandes;
 
 
-    @JsonBackReference
-    public List<Demande> getDemandes() {
-        return demandes;
-    }
-
-    @JsonIgnore
-    public List<RentalRecord> getRentalRecords() {
-        return rentalRecords;
-    }
-
-    public static Equipment ToEquipment(EquipmentDTO equipmentDTO){
-        return Equipment.builder()
-                .equipmentId(equipmentDTO.getEquipmentId())
-                .name(equipmentDTO.getName())
-                .category(equipmentDTO.getCategory())
-                .price(equipmentDTO.getPrice())
-                .build();
-    }
-
-    public EquipmentDTO toDTO() {
-        return EquipmentDTO.builder()
-                .equipmentId(equipmentId)
-                .name(name)
-                .price(price)
-                .category(category)
-                .build();
-    }
 }
