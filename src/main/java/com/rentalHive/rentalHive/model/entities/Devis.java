@@ -1,5 +1,6 @@
 package com.rentalHive.rentalHive.model.entities;
 
+import com.rentalHive.rentalHive.enums.devisStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -23,4 +24,6 @@ public class Devis {
 
     @Column(name = "commentaire")
     private String commentaire;
+    @Column(name = "status")
+    private devisStatus devisStatus;
 }
