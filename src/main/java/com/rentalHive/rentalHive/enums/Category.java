@@ -1,4 +1,4 @@
-package com.rentalHive.rentalHive.model.entities.enums;
+package com.rentalHive.rentalHive.enums;
 
 public enum Category {
     Office,

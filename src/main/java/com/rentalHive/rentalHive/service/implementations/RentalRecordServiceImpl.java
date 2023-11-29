@@ -10,6 +10,7 @@ import com.rentalHive.rentalHive.repository.IUserRepo;
 import com.rentalHive.rentalHive.service.IRentalRecordService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;
+import org.springframework.context.annotation.Primary;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
@@ -21,6 +22,7 @@ import java.util.Optional;
 
 @Component
 @RequiredArgsConstructor
+@Primary
 public class RentalRecordServiceImpl implements IRentalRecordService {
     private final IRentalRecordRepo rentalRecordRepo ;
     private final IUserRepo userRepo ;

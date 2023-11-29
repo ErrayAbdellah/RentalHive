@@ -8,6 +8,8 @@ import com.rentalHive.rentalHive.repository.IDemandeRepo;
 import com.rentalHive.rentalHive.repository.IEquipmentRepo;
 import com.rentalHive.rentalHive.repository.IUserRepo;
 import com.rentalHive.rentalHive.service.IDemandeService;
+import org.modelmapper.ModelMapper;
+import org.modelmapper.PropertyMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -31,19 +33,27 @@ public class DemandeServiceImpl implements IDemandeService {
     }
 
     @Override
-    public ResponseEntity<String> createDemande(DemandeDTO demandeDTO, List<Long> equipmentIds, int userId) {
+    public ResponseEntity<String> createDemande(DemandeDTO demandeDTO) {
+        int userId = demandeDTO.getUserId();
+        List<Long> equipmentIds = demandeDTO.getEquipmentIds();
+
         User user = userRepo.findById(userId).orElse(null);
 
         if (user == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
         }
 
-        Demande demande = new Demande();
-        demande.setDemande_date(demandeDTO.getDemandeDate());
-        demande.setDate_retour(demandeDTO.getDateRetour());
-        demande.setReference(demandeDTO.getReference());
-        demande.setPriorite(demandeDTO.getPriorite());
-        demande.setState(demandeDTO.getState());
+        ModelMapper modelMapper = new ModelMapper();
+        modelMapper.getConfiguration().setAmbiguityIgnored(true);
+        modelMapper.addMappings(new PropertyMap<DemandeDTO, Demande>() {
+            protected void configure() {
+                skip(destination.getId());
+                map().setDemande_date(source.getDemandeDate());
+                map().setDate_retour(source.getDateRetour());
+            }
+        });
+
+        Demande demande = modelMapper.map(demandeDTO, Demande.class);
         demande.setUser(user);
 
         List<Equipment> equipmentList = equipmentRepo.findAllById(equipmentIds);
@@ -57,6 +67,7 @@ public class DemandeServiceImpl implements IDemandeService {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to create the record");
         }
     }
+
 
     @Override
     public ResponseEntity<List<Demande>> getAllDemandes() {

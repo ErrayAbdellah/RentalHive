@@ -2,6 +2,7 @@ package com.rentalHive.rentalHive.model.entities;
 
 import java.util.*;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
@@ -17,7 +18,7 @@ public class User {
     @Column(name = "user_id")
     private int userId;
     @OneToMany(mappedBy = "user")
-    @JsonIgnore
+    @JsonBackReference
     private List<Demande> demandes;
     @Column(name = "name")
     private String name;
@@ -27,9 +28,7 @@ public class User {
     private String password;
     @Column(name = "telephone")
     private String telephone;
-    @Column(name = "role")
-    private int role;
-
+    @JsonBackReference
     @OneToMany(mappedBy = "user")
     private List<RentalRecord> rentalRecords ;
     @ManyToMany
@@ -38,5 +37,6 @@ public class User {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
+    @JsonBackReference
     private List<Role> roles;
 }

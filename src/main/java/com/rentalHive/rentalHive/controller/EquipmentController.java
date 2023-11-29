@@ -2,7 +2,7 @@ package com.rentalHive.rentalHive.controller;
 
 import com.rentalHive.rentalHive.model.dto.EquipmentDTO;
 import com.rentalHive.rentalHive.model.entities.Equipment;
-import com.rentalHive.rentalHive.model.entities.enums.Category;
+import com.rentalHive.rentalHive.enums.Category;
 import com.rentalHive.rentalHive.service.IEquipmentService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -13,7 +13,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/equipment")
+@RequestMapping("/api/equipement")
 public class EquipmentController {
 
     private final IEquipmentService equipmentService;
