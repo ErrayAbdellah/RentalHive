@@ -13,10 +13,8 @@ import lombok.*;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "user_id")
     private long userId;
-    @OneToMany(mappedBy = "user")
-    private List<Demande> demandes;
     @Column(name = "name")
     private String name;
     @Column(name = "email")
@@ -27,6 +25,12 @@ public class User {
     private String telephone;
     @Column(name = "role")
     private int role;
+
+    @OneToMany(mappedBy = "user")
+    private List<Demande> demandes;
+
+    @OneToMany(mappedBy = "user")
+    private List<Contrat> contrats;
 
     @OneToMany(mappedBy = "user")
     private List<RentalRecord> rentalRecords ;

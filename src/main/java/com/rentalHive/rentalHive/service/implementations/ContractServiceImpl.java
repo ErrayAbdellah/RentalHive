@@ -40,6 +40,7 @@ public class ContractServiceImpl implements IContractService {
     public List<ContratDTO> getContractsByStatus(Status status) {
         List<Contrat> contrats = iContractRep.findByStatus(status);
         List<ContratDTO> contratDTOs = new ArrayList<>();
+
         for (Contrat contrat : contrats) {
             contratDTOs.add(convertToDTO(contrat));
         }
@@ -50,6 +51,7 @@ public class ContractServiceImpl implements IContractService {
     public List<ContratDTO> getActiveContractsForUser(Long userId) {
         List<Contrat> activeContracts = iContractRep.findByUserIdAndStatus(userId, Status.Actif);
         List<ContratDTO> contratDTOs = new ArrayList<>();
+        System.out.println("getActiveContractsForUser  for the function"+contratDTOs);
         for (Contrat contrat : activeContracts) {
             contratDTOs.add(convertToDTO(contrat));
         }

@@ -26,8 +26,6 @@ public class Contrat {
     private  String description;
     @Column(name = "ref_code")
     private UUID ref_code;
-    @Column(name = "user_id")
-    private Long userId;
     @Enumerated(EnumType.STRING)
     @Column(name = "status")
     private Status status;
@@ -44,7 +42,41 @@ public class Contrat {
     @JoinColumn(name = "devis_id", nullable = false, unique = true)
     private Devis devis;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public UUID getRef_code() {
+        return ref_code;
+    }
+
+    public void setRef_code(UUID ref_code) {
+        this.ref_code = ref_code;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     @OneToMany(mappedBy = "contrat", cascade = CascadeType.ALL)
     private List<Condition> conditions;

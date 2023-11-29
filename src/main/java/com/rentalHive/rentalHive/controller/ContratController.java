@@ -27,14 +27,21 @@ public class ContratController {
         this.iContractRep = iContractRep;
         this.contractService = contractService;
     }
-
     @GetMapping("/actifs")
-
-
     public ResponseEntity<List<ContratDTO>> getActiveContracts(@RequestParam Long userId) {
         try {
             List<ContratDTO> activeContracts = contractService.getActiveContractsForUser(userId);
             return new ResponseEntity<>(activeContracts, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+    @GetMapping("all")
+    public ResponseEntity<List<ContratDTO>> getAllContract()
+    {
+        try {
+            List<ContratDTO> allContract = contractService.getAllContracts();
+            return new ResponseEntity<>(allContract, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
