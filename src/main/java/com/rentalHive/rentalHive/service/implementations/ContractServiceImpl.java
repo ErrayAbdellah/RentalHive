@@ -73,7 +73,7 @@ public class ContractServiceImpl implements IContractService {
     public ContratDTO createContract(Devis devis) {
         Contrat contract = new Contrat();
         contract.setDevis(devis);
-
+        System.out.println("here1");
         contract.setDescription("Detailed contract description");
         contract.setRef_code(UUID.randomUUID());
         contract.setStatus(Status.Actif);
@@ -83,12 +83,12 @@ public class ContractServiceImpl implements IContractService {
 
         Optional<User> optionalUser = userService.getUserById(devis.getDemande().getUser().getUserId());
         optionalUser.ifPresent(contract::setUser);
-        addConditionsToContract(contract);
-        iContractRep.save(contract);
-        return null;
+        Contrat savedContrat = iContractRep.save(contract);
+        addConditionsToContract(savedContrat);
+        return convertToDTO(savedContrat);
     }
     private void addConditionsToContract(Contrat contract) {
-        List<ConditionDTO> conditionsToAdd = generateConditions(); // Implement this method
+        List<ConditionDTO> conditionsToAdd = generateConditions();
 
         List<Condition> conditions = convertConditionDTOsToEntities(conditionsToAdd);
         contract.setConditions(conditions);

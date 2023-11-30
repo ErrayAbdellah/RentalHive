@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "conditions")
 public class Condition {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "condition_id", nullable = false)
     private Long id;
     @Column(name = "description")
@@ -25,6 +25,6 @@ public class Condition {
     @Column(name = "body")
     private String body;
     @ManyToOne
-    @JoinColumn(name = "contrat_id", nullable = false, foreignKey = @ForeignKey(name = "FK_CONDITIONS_ON_CONTRAT_NEW"))
+    @JoinColumn(name = "contrat_id", nullable = false,      foreignKey = @ForeignKey(name = "FK_CONDITIONS_ON_CONTRAT_NEW"))
     private Contrat contrat;
 }

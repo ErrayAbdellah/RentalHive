@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Entity
 public class Devis {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "devis_id", nullable = false)
     private Long id;
     @OneToOne

@@ -20,8 +20,8 @@ import java.util.UUID;
 @Table(name = "contrat")
 public class Contrat {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name = "contract_id", nullable = false )
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "contract_id", nullable = false)
     private Long id;
     @Column(columnDefinition = "TEXT" , name = "description")
     private  String description;
