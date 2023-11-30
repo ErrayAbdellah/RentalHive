@@ -1,15 +1,14 @@
 package com.rentalHive.rentalHive.service.implementations;
 
+import com.rentalHive.rentalHive.controller.ArchieveController;
 import com.rentalHive.rentalHive.model.ConditionDTO;
 import com.rentalHive.rentalHive.model.DevisDTO;
 import com.rentalHive.rentalHive.model.dto.ContratDTO;
-//import com.rentalHive.rentalHive.model.dto.DevisDTO;
 import com.rentalHive.rentalHive.model.entities.Condition;
 import com.rentalHive.rentalHive.model.entities.Contrat;
-import com.rentalHive.rentalHive.model.entities.Devis;
 import com.rentalHive.rentalHive.enums.Status;
+import com.rentalHive.rentalHive.model.entities.Devis;
 import com.rentalHive.rentalHive.model.entities.User;
-
 import com.rentalHive.rentalHive.repository.IContractRep;
 import com.rentalHive.rentalHive.service.IContractService;
 import com.rentalHive.rentalHive.service.IUserService;
@@ -27,11 +26,13 @@ public class ContractServiceImpl implements IContractService {
 
     private final IContractRep iContractRep;
     private final IUserService userService;
+    private final ArchieveController archiveController;
 
     @Autowired
-    public ContractServiceImpl(IContractRep iContractRep, IUserService userService) {
+    public ContractServiceImpl(IContractRep iContractRep, IUserService userService, ArchieveController archiveController) {
         this.iContractRep = iContractRep;
         this.userService = userService;
+        this.archiveController = archiveController;
     }
 
     @Override
@@ -45,6 +46,24 @@ public class ContractServiceImpl implements IContractService {
     }
 
     @Override
+    public ContratDTO markContractAsCompleted(Long contractId) {
+        Optional<Contrat> optionalContrat = iContractRep.findById(contractId);
+        if (optionalContrat.isPresent()) {
+            Contrat contrat = optionalContrat.get();
+
+            contrat.setStatus(Status.Completed);
+
+            archiveController.archiveEntity("Contrat", contrat.getId(), "System", "Contract completed");
+
+            iContractRep.save(contrat);
+
+            return convertToDTO(contrat);
+        } else {
+            return null;
+        }
+    }
+
+    @Override
     public List<ContratDTO> getContractsByStatus(Status status) {
         List<Contrat> contrats = iContractRep.findByStatus(status);
         List<ContratDTO> contratDTOs = new ArrayList<>();
@@ -54,6 +73,7 @@ public class ContractServiceImpl implements IContractService {
         }
         return contratDTOs;
     }
+
     @Override
     public Optional<Optional<User>> getUserById(Long userId) {
         return Optional.ofNullable(userService.getUserById(userId));
@@ -69,15 +89,28 @@ public class ContractServiceImpl implements IContractService {
         }
         return contratDTOs;
     }
+
+    public ContratDTO archiveContrat(Long contratId, String archivedBy, String archivedReason) {
+        Optional<Contrat> optionalContrat = iContractRep.findById(contratId);
+        if (optionalContrat.isPresent()) {
+            Contrat contrat = optionalContrat.get();
+
+            contrat.setStatus(Status.Archived);
+            iContractRep.save(contrat);
+
+            return convertToDTO(contrat);
+        } else {
+            return null;
+        }
+    }
+
     @Override
     public ContratDTO createContract(Devis devis) {
         Contrat contract = new Contrat();
         contract.setDevis(devis);
-        System.out.println("here1");
         contract.setDescription("Detailed contract description");
         contract.setRef_code(UUID.randomUUID());
         contract.setStatus(Status.Actif);
-
         contract.setStartDate(LocalDate.now());
         contract.setEndDate(LocalDate.now().plusDays(364));
 
@@ -87,15 +120,16 @@ public class ContractServiceImpl implements IContractService {
         addConditionsToContract(savedContrat);
         return convertToDTO(savedContrat);
     }
+
     private void addConditionsToContract(Contrat contract) {
         List<ConditionDTO> conditionsToAdd = generateConditions();
 
         List<Condition> conditions = convertConditionDTOsToEntities(conditionsToAdd);
         contract.setConditions(conditions);
     }
+
     private List<ConditionDTO> generateConditions() {
         List<ConditionDTO> conditions = new ArrayList<>();
-
 
         ConditionDTO condition1 = new ConditionDTO();
         ConditionDTO condition2 = new ConditionDTO();
@@ -105,6 +139,7 @@ public class ContractServiceImpl implements IContractService {
 
         return conditions;
     }
+
     private List<Condition> convertConditionDTOsToEntities(List<ConditionDTO> conditionDTOs) {
         List<Condition> conditions = new ArrayList<>();
         for (ConditionDTO conditionDTO : conditionDTOs) {
@@ -116,7 +151,6 @@ public class ContractServiceImpl implements IContractService {
         }
         return conditions;
     }
-
 
     public ContratDTO convertToDTO(Contrat contrat) {
         ContratDTO contratDTO = new ContratDTO();
@@ -136,7 +170,6 @@ public class ContractServiceImpl implements IContractService {
 
         return contratDTO;
     }
-
 
     private List<DevisDTO> convertDevisListToDTO(Devis devis) {
         List<DevisDTO> devisDTOList = new ArrayList<>();
@@ -163,5 +196,10 @@ public class ContractServiceImpl implements IContractService {
         conditionDTO.setState(condition.getState());
         conditionDTO.setBody(condition.getBody());
         return conditionDTO;
+    }
+
+    @Override
+    public Optional<Contrat> getContractById(Long id) {
+        return iContractRep.findById(id);
     }
 }

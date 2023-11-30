@@ -31,4 +31,9 @@ public class DevisServiceImpl implements IDevisService {
         throw new RuntimeException("Devis not found with ID: " + devisId);
     }
 
+    @Override
+    public Optional<Devis> getDevisById(Long id) {
+        return devisRepo.findById(id);
+    }
+
 }

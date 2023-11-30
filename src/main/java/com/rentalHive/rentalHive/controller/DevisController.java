@@ -23,13 +23,16 @@ public class DevisController {
         this.devisService = devisService;
     }
     @PostMapping("/approve/{devisId}")
-    public ResponseEntity<ContratDTO> approveDevis(@PathVariable Long devisId) {
-        System.out.println("hello here");
+    public ResponseEntity<String> approveDevis(@PathVariable Long devisId) {
         try {
             ContratDTO contratDTO = devisService.approveDevis(devisId);
-            return new ResponseEntity<>(contratDTO, HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            if (contratDTO != null) {
+                return ResponseEntity.ok("Devis approved and contract created successfully!");
+            } else {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Devis not found or error occurred.");
+            }
+        }catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Internal server error.");
         }
     }
 }

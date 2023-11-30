@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.http.HttpStatus;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class DemandeServiceImpl implements IDemandeService {
@@ -78,5 +79,9 @@ public class DemandeServiceImpl implements IDemandeService {
         } else {
             return ResponseEntity.ok(demandes);
         }
+    }
+    @Override
+    public Optional<Demande> getDemandeById(Long id) {
+        return demandeRepo.findById(id);
     }
 }

@@ -11,6 +11,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
+@Table(name = "archive")
 public class Archive {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -1,5 +1,6 @@
 package com.rentalHive.rentalHive.model.entities;
 
+import com.rentalHive.rentalHive.service.ArchivableEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,7 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Devis {
+public class Devis implements ArchivableEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "devis_id", nullable = false)
@@ -26,4 +27,14 @@ public class Devis {
 
     @Column(name = "commentaire")
     private String commentaire;
+
+    @Override
+    public String getEntityType() {
+        return "Devis";
+    }
+    @Override
+    public Long getId()
+    {
+        return id;
+    }
 }
