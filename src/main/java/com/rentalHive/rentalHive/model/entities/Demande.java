@@ -1,10 +1,8 @@
 package com.rentalHive.rentalHive.model.entities;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.rentalHive.rentalHive.enums.Priorite;
 import com.rentalHive.rentalHive.enums.State;
-import com.rentalHive.rentalHive.model.dto.DemandeDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

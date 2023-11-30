@@ -5,7 +5,25 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.24.xsd"
         objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
-    <changeSet id="1701093884277-1" author="Youcode (generated)">
+    <changeSet id="1701262372024-1" author="Youcode (generated)">
+        <createSequence incrementBy="50" sequenceName="archive_seq" startValue="1"/>
+    </changeSet>
+    <changeSet id="1701262372024-2" author="Youcode (generated)">
+        <createSequence incrementBy="50" sequenceName="conditions_seq" startValue="1"/>
+    </changeSet>
+    <changeSet id="1701262372024-3" author="Youcode (generated)">
+        <createSequence incrementBy="50" sequenceName="contrat_seq" startValue="1"/>
+    </changeSet>
+    <changeSet id="1701262372024-4" author="Youcode (generated)">
+        <createSequence incrementBy="50" sequenceName="devis_seq" startValue="1"/>
+    </changeSet>
+    <changeSet id="1701262372024-5" author="Youcode (generated)">
+        <createSequence incrementBy="50" sequenceName="image_seq" startValue="1"/>
+    </changeSet>
+    <changeSet id="1701262372024-6" author="Youcode (generated)">
+        <createSequence incrementBy="50" sequenceName="role_seq" startValue="1"/>
+    </changeSet>
+    <changeSet id="1701262372024-7" author="Youcode (generated)">
         <createTable tableName="archive">
             <column name="id_archieve" type="BIGINT">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="pk_archive"/>
@@ -26,59 +44,39 @@
             <column name="archived_reason" type="VARCHAR(255)"/>
         </createTable>
     </changeSet>
-<<<<<<< HEAD
-    <changeSet id="1701093884277-2" author="Youcode (generated)">
-=======
-    <changeSet id="1701091829206-2" author="Youcode (generated)">
->>>>>>> e4279f4d05504e3171d47b1ee24a055457dd385e
-        <createTable tableName="condition">
-            <column name="id" type="BIGINT">
-                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_condition"/>
+    <changeSet id="1701262372024-8" author="Youcode (generated)">
+        <createTable tableName="conditions">
+            <column name="condition_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_conditions"/>
             </column>
             <column name="description" type="VARCHAR(255)"/>
             <column name="state" type="VARCHAR(255)"/>
-<<<<<<< HEAD
+            <column name="body" type="VARCHAR(255)"/>
             <column name="contrat_id" type="BIGINT">
                 <constraints nullable="false"/>
             </column>
         </createTable>
     </changeSet>
-    <changeSet id="1701093884277-3" author="Youcode (generated)">
-=======
-            <column name="contrat_id" type="BIGINT"/>
-        </createTable>
-    </changeSet>
-    <changeSet id="1701091829206-3" author="Youcode (generated)">
->>>>>>> e4279f4d05504e3171d47b1ee24a055457dd385e
+    <changeSet id="1701262372024-9" author="Youcode (generated)">
         <createTable tableName="contrat">
-            <column name="id" type="BIGINT">
+            <column name="contract_id" type="BIGINT">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="pk_contrat"/>
             </column>
             <column name="description" type="TEXT"/>
             <column name="ref_code" type="binary(16)"/>
-<<<<<<< HEAD
             <column name="status" type="VARCHAR(255)"/>
             <column name="devis_id" type="BIGINT">
                 <constraints nullable="false"/>
             </column>
+            <column name="user_id" type="BIGINT"/>
         </createTable>
     </changeSet>
-    <changeSet id="1701093884277-4" author="Youcode (generated)">
-        <createTable tableName="demande">
-            <column autoIncrement="true" name="id_demande" type="BIGINT">
-                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_demande"/>
-            </column>
-            <column name="user_id" type="BIGINT">
-=======
-        </createTable>
-    </changeSet>
-    <changeSet id="1701091829206-4" author="Youcode (generated)">
+    <changeSet id="1701262372024-10" author="Youcode (generated)">
         <createTable tableName="demande">
             <column autoIncrement="true" name="demande_id" type="BIGINT">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="pk_demande"/>
             </column>
-            <column name="user_id" type="INT">
->>>>>>> e4279f4d05504e3171d47b1ee24a055457dd385e
+            <column name="user_id" type="BIGINT">
                 <constraints nullable="false"/>
             </column>
             <column name="demande_date" type="DATETIME"/>
@@ -88,33 +86,19 @@
             <column name="state" type="VARCHAR(255)"/>
         </createTable>
     </changeSet>
-<<<<<<< HEAD
-    <changeSet id="1701093884277-5" author="Youcode (generated)">
-=======
-    <changeSet id="1701091829206-5" author="Youcode (generated)">
->>>>>>> e4279f4d05504e3171d47b1ee24a055457dd385e
+    <changeSet id="1701262372024-11" author="Youcode (generated)">
         <createTable tableName="demande_equipement">
             <column name="demande_id" type="BIGINT">
                 <constraints nullable="false"/>
             </column>
-<<<<<<< HEAD
-            <column name="equipemnt_id" type="BIGINT">
-=======
             <column name="equipment_id" type="BIGINT">
->>>>>>> e4279f4d05504e3171d47b1ee24a055457dd385e
                 <constraints nullable="false"/>
             </column>
         </createTable>
     </changeSet>
-<<<<<<< HEAD
-    <changeSet id="1701093884277-6" author="Youcode (generated)">
+    <changeSet id="1701262372024-12" author="Youcode (generated)">
         <createTable tableName="devis">
             <column name="devis_id" type="BIGINT">
-=======
-    <changeSet id="1701091829206-6" author="Youcode (generated)">
-        <createTable tableName="devis">
-            <column name="id" type="BIGINT">
->>>>>>> e4279f4d05504e3171d47b1ee24a055457dd385e
                 <constraints nullable="false" primaryKey="true" primaryKeyName="pk_devis"/>
             </column>
             <column name="demande_id" type="BIGINT">
@@ -124,28 +108,17 @@
             <column name="commentaire" type="VARCHAR(255)"/>
         </createTable>
     </changeSet>
-<<<<<<< HEAD
-    <changeSet id="1701093884277-7" author="Youcode (generated)">
-=======
-    <changeSet id="1701091829206-7" author="Youcode (generated)">
->>>>>>> e4279f4d05504e3171d47b1ee24a055457dd385e
+    <changeSet id="1701262372024-13" author="Youcode (generated)">
         <createTable tableName="equipment">
             <column autoIncrement="true" name="equipment_id" type="BIGINT">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="pk_equipment"/>
             </column>
             <column name="name" type="VARCHAR(255)"/>
             <column name="price" type="DOUBLE"/>
-<<<<<<< HEAD
-            <column name="type" type="VARCHAR(255)"/>
-        </createTable>
-    </changeSet>
-    <changeSet id="1701093884277-8" author="Youcode (generated)">
-=======
             <column name="category" type="VARCHAR(255)"/>
         </createTable>
     </changeSet>
-    <changeSet id="1701091829206-8" author="Youcode (generated)">
->>>>>>> e4279f4d05504e3171d47b1ee24a055457dd385e
+    <changeSet id="1701262372024-14" author="Youcode (generated)">
         <createTable tableName="image">
             <column name="image_id" type="BIGINT">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="pk_image"/>
@@ -167,11 +140,7 @@
             </column>
         </createTable>
     </changeSet>
-<<<<<<< HEAD
-    <changeSet id="1701093884277-9" author="Youcode (generated)">
-=======
-    <changeSet id="1701091829206-9" author="Youcode (generated)">
->>>>>>> e4279f4d05504e3171d47b1ee24a055457dd385e
+    <changeSet id="1701262372024-15" author="Youcode (generated)">
         <createTable tableName="rental_record">
             <column autoIncrement="true" name="reservation_id" type="BIGINT">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="pk_rentalrecord"/>
@@ -179,20 +148,12 @@
             <column name="equipment_id" type="BIGINT">
                 <constraints nullable="false"/>
             </column>
-<<<<<<< HEAD
             <column name="user_id" type="BIGINT"/>
-=======
-            <column name="user_id" type="INT"/>
->>>>>>> e4279f4d05504e3171d47b1ee24a055457dd385e
             <column name="reservation_date" type="DATETIME"/>
             <column name="return_date" type="DATETIME"/>
         </createTable>
     </changeSet>
-<<<<<<< HEAD
-    <changeSet id="1701093884277-10" author="Youcode (generated)">
-=======
-    <changeSet id="1701091829206-10" author="Youcode (generated)">
->>>>>>> e4279f4d05504e3171d47b1ee24a055457dd385e
+    <changeSet id="1701262372024-16" author="Youcode (generated)">
         <createTable tableName="role">
             <column name="role_id" type="BIGINT">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="pk_role"/>
@@ -200,15 +161,9 @@
             <column name="name" type="VARCHAR(255)"/>
         </createTable>
     </changeSet>
-<<<<<<< HEAD
-    <changeSet id="1701093884277-11" author="Youcode (generated)">
+    <changeSet id="1701262372024-17" author="Youcode (generated)">
         <createTable tableName="user">
-            <column autoIncrement="true" name="id" type="BIGINT">
-=======
-    <changeSet id="1701091829206-11" author="Youcode (generated)">
-        <createTable tableName="user">
-            <column autoIncrement="true" name="user_id" type="INT">
->>>>>>> e4279f4d05504e3171d47b1ee24a055457dd385e
+            <column autoIncrement="true" name="user_id" type="BIGINT">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="pk_user"/>
             </column>
             <column name="name" type="VARCHAR(255)"/>
@@ -218,128 +173,76 @@
             <column name="role" type="INT"/>
         </createTable>
     </changeSet>
-<<<<<<< HEAD
-    <changeSet id="1701093884277-12" author="Youcode (generated)">
-=======
-    <changeSet id="1701091829206-12" author="Youcode (generated)">
->>>>>>> e4279f4d05504e3171d47b1ee24a055457dd385e
+    <changeSet id="1701262372024-18" author="Youcode (generated)">
         <createTable tableName="user_role">
             <column name="role_id" type="BIGINT">
                 <constraints nullable="false"/>
             </column>
-<<<<<<< HEAD
             <column name="user_id" type="BIGINT">
-=======
-            <column name="user_id" type="INT">
->>>>>>> e4279f4d05504e3171d47b1ee24a055457dd385e
                 <constraints nullable="false"/>
             </column>
         </createTable>
     </changeSet>
-<<<<<<< HEAD
-    <changeSet id="1701093884277-13" author="Youcode (generated)">
+    <changeSet id="1701262372024-19" author="Youcode (generated)">
         <addUniqueConstraint columnNames="devis_id" constraintName="uc_contrat_devis" tableName="contrat"/>
     </changeSet>
-    <changeSet id="1701093884277-14" author="Youcode (generated)">
+    <changeSet id="1701262372024-20" author="Youcode (generated)">
         <addUniqueConstraint columnNames="demande_id" constraintName="uc_devis_demande" tableName="devis"/>
     </changeSet>
-    <changeSet id="1701093884277-15" author="Youcode (generated)">
-=======
-    <changeSet id="1701091829206-13" author="Youcode (generated)">
-        <addUniqueConstraint columnNames="demande_id" constraintName="uc_devis_demande" tableName="devis"/>
-    </changeSet>
-    <changeSet id="1701091829206-14" author="Youcode (generated)">
->>>>>>> e4279f4d05504e3171d47b1ee24a055457dd385e
-        <addForeignKeyConstraint baseColumnNames="contrat_id" baseTableName="condition"
-                                 constraintName="FK_CONDITION_ON_CONTRAT" referencedColumnNames="id"
+    <changeSet id="1701262372024-21" author="Youcode (generated)">
+        <addForeignKeyConstraint baseColumnNames="contrat_id" baseTableName="conditions"
+                                 constraintName="FK_CONDITIONS_ON_CONTRAT_NEW" referencedColumnNames="contract_id"
                                  referencedTableName="contrat"/>
     </changeSet>
-<<<<<<< HEAD
-    <changeSet id="1701093884277-16" author="Youcode (generated)">
+    <changeSet id="1701262372024-22" author="Youcode (generated)">
         <addForeignKeyConstraint baseColumnNames="devis_id" baseTableName="contrat" constraintName="FK_CONTRAT_ON_DEVIS"
                                  referencedColumnNames="devis_id" referencedTableName="devis"/>
     </changeSet>
-    <changeSet id="1701093884277-17" author="Youcode (generated)">
-        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="demande" constraintName="FK_DEMANDE_ON_USER"
-                                 referencedColumnNames="id" referencedTableName="user"/>
+    <changeSet id="1701262372024-23" author="Youcode (generated)">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="contrat" constraintName="FK_CONTRAT_ON_USER"
+                                 referencedColumnNames="user_id" referencedTableName="user"/>
     </changeSet>
-    <changeSet id="1701093884277-18" author="Youcode (generated)">
-        <addForeignKeyConstraint baseColumnNames="demande_id" baseTableName="devis" constraintName="FK_DEVIS_ON_DEMANDE"
-                                 referencedColumnNames="id_demande" referencedTableName="demande"/>
-    </changeSet>
-    <changeSet id="1701093884277-19" author="Youcode (generated)">
-=======
-    <changeSet id="1701091829206-15" author="Youcode (generated)">
+    <changeSet id="1701262372024-24" author="Youcode (generated)">
         <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="demande" constraintName="FK_DEMANDE_ON_USER"
                                  referencedColumnNames="user_id" referencedTableName="user"/>
     </changeSet>
-    <changeSet id="1701091829206-16" author="Youcode (generated)">
+    <changeSet id="1701262372024-25" author="Youcode (generated)">
         <addForeignKeyConstraint baseColumnNames="demande_id" baseTableName="devis" constraintName="FK_DEVIS_ON_DEMANDE"
                                  referencedColumnNames="demande_id" referencedTableName="demande"/>
     </changeSet>
-    <changeSet id="1701091829206-17" author="Youcode (generated)">
->>>>>>> e4279f4d05504e3171d47b1ee24a055457dd385e
+    <changeSet id="1701262372024-26" author="Youcode (generated)">
         <addForeignKeyConstraint baseColumnNames="equipment_id" baseTableName="image"
                                  constraintName="FK_IMAGE_ON_EQUIPMENT" referencedColumnNames="equipment_id"
                                  referencedTableName="equipment"/>
     </changeSet>
-<<<<<<< HEAD
-    <changeSet id="1701093884277-20" author="Youcode (generated)">
-=======
-    <changeSet id="1701091829206-18" author="Youcode (generated)">
->>>>>>> e4279f4d05504e3171d47b1ee24a055457dd385e
+    <changeSet id="1701262372024-27" author="Youcode (generated)">
         <addForeignKeyConstraint baseColumnNames="equipment_id" baseTableName="rental_record"
                                  constraintName="FK_RENTALRECORD_ON_EQUIPMENT" referencedColumnNames="equipment_id"
                                  referencedTableName="equipment"/>
     </changeSet>
-<<<<<<< HEAD
-    <changeSet id="1701093884277-21" author="Youcode (generated)">
-        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="rental_record"
-                                 constraintName="FK_RENTALRECORD_ON_USER" referencedColumnNames="id"
-                                 referencedTableName="user"/>
-    </changeSet>
-    <changeSet id="1701093884277-22" author="Youcode (generated)">
-        <addForeignKeyConstraint baseColumnNames="demande_id" baseTableName="demande_equipement"
-                                 constraintName="fk_demequ_on_demande" referencedColumnNames="id_demande"
-                                 referencedTableName="demande"/>
-    </changeSet>
-    <changeSet id="1701093884277-23" author="Youcode (generated)">
-        <addForeignKeyConstraint baseColumnNames="equipemnt_id" baseTableName="demande_equipement"
-                                 constraintName="fk_demequ_on_equipment" referencedColumnNames="equipment_id"
-                                 referencedTableName="equipment"/>
-    </changeSet>
-    <changeSet id="1701093884277-24" author="Youcode (generated)">
-=======
-    <changeSet id="1701091829206-19" author="Youcode (generated)">
+    <changeSet id="1701262372024-28" author="Youcode (generated)">
         <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="rental_record"
                                  constraintName="FK_RENTALRECORD_ON_USER" referencedColumnNames="user_id"
                                  referencedTableName="user"/>
     </changeSet>
-    <changeSet id="1701091829206-20" author="Youcode (generated)">
+    <changeSet id="1701262372024-29" author="Youcode (generated)">
         <addForeignKeyConstraint baseColumnNames="demande_id" baseTableName="demande_equipement"
                                  constraintName="fk_demequ_on_demande" referencedColumnNames="demande_id"
                                  referencedTableName="demande"/>
     </changeSet>
-    <changeSet id="1701091829206-21" author="Youcode (generated)">
+    <changeSet id="1701262372024-30" author="Youcode (generated)">
         <addForeignKeyConstraint baseColumnNames="equipment_id" baseTableName="demande_equipement"
                                  constraintName="fk_demequ_on_equipment" referencedColumnNames="equipment_id"
                                  referencedTableName="equipment"/>
     </changeSet>
-    <changeSet id="1701091829206-22" author="Youcode (generated)">
->>>>>>> e4279f4d05504e3171d47b1ee24a055457dd385e
+    <changeSet id="1701262372024-31" author="Youcode (generated)">
         <addForeignKeyConstraint baseColumnNames="role_id" baseTableName="user_role"
                                  constraintName="fk_user_role_on_role" referencedColumnNames="role_id"
                                  referencedTableName="role"/>
     </changeSet>
-<<<<<<< HEAD
-    <changeSet id="1701093884277-25" author="Youcode (generated)">
-        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="user_role"
-                                 constraintName="fk_user_role_on_user" referencedColumnNames="id"
-=======
-    <changeSet id="1701091829206-23" author="Youcode (generated)">
+    <changeSet id="1701262372024-32" author="Youcode (generated)">
         <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="user_role"
                                  constraintName="fk_user_role_on_user" referencedColumnNames="user_id"
->>>>>>> e4279f4d05504e3171d47b1ee24a055457dd385e
                                  referencedTableName="user"/>
     </changeSet>
 

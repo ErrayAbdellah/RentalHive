@@ -19,7 +19,7 @@ public class Archive {
 
 
     @Column(name = "related_entity_type", nullable = false)
-    private String relatedEntityType;  // "Contrat", "Devis", or "Demande"
+    private String relatedEntityType;
 
     @Column(name = "related_entity_id", nullable = false)
     private Long relatedEntityId;

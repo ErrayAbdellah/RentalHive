@@ -7,7 +7,6 @@ import com.rentalHive.rentalHive.repository.IEquipmentRepo;
 import com.rentalHive.rentalHive.service.IEquipmentService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -60,7 +59,7 @@ public class EquipmentServiceImpl implements IEquipmentService {
     }
 
     @Override
-    public ResponseEntity<String> updateEquipment(long equipmentId ,EquipmentDTO equipmentDTO) {
+    public ResponseEntity<String>  updateEquipment(long equipmentId, EquipmentDTO equipmentDTO) {
         Optional<Equipment> optionalEquipment = equipmentRepo.findById(equipmentId);
 
         if (optionalEquipment.isPresent()) {
