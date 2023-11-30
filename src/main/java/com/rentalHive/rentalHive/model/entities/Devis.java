@@ -2,17 +2,17 @@ package com.rentalHive.rentalHive.model.entities;
 
 import com.rentalHive.rentalHive.enums.devisStatus;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-@Data
+@Setter
+@Getter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Builder
 public class Devis {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
     @OneToOne
@@ -20,7 +20,7 @@ public class Devis {
     private Demande demande;
 
     @Column(name = "total")
-    private float totalPrix;
+    private double totalPrix;
 
     @Column(name = "commentaire")
     private String commentaire;

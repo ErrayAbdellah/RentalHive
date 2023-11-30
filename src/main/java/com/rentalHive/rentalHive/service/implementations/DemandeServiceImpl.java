@@ -44,15 +44,6 @@ public class DemandeServiceImpl implements IDemandeService {
         }
 
         ModelMapper modelMapper = new ModelMapper();
-        modelMapper.getConfiguration().setAmbiguityIgnored(true);
-        modelMapper.addMappings(new PropertyMap<DemandeDTO, Demande>() {
-            protected void configure() {
-                skip(destination.getId());
-                map().setDemande_date(source.getDemandeDate());
-                map().setDate_retour(source.getDateRetour());
-            }
-        });
-
         Demande demande = modelMapper.map(demandeDTO, Demande.class);
         demande.setUser(user);
 

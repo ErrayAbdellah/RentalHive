@@ -6,16 +6,14 @@ import com.rentalHive.rentalHive.enums.Priorite;
 import com.rentalHive.rentalHive.enums.State;
 import com.rentalHive.rentalHive.model.dto.DemandeDTO;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Data
+@Setter
+@Getter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder

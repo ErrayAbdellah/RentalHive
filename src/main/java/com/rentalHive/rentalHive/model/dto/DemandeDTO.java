@@ -19,8 +19,8 @@ import java.util.List;
 public class DemandeDTO {
     private int userId;
     private long demandeID;
-    private Date demandeDate;
-    private Date dateRetour;
+    private Date demande_date;
+    private Date date_retour;
     private int reference;
     private Priorite priorite;
     private State state;
