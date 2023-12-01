@@ -17,8 +17,8 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 public class DemandeDTO {
-    private int userId;
-    private long demandeID;
+    private User user;
+    private long id;
     private Date demande_date;
     private Date date_retour;
     private int reference;

@@ -1,5 +1,6 @@
 package com.rentalHive.rentalHive.controller;
 
+import com.rentalHive.rentalHive.enums.devisStatus;
 import com.rentalHive.rentalHive.model.dto.CustomResponse;
 import com.rentalHive.rentalHive.model.dto.DevisDTO;
 import com.rentalHive.rentalHive.model.entities.Demande;
@@ -12,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @RestController
@@ -47,6 +49,18 @@ public class DevisController {
             return new ResponseEntity<>(response, HttpStatus.CREATED);
         }else {
             CustomResponse<DevisDTO> response = new CustomResponse<>("There is no such demande with the id :"+demande_id, null);
+            return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @PatchMapping("/demandes/{demande_id}/devis/accept")
+    public ResponseEntity<CustomResponse<DevisDTO>> acceptDevis(@PathVariable long demande_id){
+        try{
+            DevisDTO patchedDevisDTO = devisService.PatchDevisState(demande_id, devisStatus.APPROVED);
+            CustomResponse<DevisDTO> response = new CustomResponse<>("The Devis has been successfully approved", patchedDevisDTO);
+            return new ResponseEntity<>(response, HttpStatus.OK);
+        }catch (NoSuchElementException e){
+            CustomResponse response = new CustomResponse("No such devis for this demande  ", null);
             return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
         }
     }

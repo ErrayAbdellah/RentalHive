@@ -5,9 +5,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface IDevisRepo extends JpaRepository<Devis, Long> {
-    @Override
     List<Devis> findAll();
+    Optional<Devis> findByDemande_Id(long demande_id);
 }

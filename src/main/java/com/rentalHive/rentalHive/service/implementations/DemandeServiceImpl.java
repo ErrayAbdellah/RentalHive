@@ -34,7 +34,7 @@ public class DemandeServiceImpl implements IDemandeService {
 
     @Override
     public ResponseEntity<String> createDemande(DemandeDTO demandeDTO) {
-        int userId = demandeDTO.getUserId();
+        int userId = demandeDTO.getUser().getUserId();
         List<Long> equipmentIds = demandeDTO.getEquipmentIds();
 
         User user = userRepo.findById(userId).orElse(null);
