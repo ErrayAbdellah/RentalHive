@@ -73,4 +73,9 @@ public class DevisServiceImpl implements IDevisService {
         }
 
     }
+
+    @Override
+    public boolean isExists(long demande_id) {
+        return devisRepo.existsDevisByDemande_Id(demande_id);
+    }
 }

@@ -11,4 +11,5 @@ import java.util.Optional;
 public interface IDevisRepo extends JpaRepository<Devis, Long> {
     List<Devis> findAll();
     Optional<Devis> findByDemande_Id(long demande_id);
+    boolean existsDevisByDemande_Id(long demande_id);
 }

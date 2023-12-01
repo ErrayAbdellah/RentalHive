@@ -13,4 +13,6 @@ public interface IDevisService {
     List<DevisDTO> findAll();
     DevisDTO findDevisByDemandeID(long demande_id);
     DevisDTO PatchDevisState(long demande_id , devisStatus status);
+
+    boolean isExists(long demande_id);
 }
