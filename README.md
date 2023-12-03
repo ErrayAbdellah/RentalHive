@@ -59,8 +59,9 @@ The project is organized with distinct controllers managing various aspects of t
 
 ## **Contributors**
 
-- **Boutaina Abdelah**
-- **Anas [Last Name]**
-- **Abdelkrim [Last Name]**
+- ** Abdelah**
+-  **Boutaina**
+- **Anas **
+- **Abdelkrim**
 
 A heartfelt thanks to all contributors for their valuable contributions to this learning journey.
