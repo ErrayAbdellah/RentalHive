@@ -9,6 +9,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.List;
+import java.util.Set;
 
 @Data
 @AllArgsConstructor
@@ -42,6 +43,9 @@ public class Equipment {
     @ManyToMany(mappedBy = "equipment")
     private List<Demande> demandes;
 
+    @OneToMany(mappedBy = "equipment")
+    private List<Image> images ;
+
 
     @JsonBackReference
     public List<Demande> getDemandes() {
@@ -66,8 +70,8 @@ public class Equipment {
         return EquipmentDTO.builder()
                 .equipmentId(equipmentId)
                 .name(name)
-                .price(price)
-                .category(category)
+//                .price(price)
+//                .category(category)
                 .build();
     }
 }

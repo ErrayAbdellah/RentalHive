@@ -39,11 +39,11 @@ public class DemandeServiceImpl implements IDemandeService {
         }
 
         Demande demande = new Demande();
-        demande.setDemande_date(demandeDTO.getDemandeDate());
-        demande.setDate_retour(demandeDTO.getDateRetour());
-        demande.setReference(demandeDTO.getReference());
-        demande.setPriorite(demandeDTO.getPriorite());
-        demande.setState(demandeDTO.getState());
+//        demande.setDemande_date(demandeDTO.getDemandeDate());
+//        demande.setDate_retour(demandeDTO.getDateRetour());
+//        demande.setReference(demandeDTO.getReference());
+//        demande.setPriorite(demandeDTO.getPriorite());
+//        demande.setState(demandeDTO.getState());
         demande.setUser(user);
 
         List<Equipment> equipmentList = equipmentRepo.findAllById(equipmentIds);

@@ -3,21 +3,12 @@
         xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
-                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.0.xsd">
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.0.xsd">
 
-    <include file="db/changelog/changelogs/user-changelog.xml"/>
-    <include file="db/changelog/changelogs/add_role_table.xml"/>
-    <include file="db/changelog/changelogs/add_user_role_table.xml"/>
-    <include file="db/changelog/changelogs/contrat_add_table.xml"/>
-    <include file="db/changelog/changelogs/condition_add_table.xml"/>
-    <include file="db/changelog/changelogs/demande_add_table.xml"/>
-    <include file="db/changelog/changelogs/devis_add_table.xml"/>
-    <include file="db/changelog/changelogs/equipment-changelog.xml"/>
-    <include file="db/changelog/changelogs/rental-record-changelog.xml"/>
-    <include file="db/changelog/changelogs/add-demande-equipment.xml"/>
-    <include file="db/changelog/changelogs/add_column_equipment.xml"/>
-    <include file="db/changelog/changelogs/drop_column_equipment.xml"/>
-    <include file="db/changelog/changelogs/rename_column_equipment.xml"/>
-
-
+<!--    <include file="db/changelog/2023/11/27-01-changelog.xml"/>-->
+<!--    <include file="db/changelog/2023/11/27-02-changelog.xml"/>-->
+<!--    <include file="db/changelog/2023/11/29-01-changelog.xml"/>-->
+    <include file="db/changelog/2023/11/29-02-changelog.xml"/>
+    <include file="db/changelog/2023/11/30-01-changelog.xml"/>
+    <include file="db/changelog/2023/11/30-02-changelog.xml"/>
 </databaseChangeLog>
