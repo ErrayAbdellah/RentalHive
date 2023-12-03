@@ -1,6 +1,7 @@
 package com.rentalHive.rentalHive.service.implementations;
 
 import com.rentalHive.rentalHive.controller.ArchieveController;
+import com.rentalHive.rentalHive.enums.State;
 import com.rentalHive.rentalHive.model.ConditionDTO;
 import com.rentalHive.rentalHive.model.DevisDTO;
 import com.rentalHive.rentalHive.model.dto.ContratDTO;
@@ -113,7 +114,6 @@ public class ContractServiceImpl implements IContractService {
         contract.setStatus(Status.Actif);
         contract.setStartDate(LocalDate.now());
         contract.setEndDate(LocalDate.now().plusDays(364));
-
         Optional<User> optionalUser = userService.getUserById(devis.getDemande().getUser().getUserId());
         optionalUser.ifPresent(contract::setUser);
         Contrat savedContrat = iContractRep.save(contract);
@@ -122,22 +122,34 @@ public class ContractServiceImpl implements IContractService {
     }
 
     private void addConditionsToContract(Contrat contract) {
-        List<ConditionDTO> conditionsToAdd = generateConditions();
+        List<ConditionDTO> conditionDTOs = generateConditions(contract.getConditions());
 
-        List<Condition> conditions = convertConditionDTOsToEntities(conditionsToAdd);
+        List<Condition> conditions = convertConditionDTOsToEntities(conditionDTOs);
         contract.setConditions(conditions);
     }
 
-    private List<ConditionDTO> generateConditions() {
-        List<ConditionDTO> conditions = new ArrayList<>();
+    private List<ConditionDTO> generateConditions(List<Condition> conditionList) {
+        List<ConditionDTO> conditionDTOList = new ArrayList<>();
 
-        ConditionDTO condition1 = new ConditionDTO();
-        ConditionDTO condition2 = new ConditionDTO();
+        for (Condition condition : conditionList) {
+            ConditionDTO conditionDTO = convertConditionToDTO(condition);
+            conditionDTOList.add(conditionDTO);
+        }
 
-        conditions.add(condition1);
-        conditions.add(condition2);
+        return conditionDTOList;
+    }
 
-        return conditions;
+
+    private ConditionDTO mapToDTO(Condition condition) {
+        ConditionDTO conditionDTO = new ConditionDTO(
+                condition.getId(),
+                condition.getDescription(),
+                condition.getState().toString(),
+                condition.getBody(),
+                condition.getContrat().getId()
+        );
+
+        return conditionDTO;
     }
 
     private List<Condition> convertConditionDTOsToEntities(List<ConditionDTO> conditionDTOs) {
@@ -193,8 +205,9 @@ public class ContractServiceImpl implements IContractService {
         ConditionDTO conditionDTO = new ConditionDTO();
         conditionDTO.setId(condition.getId());
         conditionDTO.setDescription(condition.getDescription());
-        conditionDTO.setState(condition.getState());
+        conditionDTO.setState(State.valueOf(condition.getState().toString()));
         conditionDTO.setBody(condition.getBody());
+        conditionDTO.setContratId(condition.getContrat().getId());
         return conditionDTO;
     }
 

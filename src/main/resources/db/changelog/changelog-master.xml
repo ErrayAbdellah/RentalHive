@@ -22,4 +22,5 @@
 <!--    <include file="db/changelog/2023/11/30-04-changelog.xml"/>-->
 <!--    <include file="db/changelog/2023/11/30-05-changelog.xml"/>-->
     <include file="db/changelog/2023/11/30-06-changelog.xml"/>
+    <include file="db/changelog/2023/12/03-01-changelog.xml"/>
 </databaseChangeLog>

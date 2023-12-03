@@ -14,5 +14,6 @@ public interface IContractRep extends JpaRepository<Contrat,Long> {
 //    @Query(value = "SELECT * FROM contrat c WHERE c.user_id = :userId AND c.status = :status", nativeQuery = true)
 //    List<Contrat> findByUserIdAndStatus(@Param("userId") Long userId, @Param("status") Status status);
 //    List<Contrat> findAllByUser(long userId,Status status);
+    Optional<Contrat> findById(Long contratId);
     List<Contrat> findAllByUserAndStatus(Optional<User> user, Status status);
 }

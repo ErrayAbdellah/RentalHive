@@ -1,5 +1,6 @@
 package com.rentalHive.rentalHive.service.implementations;
 
+import com.rentalHive.rentalHive.enums.State;
 import com.rentalHive.rentalHive.model.dto.DemandeDTO;
 import com.rentalHive.rentalHive.model.entities.Demande;
 import com.rentalHive.rentalHive.model.entities.Equipment;
@@ -15,8 +16,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.http.HttpStatus;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class DemandeServiceImpl implements IDemandeService {
@@ -62,16 +62,15 @@ public class DemandeServiceImpl implements IDemandeService {
 
         try {
             demandeRepo.save(demande);
-
-            return ResponseEntity.ok("Record has been created successfully");
+            return ResponseEntity.ok("Le dossier a été créé avec succès.");
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to create the record");
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Échec de la création du dossier.");
         }
     }
 
 
     @Override
-    public ResponseEntity<List<Demande>> getAllDemandes() {
+    public ResponseEntity<List<Demande>> getAllDemandes(State state) {
         List<Demande> demandes = demandeRepo.findAll();
 
         if (demandes.isEmpty()) {

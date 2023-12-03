@@ -8,6 +8,6 @@ import java.util.Optional;
 
 @Service
 public interface IDevisService {
-    ContratDTO approveDevis(Long devisId);
+    String approveDevis(Long devisId);
     Optional<Devis> getDevisById(Long id);
 }
