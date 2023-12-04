@@ -4,6 +4,7 @@ import com.rentalHive.rentalHive.model.dto.ContratDTO;
 import com.rentalHive.rentalHive.model.entities.Devis;
 import com.rentalHive.rentalHive.repository.IDevisRepo;
 import com.rentalHive.rentalHive.service.IDevisService;
+import com.rentalHive.rentalHive.service.implementations.DevisServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -27,13 +28,12 @@ public class DevisController {
 //        this.devisService = devisService;
 //    }
     @PostMapping("/approve/{devisId}")
-    public ResponseEntity<ContratDTO> approveDevis(@PathVariable Long devisId) {
-        System.out.println("hello here");
+    public ResponseEntity<String> approveDevis(@PathVariable Long devisId) {
         try {
-            ContratDTO contratDTO = devisService.approveDevis(devisId);
-            return new ResponseEntity<>(contratDTO, HttpStatus.OK);
+            String approvalResult = devisService.approveDevis(devisId);
+            return ResponseEntity.ok(approvalResult);
         } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Internal server error: " + e.getMessage());
         }
     }
 }

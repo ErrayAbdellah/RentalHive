@@ -19,16 +19,27 @@ public class DevisServiceImpl implements IDevisService {
         this.contractService = contractService;
     }
     @Override
-    public ContratDTO approveDevis(Long devisId) {
+    public String approveDevis(Long devisId) {
         Optional<Devis> optionalDevis = devisRepo.findById(devisId);
         if (optionalDevis.isPresent()) {
             Devis devis = optionalDevis.get();
             devis.setApproved(true);
             devisRepo.save(devis);
-            contractService.createContract(devis);
-            return contractService.createContract(devis);
+            ContratDTO contratDTO = contractService.createContract(devis);
+
+            if (contratDTO != null) {
+                return "Devis approved and contract created successfully!";
+            } else {
+                return "Error creating contract.";
+            }
+        } else {
+            return "Devis not found with ID: " + devisId;
         }
-        throw new RuntimeException("Devis not found with ID: " + devisId);
+    }
+
+    @Override
+    public Optional<Devis> getDevisById(Long id) {
+        return devisRepo.findById(id);
     }
 
 }

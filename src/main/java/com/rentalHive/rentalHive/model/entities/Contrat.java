@@ -2,6 +2,7 @@ package com.rentalHive.rentalHive.model.entities;
 
 
 import com.rentalHive.rentalHive.enums.Status;
+import com.rentalHive.rentalHive.service.ArchivableEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -18,7 +19,7 @@ import java.util.UUID;
 @Builder
 @Entity
 @Table(name = "contrat")
-public class Contrat {
+public class Contrat implements ArchivableEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "contrat_id", nullable = false )
@@ -117,5 +118,14 @@ public class Contrat {
     public void removeCondition(Condition condition) {
         conditions.remove(condition);
         condition.setContrat(null);
+    }
+    @Override
+    public Long getId() {
+        return id;
+    }
+
+    @Override
+    public String getEntityType() {
+        return "Contract";
     }
 }
