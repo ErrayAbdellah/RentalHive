@@ -12,11 +12,14 @@ import lombok.NoArgsConstructor;
 public class Devis {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name = "id", nullable = false)
+    @Column(name = "devis_id", nullable = false)
     private Long id;
     @OneToOne
     @JoinColumn(name = "demande_id", nullable = false, unique = true)
     private Demande demande;
+
+    @Column(name = "approved")
+    private boolean approved;
 
     @Column(name = "total")
     private float totalPrix;

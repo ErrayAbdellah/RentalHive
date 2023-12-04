@@ -153,7 +153,7 @@ public class PdfGenerator {
         // Adding contract data
         table.addCell(String.valueOf(equipment.getEquipmentId()));
 //        table.addCell(contract.getSignature());
-        table.addCell(String.valueOf(equipment.getImages().stream().findFirst()));
+//        table.addCell(String.valueOf(equipment.getImages().stream().findFirst()));
 
         table.addCell("hh");
         // Adding user name and total price

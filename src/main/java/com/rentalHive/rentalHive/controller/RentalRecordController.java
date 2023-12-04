@@ -1,6 +1,6 @@
 package com.rentalHive.rentalHive.controller;
 
-import com.rentalHive.rentalHive.utils.PdfGenerator;
+
 import com.rentalHive.rentalHive.model.dto.RentalRecordDTO;
 import com.rentalHive.rentalHive.model.entities.Contrat;
 import com.rentalHive.rentalHive.service.IRentalRecordService;
@@ -35,9 +35,9 @@ public class RentalRecordController {
         DateFormat dateFormat = new SimpleDateFormat("YYYY-MM-DD_HH-MM-SS");
         String currentDateTime = dateFormat.format(new Date());
         String filePath = "PDFs/" + currentDateTime + ".pdf";
-        Contrat contrat = new Contrat(1L,"ee",null,null);
-        System.out.println(contrat);
-        PdfGenerator.generate(contrat, filePath);
+//        Contrat contrat = new Contrat(1L,"ee",null,null);
+//        System.out.println(contrat);
+//        PdfGenerator.generate(contrat, filePath);
 //        generator.generate(contrat, filePath);
     }
     @GetMapping("/download/{fileName}")

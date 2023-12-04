@@ -3,8 +3,9 @@ package com.rentalHive.rentalHive.model.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.rentalHive.rentalHive.model.dto.EquipmentDTO;
-import com.rentalHive.rentalHive.model.entities.enums.Category;
+import com.rentalHive.rentalHive.enums.Category;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -29,6 +30,9 @@ public class Equipment {
     @Column(name = "price")
     private double price;
 
+    @Column(name = "image")
+    private String image;
+
 
 
     @JsonIgnore
@@ -40,11 +44,12 @@ public class Equipment {
     @Column(name = "category")
     private Category category;
 
+    @JsonBackReference
     @ManyToMany(mappedBy = "equipment")
     private List<Demande> demandes;
 
-    @OneToMany(mappedBy = "equipment")
-    private List<Image> images ;
+//    @OneToMany(mappedBy = "equipment")
+//    private List<Image> images ;
 
 
     @JsonBackReference

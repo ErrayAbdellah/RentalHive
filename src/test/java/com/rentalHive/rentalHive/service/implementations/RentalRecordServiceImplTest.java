@@ -38,7 +38,7 @@ public class RentalRecordServiceImplTest {
     @Test
     public void testRecordSuccess() throws ParseException {
         User user = new User();
-        user.setUserId(1L);
+        user.setUserId(1);
 
         Equipment equipment = new Equipment();
         equipment.setEquipmentId(1L);
@@ -49,7 +49,7 @@ public class RentalRecordServiceImplTest {
         rentalRecordDTO.setReservationDate(dateFormat.parse("2023-01-04"));
         rentalRecordDTO.setReturnDate(dateFormat.parse("2023-02-04"));
 
-        when(userRepo.findById(1L)).thenReturn(Optional.of(user));
+        when(userRepo.findById(1)).thenReturn(Optional.of(user));
         when(iEquipmentRepo.findById(1L)).thenReturn(Optional.of(equipment));
         when(rentalRecordRepo.save(any(RentalRecord.class))).thenReturn(new RentalRecord());
 
@@ -57,7 +57,7 @@ public class RentalRecordServiceImplTest {
 
         assertEquals(ResponseEntity.ok("record is successfully"), response);
 
-        verify(userRepo, times(1)).findById(1L);
+        verify(userRepo, times(1)).findById(1);
         verify(iEquipmentRepo, times(1)).findById(1L);
         verify(rentalRecordRepo, times(1)).save(any(RentalRecord.class));
     }

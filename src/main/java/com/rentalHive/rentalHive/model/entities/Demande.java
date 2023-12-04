@@ -1,10 +1,8 @@
 package com.rentalHive.rentalHive.model.entities;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.rentalHive.rentalHive.model.dto.DemandeDTO;
-import com.rentalHive.rentalHive.model.entities.enums.*;
+import com.rentalHive.rentalHive.enums.Priorite;
+import com.rentalHive.rentalHive.enums.State;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -13,7 +11,6 @@ import lombok.NoArgsConstructor;
 
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Data
@@ -22,7 +19,6 @@ import java.util.stream.Collectors;
 @Builder
 @Entity
 public class Demande {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "demande_id")
@@ -51,23 +47,4 @@ public class Demande {
     @JsonManagedReference
     private List<Equipment> equipment;
 
-    public List<Equipment> getEquipment() {
-        return equipment;
-    }
-
-    public DemandeDTO toDTO() {
-        return DemandeDTO.builder()
-                .user(user)
-                .demandeDate(demande_date)
-                .dateRetour(date_retour)
-                .reference(reference)
-                .priorite(priorite)
-                .state(state)
-                .equipmentIds(getEquipmentIds())
-                .build();
-    }
-
-    private List<Long> getEquipmentIds() {
-        return equipment.stream().map(Equipment::getEquipmentId).collect(Collectors.toList());
-    }
 }
