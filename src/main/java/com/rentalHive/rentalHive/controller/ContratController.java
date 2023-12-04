@@ -31,7 +31,7 @@ public class ContratController {
     public ResponseEntity<List<ContratDTO>> getActiveContracts(@RequestParam Long userId) {
         try {
             List<ContratDTO> activeContracts = contractService.getActiveContractsForUser(userId);
-            return new ResponseEntity<>(activeContracts, HttpStatus.OK);
+            return ResponseEntity.ok(activeContracts);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -42,6 +42,19 @@ public class ContratController {
         try {
             List<ContratDTO> allContract = contractService.getAllContracts();
             return new ResponseEntity<>(allContract, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+    @PostMapping("/archive/{contractId}")
+    public ResponseEntity<ContratDTO> archiveContract(@PathVariable Long contractId) {
+        try {
+            ContratDTO contratDTO = contractService.archiveContrat(contractId, "System", "Contract archived");
+            if (contratDTO != null) {
+                return new ResponseEntity<>(contratDTO, HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }

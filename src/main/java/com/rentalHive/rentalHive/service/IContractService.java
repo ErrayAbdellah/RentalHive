@@ -2,6 +2,7 @@ package com.rentalHive.rentalHive.service;
 
 import com.rentalHive.rentalHive.model.dto.ContratDTO;
 import com.rentalHive.rentalHive.enums.Status;
+import com.rentalHive.rentalHive.model.entities.Contrat;
 import com.rentalHive.rentalHive.model.entities.Devis;
 import com.rentalHive.rentalHive.model.entities.User;
 import org.springframework.stereotype.Service;
@@ -12,6 +13,9 @@ import java.util.Optional;
 @Service
 public interface IContractService {
     List<ContratDTO> getAllContracts();
+
+    ContratDTO markContractAsCompleted(Long contractId);
+
     List<ContratDTO> getContractsByStatus(Status status);
 
     Optional<Optional<User>> getUserById(Long userId);
@@ -19,4 +23,6 @@ public interface IContractService {
     List<ContratDTO> getActiveContractsForUser(Long userId);
 
     ContratDTO createContract(Devis devis);
+    Optional<Contrat> getContractById(Long id);
+
 }

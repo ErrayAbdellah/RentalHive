@@ -4,6 +4,7 @@ import com.rentalHive.rentalHive.model.dto.ContratDTO;
 import com.rentalHive.rentalHive.model.entities.Devis;
 import com.rentalHive.rentalHive.repository.IDevisRepo;
 import com.rentalHive.rentalHive.service.IDevisService;
+import com.rentalHive.rentalHive.service.implementations.DevisServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,21 +16,20 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/devis")
 public class DevisController {
-    private final IDevisService devisService;
+    private final DevisServiceImpl devisService;
 
 
     @Autowired
-    public DevisController(IDevisService devisService) {
+    public DevisController(DevisServiceImpl devisService) {
         this.devisService = devisService;
     }
     @PostMapping("/approve/{devisId}")
-    public ResponseEntity<ContratDTO> approveDevis(@PathVariable Long devisId) {
-        System.out.println("hello here");
+    public ResponseEntity<String> approveDevis(@PathVariable Long devisId) {
         try {
-            ContratDTO contratDTO = devisService.approveDevis(devisId);
-            return new ResponseEntity<>(contratDTO, HttpStatus.OK);
+            String approvalResult = devisService.approveDevis(devisId);
+            return ResponseEntity.ok(approvalResult);
         } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Internal server error: " + e.getMessage());
         }
     }
 }

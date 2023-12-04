@@ -2,6 +2,7 @@ package com.rentalHive.rentalHive.model.entities;
 
 import com.rentalHive.rentalHive.enums.State;
 import com.rentalHive.rentalHive.enums.Status;
+import com.rentalHive.rentalHive.service.ArchivableEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -12,9 +13,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 @Table(name = "conditions")
-public class Condition {
+public class Condition implements ArchivableEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "condition_id", nullable = false)
     private Long id;
     @Column(name = "description")
@@ -25,6 +26,16 @@ public class Condition {
     @Column(name = "body")
     private String body;
     @ManyToOne
-    @JoinColumn(name = "contrat_id", nullable = false, foreignKey = @ForeignKey(name = "FK_CONDITIONS_ON_CONTRAT_NEW"))
+    @JoinColumn(name = "contrat_id", nullable = false,      foreignKey = @ForeignKey(name = "FK_CONDITIONS_ON_CONTRAT_NEW"))
     private Contrat contrat;
+    @Override
+    public  Long getId()
+    {
+        return  id;
+    }
+
+    @Override
+    public String getEntityType() {
+        return "condition";
+    }
 }

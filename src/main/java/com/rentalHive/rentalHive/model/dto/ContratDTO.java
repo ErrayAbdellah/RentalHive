@@ -3,10 +3,18 @@ package com.rentalHive.rentalHive.model.dto;
 import com.rentalHive.rentalHive.model.DevisDTO;
 import com.rentalHive.rentalHive.enums.Status;
 import com.rentalHive.rentalHive.model.ConditionDTO;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 import java.util.UUID;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class ContratDTO {
     private Long id;
     private String description;

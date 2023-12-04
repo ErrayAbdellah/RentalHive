@@ -9,7 +9,6 @@ import com.rentalHive.rentalHive.repository.IDemandeRepo;
 import com.rentalHive.rentalHive.repository.IEquipmentRepo;
 import com.rentalHive.rentalHive.repository.IUserRepo;
 import com.rentalHive.rentalHive.service.IDemandeService;
-import jakarta.annotation.Nullable;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.PropertyMap;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +17,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.http.HttpStatus;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Service
 public class DemandeServiceImpl implements IDemandeService {
@@ -62,14 +60,6 @@ public class DemandeServiceImpl implements IDemandeService {
         List<Equipment> equipmentList = equipmentRepo.findAllById(equipmentIds);
         demande.setEquipment(equipmentList);
 
-        if (!checkDateReserve(demande)) {
-            return ResponseEntity.badRequest().body("La nouvelle réservation chevauche une réservation existante.");
-        }
-
-        if (!checkDate(demande.getDemande_date(), demande.getDate_retour())) {
-            return ResponseEntity.badRequest().body("demandeDate doit être après dateRetour.");
-        }
-
         try {
             demandeRepo.save(demande);
             return ResponseEntity.ok("Le dossier a été créé avec succès.");
@@ -78,36 +68,19 @@ public class DemandeServiceImpl implements IDemandeService {
         }
     }
 
-    private boolean checkDate(Date dateReservation, Date dateReturn) {
-        return !dateReservation.after(dateReturn);
-    }
-
-    private boolean checkDateReserve(Demande demande) {
-        List<Demande> existingReservations = demandeRepo.findExistingReservations(
-                demande.getEquipment().stream().map(Equipment::getEquipmentId).collect(Collectors.toList()),
-                demande.getDemande_date(),
-                demande.getDate_retour()
-        );
-
-        return existingReservations.isEmpty();
-    }
-
-
 
     @Override
-    public ResponseEntity<List<Demande>> getAllDemandes(@Nullable State state) {
-        List<Demande> demandes;
-
-        if (state != null){
-            demandes = demandeRepo.findDemandeByState(state);
-        } else {
-            demandes = demandeRepo.findAll();
-        }
+    public ResponseEntity<List<Demande>> getAllDemandes(State state) {
+        List<Demande> demandes = demandeRepo.findAll();
 
         if (demandes.isEmpty()) {
             return ResponseEntity.notFound().build();
         } else {
             return ResponseEntity.ok(demandes);
         }
+    }
+    @Override
+    public Optional<Demande> getDemandeById(Long id) {
+        return demandeRepo.findById(id);
     }
 }
