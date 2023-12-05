@@ -28,7 +28,8 @@ public class Devis implements ArchivableEntity{
 
     @Column(name = "commentaire")
     private String commentaire;
-
+    @Column(name = "status")
+    private devisStatus devisStatus;
     @Override
     public String getEntityType() {
         return "Devis";

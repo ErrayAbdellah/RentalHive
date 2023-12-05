@@ -1,12 +1,8 @@
 package com.rentalHive.rentalHive.controller;
 
-import com.rentalHive.rentalHive.model.dto.ContratDTO;
-import com.rentalHive.rentalHive.model.entities.Devis;
-import com.rentalHive.rentalHive.repository.IDevisRepo;
+
 import com.rentalHive.rentalHive.service.IDevisService;
-import com.rentalHive.rentalHive.service.implementations.DevisServiceImpl;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,13 +13,7 @@ import com.rentalHive.rentalHive.enums.devisStatus;
 import com.rentalHive.rentalHive.model.dto.CustomResponse;
 import com.rentalHive.rentalHive.model.dto.DevisDTO;
 import com.rentalHive.rentalHive.model.entities.Demande;
-import com.rentalHive.rentalHive.model.entities.Devis;
 import com.rentalHive.rentalHive.repository.IDemandeRepo;
-import com.rentalHive.rentalHive.service.IDevisService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -45,20 +35,6 @@ public class DevisController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Internal server error: " + e.getMessage());
         }
     }
-
-//    private final IDevisService devisService;
-//    private final IDemandeRepo demandeRepo;
-//    @Autowired
-//    public DevisController(@Qualifier("devisServiceImpl") IDevisService devisService ,
-//                           IDemandeRepo demandeRepo) {
-//        this.devisService = devisService;
-//        this.demandeRepo = demandeRepo;
-//    }
-
-    @GetMapping("")
-        public String check(){
-            return "checked";
-        }
 
     @GetMapping("/demandes/{demande_id}/devis")
     public ResponseEntity<CustomResponse<List<DevisDTO>>> getAllDevis(){
@@ -107,8 +83,5 @@ public class DevisController {
             return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
         }
     }
-
-
-
 }
 

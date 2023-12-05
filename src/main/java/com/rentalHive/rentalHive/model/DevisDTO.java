@@ -10,6 +10,6 @@ import lombok.NoArgsConstructor;
 public class DevisDTO {
     private Long id;
     private Long demandeId;
-    private float totalPrix;
+    private double totalPrix;
     private String commentaire;
 }

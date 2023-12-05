@@ -9,7 +9,6 @@ import com.rentalHive.rentalHive.repository.IDevisRepo;
 import com.rentalHive.rentalHive.service.IDevisService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -17,13 +16,7 @@ import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import com.rentalHive.rentalHive.model.dto.ContratDTO;
-import com.rentalHive.rentalHive.model.entities.Devis;
-import com.rentalHive.rentalHive.repository.IDevisRepo;
 import com.rentalHive.rentalHive.service.IContractService;
-import com.rentalHive.rentalHive.service.IDevisService;
-import org.springframework.stereotype.Component;
-
-import java.util.Optional;
 
 @Component
 @RequiredArgsConstructor
@@ -60,14 +53,13 @@ public class DevisServiceImpl implements IDevisService {
     @Override
     public DevisDTO findDevisByDemandeID(long demande_id) {
         Optional<Devis> devisByDemandeId = devisRepo.findByDemande_Id(demande_id);
-        if(devisByDemandeId.isPresent()){
+        if (devisByDemandeId.isPresent()) {
             ModelMapper modelMapper = new ModelMapper();
             return modelMapper.map(devisByDemandeId.get(), DevisDTO.class);
-        }else{
+        } else {
             throw new NoSuchElementException();
         }
-
-
+    }
     @Override
     public String approveDevis(Long devisId) {
         Optional<Devis> optionalDevis = devisRepo.findById(devisId);
