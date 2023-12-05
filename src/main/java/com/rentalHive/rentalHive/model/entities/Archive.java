@@ -11,15 +11,16 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
+@Table(name = "archive")
 public class Archive {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_archieve", nullable = false)
     private Long id;
 
 
     @Column(name = "related_entity_type", nullable = false)
-    private String relatedEntityType;  // "Contrat", "Devis", or "Demande"
+    private String relatedEntityType;
 
     @Column(name = "related_entity_id", nullable = false)
     private Long relatedEntityId;

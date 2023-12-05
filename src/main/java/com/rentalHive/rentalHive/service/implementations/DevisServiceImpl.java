@@ -7,6 +7,7 @@ import com.rentalHive.rentalHive.model.entities.Demande;
 import com.rentalHive.rentalHive.model.entities.Devis;
 import com.rentalHive.rentalHive.repository.IDevisRepo;
 import com.rentalHive.rentalHive.service.IDevisService;
+import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -15,16 +16,23 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import com.rentalHive.rentalHive.model.dto.ContratDTO;
+import com.rentalHive.rentalHive.model.entities.Devis;
+import com.rentalHive.rentalHive.repository.IDevisRepo;
+import com.rentalHive.rentalHive.service.IContractService;
+import com.rentalHive.rentalHive.service.IDevisService;
+import org.springframework.stereotype.Component;
+
+import java.util.Optional;
 
 @Component
+@RequiredArgsConstructor
 public class DevisServiceImpl implements IDevisService {
 
-    @Autowired
-    private final IDevisRepo devisRepo;
 
-    public DevisServiceImpl(IDevisRepo devisRepo) {
-        this.devisRepo = devisRepo;
-    }
+    private final IDevisRepo devisRepo;
+    private final IContractService contractService;
+
 
 
     @Override
@@ -58,9 +66,32 @@ public class DevisServiceImpl implements IDevisService {
         }else{
             throw new NoSuchElementException();
         }
+
+
+    @Override
+    public String approveDevis(Long devisId) {
+        Optional<Devis> optionalDevis = devisRepo.findById(devisId);
+        if (optionalDevis.isPresent()) {
+            Devis devis = optionalDevis.get();
+            devis.setApproved(true);
+            devisRepo.save(devis);
+            ContratDTO contratDTO = contractService.createContract(devis);
+
+            if (contratDTO != null) {
+                return "Devis approved and contract created successfully!";
+            } else {
+                return "Error creating contract.";
+            }
+        } else {
+            return "Devis not found with ID: " + devisId;
+        }
     }
 
     @Override
+    public Optional<Devis> getDevisById(Long id) {
+        return devisRepo.findById(id);
+    }
+
     public DevisDTO PatchDevisState(long demande_id , devisStatus status) {
         Optional<Devis> devis = devisRepo.findByDemande_Id(demande_id);
         if(devis.isPresent()){

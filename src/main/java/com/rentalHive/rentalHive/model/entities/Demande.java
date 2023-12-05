@@ -1,10 +1,9 @@
 package com.rentalHive.rentalHive.model.entities;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.rentalHive.rentalHive.enums.Priorite;
 import com.rentalHive.rentalHive.enums.State;
-import com.rentalHive.rentalHive.model.dto.DemandeDTO;
+import com.rentalHive.rentalHive.service.ArchivableEntity;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -18,7 +17,7 @@ import java.util.stream.Collectors;
 @NoArgsConstructor
 @Builder
 @Entity
-public class Demande {
+public class Demande implements ArchivableEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "demande_id")
@@ -47,4 +46,13 @@ public class Demande {
     @JsonManagedReference
     private List<Equipment> equipment;
 
+    @Override
+    public String getEntityType() {
+        return "Demand";
+    }
+    @Override
+    public Long getId()
+    {
+        return id;
+    }
 }

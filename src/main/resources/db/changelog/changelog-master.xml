@@ -6,9 +6,21 @@
                         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.0.xsd">
 
 
-    <include file="db/changelog/2023/11/27-01-changelog.xml"/>
-    <include file="db/changelog/2023/11/28-01-changelog.xml"/>
-    <include file="db/changelog/2023/11/30-01-changelog.xml"/>
-    <include file="db/changelog/2023/11/30-02-changelog.xml"/>
-    <include file="db/changelog/2023/11/30-03-changelog.xml"/>
+    <!--    <include file="db/changelog/2023/11/28-08-changelog.xml"/>-->
+    <!--    <include file="db/changelog/2023/11/28-09-changelog.xml"/>-->
+<!--    <include file="db/changelog/2023/11/28-10-changelog.xml"/>-->
+<!--    <include file="db/changelog/2023/11/28-11-changelog.xml"/>-->
+<!--    <include file="db/changelog/2023/11/29-01-changelog.xml"/>-->
+
+<!--    <include file="db/changelog/2023/11/29-02-changelog.xml"/>-->
+<!--    <include file="db/changelog/2023/11/29-03-changelog.xml"/>-->
+<!--    <include file="db/changelog/2023/11/29-04-changelog.xml"/>-->
+<!--    <include file="db/changelog/2023/11/29-05-changelog.xml"/>-->
+<!--    <include file="db/changelog/2023/11/30-01-changelog.xml"/>-->
+<!--    <include file="db/changelog/2023/11/30-02-changelog.xml"/>-->
+<!--    <include file="db/changelog/2023/11/30-03-changelog.xml"/>-->
+<!--    <include file="db/changelog/2023/11/30-04-changelog.xml"/>-->
+<!--    <include file="db/changelog/2023/11/30-05-changelog.xml"/>-->
+    <include file="db/changelog/2023/11/30-06-changelog.xml"/>
+    <include file="db/changelog/2023/12/03-01-changelog.xml"/>
 </databaseChangeLog>

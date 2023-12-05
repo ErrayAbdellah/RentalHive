@@ -1,22 +1,24 @@
 package com.rentalHive.rentalHive.controller;
-
+import com.rentalHive.rentalHive.enums.Category;
 import com.rentalHive.rentalHive.model.dto.EquipmentDTO;
 import com.rentalHive.rentalHive.model.entities.Equipment;
-import com.rentalHive.rentalHive.enums.Category;
 import com.rentalHive.rentalHive.service.IEquipmentService;
 import jakarta.validation.Valid;
-import lombok.RequiredArgsConstructor;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequiredArgsConstructor
-@RequestMapping("/api/equipement")
+@RequestMapping("/api/equipment")
 public class EquipmentController {
 
     private final IEquipmentService equipmentService;
+
+    public EquipmentController(IEquipmentService equipmentService) {
+        this.equipmentService = equipmentService;
+    }
 
     @PostMapping
     public ResponseEntity createEquipment(@Valid @RequestBody EquipmentDTO equipmentDTO){

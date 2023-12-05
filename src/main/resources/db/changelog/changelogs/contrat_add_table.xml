@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.0.xsd">
+
+    <changeSet id="createContratTable" author="Team">
+        <createTable tableName="contrat">
+            <column name="contrat_id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="description" type="TEXT"/>
+            <column name="ref_code" type="UUID"/>
+            <column name="devis_id" type="BIGINT" />
+        </createTable>
+        <addForeignKeyConstraint
+                baseTableName="contrat"
+                baseColumnNames="devis_id"
+                constraintName="fk_contrat_devis"
+                referencedTableName="devis"
+                referencedColumnNames="devis_id"
+                onDelete="CASCADE"
+                onUpdate="CASCADE"/>
+    </changeSet>
+</databaseChangeLog>

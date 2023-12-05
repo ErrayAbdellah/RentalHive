@@ -14,5 +14,5 @@ public interface IEquipmentService {
     ResponseEntity<List<EquipmentDTO>> findEquipmentByType(Category type);
     ResponseEntity createEquipment(EquipmentDTO equipmentDTO);
     ResponseEntity<List<Equipment>> getAllEquipment();
-    public ResponseEntity<String> updateEquipment(long id ,EquipmentDTO equipmentDTO);
+    ResponseEntity<String> updateEquipment(long equipmentId, EquipmentDTO equipmentDTO);
 }
