@@ -1,6 +1,7 @@
 package com.rentalHive.rentalHive.controller;
 
 
+import com.rentalHive.rentalHive.model.ConditionDTO;
 import com.rentalHive.rentalHive.service.IDevisService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -27,9 +28,9 @@ public class DevisController {
     private final IDevisService devisService;
     private final IDemandeRepo demandeRepo;
     @PostMapping("/approve/{devisId}")
-    public ResponseEntity<String> approveDevis(@PathVariable Long devisId) {
+    public ResponseEntity<String> approveDevis(@PathVariable Long devisId , @RequestBody List<ConditionDTO> conditionDTOList) {
         try {
-            String approvalResult = devisService.approveDevis(devisId);
+            String approvalResult = devisService.approveDevis(devisId, conditionDTOList);
             return ResponseEntity.ok(approvalResult);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Internal server error: " + e.getMessage());

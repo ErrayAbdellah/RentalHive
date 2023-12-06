@@ -10,9 +10,11 @@ import com.rentalHive.rentalHive.model.entities.Contrat;
 import com.rentalHive.rentalHive.enums.Status;
 import com.rentalHive.rentalHive.model.entities.Devis;
 import com.rentalHive.rentalHive.model.entities.User;
+import com.rentalHive.rentalHive.repository.IConditionRepo;
 import com.rentalHive.rentalHive.repository.IContractRep;
 import com.rentalHive.rentalHive.service.IContractService;
 import com.rentalHive.rentalHive.service.IUserService;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -21,6 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Component
 public class ContractServiceImpl implements IContractService {
@@ -28,11 +31,13 @@ public class ContractServiceImpl implements IContractService {
     private final IContractRep iContractRep;
     private final IUserService userService;
     private final ArchieveController archiveController;
+    private final IConditionRepo conditionRepo;
 
     @Autowired
-    public ContractServiceImpl(IContractRep iContractRep, IUserService userService, ArchieveController archiveController) {
+    public ContractServiceImpl(IContractRep iContractRep, IUserService userService, ArchieveController archiveController, IConditionRepo conditionRepo) {
         this.iContractRep = iContractRep;
         this.userService = userService;
+        this.conditionRepo = conditionRepo;
         this.archiveController = archiveController;
     }
 
@@ -106,7 +111,7 @@ public class ContractServiceImpl implements IContractService {
     }
 
     @Override
-    public ContratDTO createContract(Devis devis) {
+    public ContratDTO createContract(Devis devis, List<ConditionDTO> conditionDTOList) {
         Contrat contract = new Contrat();
         contract.setDevis(devis);
         contract.setDescription("Detailed contract description");
@@ -117,7 +122,12 @@ public class ContractServiceImpl implements IContractService {
         Optional<User> optionalUser = userService.getUserById(devis.getDemande().getUser().getUserId());
         optionalUser.ifPresent(contract::setUser);
         Contrat savedContrat = iContractRep.save(contract);
-        addConditionsToContract(savedContrat);
+        for (ConditionDTO conditionDTO : conditionDTOList){
+            conditionDTO.setContratId(savedContrat.getId());
+            Condition condition = convertConditionToDTO(conditionDTO, savedContrat);
+            conditionRepo.save(condition);
+        }
+
         return convertToDTO(savedContrat);
     }
 
@@ -209,6 +219,11 @@ public class ContractServiceImpl implements IContractService {
         conditionDTO.setBody(condition.getBody());
         conditionDTO.setContratId(condition.getContrat().getId());
         return conditionDTO;
+    }
+
+    private Condition convertConditionToDTO(ConditionDTO conditionDTO, Contrat contrat) {
+        Condition condition = new Condition(conditionDTO.getId(), conditionDTO.getDescription(), conditionDTO.getState(), conditionDTO.getBody(), contrat);
+        return condition;
     }
 
     @Override

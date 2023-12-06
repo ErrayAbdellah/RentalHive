@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 @NoArgsConstructor
 @Builder
 @Entity
-public class Demande implements ArchivableEntity {
+public class Demande {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "demande_id")
@@ -43,16 +43,6 @@ public class Demande implements ArchivableEntity {
             joinColumns = @JoinColumn(name = "demande_id"),
             inverseJoinColumns = @JoinColumn(name = "equipment_id")
     )
-    @JsonManagedReference
     private List<Equipment> equipment;
 
-    @Override
-    public String getEntityType() {
-        return "Demand";
-    }
-    @Override
-    public Long getId()
-    {
-        return id;
-    }
 }

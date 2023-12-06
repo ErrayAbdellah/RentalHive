@@ -59,5 +59,7 @@ public class ContratController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+
     }
 

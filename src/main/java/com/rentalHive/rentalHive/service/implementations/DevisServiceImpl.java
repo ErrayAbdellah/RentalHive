@@ -2,6 +2,7 @@ package com.rentalHive.rentalHive.service.implementations;
 
 import com.rentalHive.rentalHive.PricingUtils.PricingCalculator;
 import com.rentalHive.rentalHive.enums.devisStatus;
+import com.rentalHive.rentalHive.model.ConditionDTO;
 import com.rentalHive.rentalHive.model.dto.DevisDTO;
 import com.rentalHive.rentalHive.model.entities.Demande;
 import com.rentalHive.rentalHive.model.entities.Devis;
@@ -61,13 +62,13 @@ public class DevisServiceImpl implements IDevisService {
         }
     }
     @Override
-    public String approveDevis(Long devisId) {
+    public String approveDevis(Long devisId, List<ConditionDTO> conditionDTOList) {
         Optional<Devis> optionalDevis = devisRepo.findById(devisId);
         if (optionalDevis.isPresent()) {
             Devis devis = optionalDevis.get();
             devis.setApproved(true);
             devisRepo.save(devis);
-            ContratDTO contratDTO = contractService.createContract(devis);
+            ContratDTO contratDTO = contractService.createContract(devis, conditionDTOList);
 
             if (contratDTO != null) {
                 return "Devis approved and contract created successfully!";

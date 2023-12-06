@@ -23,12 +23,7 @@ public class ArchieveController {
         this.archiveService = archiveService;
     }
 
-//    @GetMapping("/test")
-//    public ResponseEntity<?> test ()
-//    {
-//        System.out.println("here");
-//        return new ResponseEntity<>(HttpStatus.OK);
-//    }
+
     @PostMapping("/{entityType}/{id}")
     public ResponseEntity<ArchieveDTO> archiveEntity(
             @PathVariable String entityType,

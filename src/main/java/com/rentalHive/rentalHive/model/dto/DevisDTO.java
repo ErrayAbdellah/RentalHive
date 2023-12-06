@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class DevisDTO {
 
-    private DemandeDTO demande;
+    private DemandeDTOforDevis demande;
 
     private double totalPrix;
 

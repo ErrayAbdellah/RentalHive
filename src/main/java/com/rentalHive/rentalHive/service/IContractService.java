@@ -1,5 +1,6 @@
 package com.rentalHive.rentalHive.service;
 
+import com.rentalHive.rentalHive.model.ConditionDTO;
 import com.rentalHive.rentalHive.model.dto.ContratDTO;
 import com.rentalHive.rentalHive.enums.Status;
 import com.rentalHive.rentalHive.model.entities.Contrat;
@@ -22,7 +23,7 @@ public interface IContractService {
 
     List<ContratDTO> getActiveContractsForUser(Long userId);
 
-    ContratDTO createContract(Devis devis);
+    ContratDTO createContract(Devis devis, List<ConditionDTO> conditionDTOList);
     Optional<Contrat> getContractById(Long id);
 
 }

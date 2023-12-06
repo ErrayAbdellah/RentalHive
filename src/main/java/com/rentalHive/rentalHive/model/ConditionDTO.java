@@ -15,12 +15,14 @@ public class ConditionDTO {
     private String description;
     private State state;
     private String body;
-
+    private Long contratId;
     public ConditionDTO(Long id, String description, String string, String body, Long contratId) {
         this.description = this.description;
         this.state = state;
         this.body = this.body;
+        this.contratId = contratId;
     }
+
     public Long getId() {
         return id;
     }
