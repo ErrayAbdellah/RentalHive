@@ -13,6 +13,7 @@ import com.rentalHive.rentalHive.model.entities.User;
 import com.rentalHive.rentalHive.repository.IContractRep;
 import com.rentalHive.rentalHive.service.IContractService;
 import com.rentalHive.rentalHive.service.IUserService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -23,18 +24,19 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Component
+@RequiredArgsConstructor
 public class ContractServiceImpl implements IContractService {
 
     private final IContractRep iContractRep;
     private final IUserService userService;
-    private final ArchieveController archiveController;
+//    private final ArchieveController archiveController;
 
-    @Autowired
-    public ContractServiceImpl(IContractRep iContractRep, IUserService userService, ArchieveController archiveController) {
-        this.iContractRep = iContractRep;
-        this.userService = userService;
-        this.archiveController = archiveController;
-    }
+//    @Autowired
+//    public ContractServiceImpl(IContractRep iContractRep, IUserService userService, ArchieveController archiveController) {
+//        this.iContractRep = iContractRep;
+//        this.userService = userService;
+//        this.archiveController = archiveController;
+//    }
 
     @Override
     public List<ContratDTO> getAllContracts() {
@@ -54,7 +56,7 @@ public class ContractServiceImpl implements IContractService {
 
             contrat.setStatus(Status.Completed);
 
-            archiveController.archiveEntity("Contrat", contrat.getId(), "System", "Contract completed");
+//            archiveController.archiveEntity("Contrat", contrat.getId(), "System", "Contract completed");
 
             iContractRep.save(contrat);
 

@@ -21,8 +21,8 @@ import java.util.UUID;
 @Table(name = "contrat")
 public class Contrat implements ArchivableEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "contract_id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "contrat_id", nullable = false )
     private Long id;
     @Column(columnDefinition = "TEXT" , name = "description")
     private  String description;

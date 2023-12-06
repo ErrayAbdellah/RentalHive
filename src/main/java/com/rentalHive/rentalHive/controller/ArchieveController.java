@@ -5,6 +5,7 @@ import com.rentalHive.rentalHive.model.entities.Demande;
 import com.rentalHive.rentalHive.service.ArchivableEntity;
 import com.rentalHive.rentalHive.service.IArchieveService;
 import com.rentalHive.rentalHive.service.implementations.ArchieveServiceImpl;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
@@ -14,14 +15,16 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/api/Archieve")
 public class ArchieveController {
+
+//    @Qualifier("archieveServiceImpl")
     private final IArchieveService archiveService;
 
-    @Autowired
-    public ArchieveController(IArchieveService archiveService) {
-        this.archiveService = archiveService;
-    }
+//    public ArchieveController(IArchieveService archiveService) {
+//        this.archiveService = archiveService;
+//    }
 
 //    @GetMapping("/test")
 //    public ResponseEntity<?> test ()
