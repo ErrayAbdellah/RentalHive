@@ -29,6 +29,9 @@ public class Equipment {
     @Column(name = "price")
     private double price;
 
+    @Column(name = "image")
+    private String image;
+
 
 
     @JsonIgnore
@@ -44,5 +47,35 @@ public class Equipment {
     @ManyToMany(mappedBy = "equipment")
     private List<Demande> demandes;
 
+//    @OneToMany(mappedBy = "equipment")
+//    private List<Image> images ;
 
+
+    @JsonBackReference
+    public List<Demande> getDemandes() {
+        return demandes;
+    }
+
+    @JsonIgnore
+    public List<RentalRecord> getRentalRecords() {
+        return rentalRecords;
+    }
+
+    public static Equipment ToEquipment(EquipmentDTO equipmentDTO){
+        return Equipment.builder()
+                .equipmentId(equipmentDTO.getEquipmentId())
+                .name(equipmentDTO.getName())
+                .category(equipmentDTO.getCategory())
+                .price(equipmentDTO.getPrice())
+                .build();
+    }
+
+    public EquipmentDTO toDTO() {
+        return EquipmentDTO.builder()
+                .equipmentId(equipmentId)
+                .name(name)
+//                .price(price)
+//                .category(category)
+                .build();
+    }
 }

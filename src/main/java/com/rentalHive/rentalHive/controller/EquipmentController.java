@@ -7,7 +7,10 @@ import jakarta.validation.Valid;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 
 @RestController
@@ -21,8 +24,21 @@ public class EquipmentController {
     }
 
     @PostMapping
-    public ResponseEntity createEquipment(@Valid @RequestBody EquipmentDTO equipmentDTO){
-        return  equipmentService.createEquipment(equipmentDTO);
+    public ResponseEntity createEquipment(
+            @RequestParam("name") String name,
+            @RequestParam("price") double price,
+            @RequestParam("category") Category category,
+            @RequestParam("image") MultipartFile image
+    ) throws SQLException, IOException {
+        EquipmentDTO equipmentDTO = new EquipmentDTO();
+        equipmentDTO.setName(name);
+        equipmentDTO.setPrice(price);
+        equipmentDTO.setCategory(category);
+        System.out.println(category);
+        System.out.println(image);
+        Equipment.ToEquipment(equipmentDTO);
+
+        return  equipmentService.createEquipment(equipmentDTO,image);
     }
     @GetMapping("/all")
     public ResponseEntity<List<Equipment>> getAllEquipment() {

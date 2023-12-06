@@ -1,5 +1,6 @@
 package com.rentalHive.rentalHive.service.implementations;
 
+import com.rentalHive.rentalHive.PdfUtils.PdfGenerator;
 import com.rentalHive.rentalHive.controller.ArchieveController;
 import com.rentalHive.rentalHive.enums.State;
 import com.rentalHive.rentalHive.model.ConditionDTO;
@@ -18,11 +19,11 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Component
@@ -111,7 +112,7 @@ public class ContractServiceImpl implements IContractService {
     }
 
     @Override
-    public ContratDTO createContract(Devis devis, List<ConditionDTO> conditionDTOList) {
+    public ContratDTO createContract(Devis devis, List<ConditionDTO> conditionDTOList) throws IOException {
         Contrat contract = new Contrat();
         contract.setDevis(devis);
         contract.setDescription("Detailed contract description");
@@ -128,6 +129,11 @@ public class ContractServiceImpl implements IContractService {
             conditionRepo.save(condition);
         }
 
+        DateFormat dateFormat = new SimpleDateFormat("YYYY-MM-DD_HH-MM-SS");
+        String currentDateTime = dateFormat.format(new Date());
+        String filePath = "PDFs/" + currentDateTime + ".pdf";
+        PdfGenerator.generate(savedContrat,filePath);
+        System.out.println();
         return convertToDTO(savedContrat);
     }
 

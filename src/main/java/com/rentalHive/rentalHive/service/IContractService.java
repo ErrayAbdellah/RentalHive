@@ -8,6 +8,7 @@ import com.rentalHive.rentalHive.model.entities.Devis;
 import com.rentalHive.rentalHive.model.entities.User;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,7 +24,7 @@ public interface IContractService {
 
     List<ContratDTO> getActiveContractsForUser(Long userId);
 
-    ContratDTO createContract(Devis devis, List<ConditionDTO> conditionDTOList);
+    ContratDTO createContract(Devis devis, List<ConditionDTO> conditionDTOList) throws IOException;
     Optional<Contrat> getContractById(Long id);
 
 }

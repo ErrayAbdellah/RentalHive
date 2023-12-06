@@ -11,7 +11,10 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,6 +24,7 @@ import java.util.Optional;
 public class EquipmentServiceImpl implements IEquipmentService {
 
     private final IEquipmentRepo equipmentRepo ;
+    private final String uploadDirectory = "C:\\Users\\Youcode\\Desktop\\Java\\rentalHive_finalVersion\\images1";
 
     @Override
     public ResponseEntity<EquipmentDTO> findEquipmentByName(String name) {
@@ -42,13 +46,26 @@ public class EquipmentServiceImpl implements IEquipmentService {
     }
 
     @Override
-    public ResponseEntity<String> createEquipment(EquipmentDTO equipmentDTO) {
-        ModelMapper modelMapper = new ModelMapper();
-        Equipment equipment = modelMapper.map(equipmentDTO, Equipment.class);
+    public ResponseEntity<String> createEquipment(EquipmentDTO equipmentDTO, MultipartFile imageFile) throws IOException {
+        Equipment equipment = Equipment.ToEquipment(equipmentDTO);
 
+        if (imageFile.isEmpty()) {
+            return ResponseEntity.badRequest().body("Please select a file to upload");
+        }
+
+        File directory = new File(uploadDirectory);
+        if (!directory.exists()) {
+            if (!directory.mkdirs()) {
+                return ResponseEntity.badRequest().body("Failed to create the destination directory");
+            }
+        }
+
+        File destinationFile = new File(directory, imageFile.getOriginalFilename());
+        imageFile.transferTo(destinationFile);
+        equipment.setImage(directory.getPath()+imageFile.getOriginalFilename());
         equipmentRepo.save(equipment);
 
-        return ResponseEntity.ok("Record has been created successfully");
+        return ResponseEntity.ok("Record is successfully created");
     }
 
 

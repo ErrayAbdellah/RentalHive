@@ -12,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
@@ -62,7 +63,7 @@ public class DevisServiceImpl implements IDevisService {
         }
     }
     @Override
-    public String approveDevis(Long devisId, List<ConditionDTO> conditionDTOList) {
+    public String approveDevis(Long devisId, List<ConditionDTO> conditionDTOList) throws IOException {
         Optional<Devis> optionalDevis = devisRepo.findById(devisId);
         if (optionalDevis.isPresent()) {
             Devis devis = optionalDevis.get();
