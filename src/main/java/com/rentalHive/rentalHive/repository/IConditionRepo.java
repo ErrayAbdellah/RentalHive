@@ -15,6 +15,7 @@ public interface IConditionRepo extends JpaRepository<Condition, Long> {
      Condition save(Condition existingCondition);
 
     Optional<Condition> findById(Long conditionId);
+    List<Condition> findConditionByContrat_Id(Long contract_Id);
 
     @Query("SELECT c FROM Condition c")
     List<Condition> getAllConditions();

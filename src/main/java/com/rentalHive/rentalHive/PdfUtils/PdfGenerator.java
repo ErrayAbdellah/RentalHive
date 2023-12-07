@@ -7,11 +7,19 @@ import com.lowagie.text.pdf.CMYKColor;
 import com.lowagie.text.pdf.PdfPCell;
 import com.lowagie.text.pdf.PdfPTable;
 import com.lowagie.text.pdf.PdfWriter;
+import com.rentalHive.rentalHive.model.ConditionDTO;
+import com.rentalHive.rentalHive.model.dto.ContratDTO;
+import com.rentalHive.rentalHive.model.entities.Condition;
 import com.rentalHive.rentalHive.model.entities.Contrat;
 import com.rentalHive.rentalHive.model.entities.Equipment;
+import com.rentalHive.rentalHive.repository.IConditionRepo;
 import com.rentalHive.rentalHive.repository.IEquipmentRepo;
 import lombok.Data;
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+
 public class PdfGenerator {
+
     public static void generate(Contrat contract, String filePath) throws DocumentException, IOException {
 
         Document document = new Document(PageSize.A4);
@@ -36,11 +44,11 @@ public class PdfGenerator {
         document.add(paragraph1);
 
 
-        PdfPTable table = new PdfPTable(3);
+        PdfPTable table = new PdfPTable(6);
 
 
         table.setWidthPercentage(100f);
-        table.setWidths(new int[]{1, 2, 2});
+        table.setWidths(new int[]{1, 2, 2, 3, 3, 2});
         table.setSpacingBefore(3);
 
 
@@ -55,16 +63,32 @@ public class PdfGenerator {
 
         cell.setPhrase(new Phrase("ID", font));
         table.addCell(cell);
-        cell.setPhrase(new Phrase("Signature", font));
+        cell.setPhrase(new Phrase("Reservation Date", font));
         table.addCell(cell);
-        cell.setPhrase(new Phrase("Description", font));
+        cell.setPhrase(new Phrase("Return Date", font));
+        table.addCell(cell);
+        cell.setPhrase(new Phrase("Equipment Names", font));
+        table.addCell(cell);
+        cell.setPhrase(new Phrase("Conditions", font)); // New column for Contract
+        table.addCell(cell);
+        cell.setPhrase(new Phrase("Price", font)); // New column for Contract
         table.addCell(cell);
 
+        String equipmentNames = "";
+        for (Equipment equipment : contract.getDevis().getDemande().getEquipment()) {
+            equipmentNames += "* " + equipment.getName() + "\n";
+        }
+//        String contractConditions = "";
+//        for (Condition condition : contract.getConditions()){
+//            contractConditions += "* "+condition.getBody()+"\n";
+//        }
         // Adding contract data
         table.addCell(String.valueOf(contract.getId()));
-        table.addCell(contract.getDescription());
-
-        table.addCell(contract.getUser().getName());
+        table.addCell(String.valueOf(contract.getDevis().getDemande().getDemande_date()).substring(0, 11));
+        table.addCell(String.valueOf(contract.getDevis().getDemande().getDate_retour()).substring(0, 11));
+        table.addCell(equipmentNames);
+        table.addCell("contractConditions"); // Add your contract data here
+        table.addCell(String.valueOf(contract.getDevis().getTotalPrix())); // Add your contract data here
 
         document.add(table);
         document.close();
