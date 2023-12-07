@@ -1,6 +1,7 @@
 package com.rentalHive.rentalHive.PdfUtils;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.List;
 
 import com.lowagie.text.*;
 import com.lowagie.text.pdf.CMYKColor;
@@ -8,22 +9,13 @@ import com.lowagie.text.pdf.PdfPCell;
 import com.lowagie.text.pdf.PdfPTable;
 import com.lowagie.text.pdf.PdfWriter;
 import com.rentalHive.rentalHive.model.ConditionDTO;
-import com.rentalHive.rentalHive.model.dto.ContratDTO;
-import com.rentalHive.rentalHive.model.entities.Condition;
 import com.rentalHive.rentalHive.model.entities.Contrat;
 import com.rentalHive.rentalHive.model.entities.Equipment;
-import com.rentalHive.rentalHive.repository.IConditionRepo;
-import com.rentalHive.rentalHive.repository.IEquipmentRepo;
-import lombok.Data;
-import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
-
 public class PdfGenerator {
 
-    public static void generate(Contrat contract, String filePath) throws DocumentException, IOException {
+    public static void generate(Contrat contract, List<ConditionDTO> conditionDTOList, String filePath) throws DocumentException, IOException {
 
         Document document = new Document(PageSize.A4);
-
 
         PdfWriter.getInstance(document, new FileOutputStream(filePath));
 
@@ -32,7 +24,7 @@ public class PdfGenerator {
 
 
         Font fontTitle = FontFactory.getFont(FontFactory.TIMES_ROMAN);
-        fontTitle.setSize(20);
+        fontTitle.setSize(15);
 
 
         Paragraph paragraph1 = new Paragraph("Contract Details", fontTitle);
@@ -78,17 +70,17 @@ public class PdfGenerator {
         for (Equipment equipment : contract.getDevis().getDemande().getEquipment()) {
             equipmentNames += "* " + equipment.getName() + "\n";
         }
-//        String contractConditions = "";
-//        for (Condition condition : contract.getConditions()){
-//            contractConditions += "* "+condition.getBody()+"\n";
-//        }
+        String contractConditions = "";
+        for (ConditionDTO condition : conditionDTOList){
+            contractConditions += "* "+condition.getBody()+"\n";
+        }
         // Adding contract data
         table.addCell(String.valueOf(contract.getId()));
         table.addCell(String.valueOf(contract.getDevis().getDemande().getDemande_date()).substring(0, 11));
         table.addCell(String.valueOf(contract.getDevis().getDemande().getDate_retour()).substring(0, 11));
         table.addCell(equipmentNames);
-        table.addCell("contractConditions"); // Add your contract data here
-        table.addCell(String.valueOf(contract.getDevis().getTotalPrix())); // Add your contract data here
+        table.addCell(contractConditions); // Add your contract data here
+        table.addCell(contract.getDevis().getTotalPrix()+" MAD"); // Add your contract data here
 
         document.add(table);
         document.close();

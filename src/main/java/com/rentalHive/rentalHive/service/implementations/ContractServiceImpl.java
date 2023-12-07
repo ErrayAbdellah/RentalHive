@@ -132,8 +132,7 @@ public class ContractServiceImpl implements IContractService {
         DateFormat dateFormat = new SimpleDateFormat("YYYY-MM-DD_HH-MM-SS");
         String currentDateTime = dateFormat.format(new Date());
         String filePath = "PDFs/" + currentDateTime + ".pdf";
-        PdfGenerator.generate(savedContrat,filePath);
-        System.out.println();
+        PdfGenerator.generate(savedContrat, conditionDTOList, filePath);
         return convertToDTO(savedContrat);
     }
 

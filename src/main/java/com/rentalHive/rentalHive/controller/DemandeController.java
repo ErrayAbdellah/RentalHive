@@ -2,6 +2,7 @@ package com.rentalHive.rentalHive.controller;
 
 import com.rentalHive.rentalHive.enums.State;
 import com.rentalHive.rentalHive.model.dto.DemandeDTO;
+import com.rentalHive.rentalHive.model.dto.DemandeDTOforDevis;
 import com.rentalHive.rentalHive.model.entities.Demande;
 import com.rentalHive.rentalHive.service.IDemandeService;
 import jakarta.annotation.Nullable;
@@ -23,7 +24,7 @@ public class DemandeController {
     }
 
     @GetMapping("/all")
-    public ResponseEntity<List<Demande>> getAllDemandes(@RequestParam(required = false)State state) {
+    public ResponseEntity<List<DemandeDTOforDevis>> getAllDemandes(@RequestParam(required = false)State state) {
         return demandeService.getAllDemandes(state);
     }
 

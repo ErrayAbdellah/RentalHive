@@ -24,7 +24,7 @@ import java.util.Optional;
 public class EquipmentServiceImpl implements IEquipmentService {
 
     private final IEquipmentRepo equipmentRepo ;
-    private final String uploadDirectory = "C:\\Users\\Youcode\\Desktop\\Java\\rentalHive_finalVersion\\images1";
+    private final String uploadDirectory = "C:\\Users\\Youcode\\Desktop\\Java\\rental_hive_soutenance\\images1";
 
     @Override
     public ResponseEntity<EquipmentDTO> findEquipmentByName(String name) {

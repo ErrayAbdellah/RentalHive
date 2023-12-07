@@ -4,16 +4,14 @@ package com.rentalHive.rentalHive.model.entities;
 import com.rentalHive.rentalHive.enums.Status;
 import com.rentalHive.rentalHive.service.ArchivableEntity;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
-@Data
+@Setter
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder

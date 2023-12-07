@@ -2,6 +2,7 @@ package com.rentalHive.rentalHive.service.implementations;
 
 import com.rentalHive.rentalHive.enums.State;
 import com.rentalHive.rentalHive.model.dto.DemandeDTO;
+import com.rentalHive.rentalHive.model.dto.DemandeDTOforDevis;
 import com.rentalHive.rentalHive.model.entities.Demande;
 import com.rentalHive.rentalHive.model.entities.Equipment;
 import com.rentalHive.rentalHive.model.entities.User;
@@ -16,6 +17,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.http.HttpStatus;
+import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -95,13 +98,18 @@ public class DemandeServiceImpl implements IDemandeService {
 
 
     @Override
-    public ResponseEntity<List<Demande>> getAllDemandes(@Nullable State state) {
-        List<Demande> demandes;
+    public ResponseEntity<List<DemandeDTOforDevis>> getAllDemandes(@Nullable State state) {
+        List<DemandeDTOforDevis> demandes = new ArrayList<>();
+        ModelMapper modelMapper = new ModelMapper();
 
         if (state != null){
-            demandes = demandeRepo.findDemandeByState(state);
+            for (Demande demande : demandeRepo.findDemandeByState(state)){
+                demandes.add(modelMapper.map(demande, DemandeDTOforDevis.class));
+            }
         } else {
-            demandes = demandeRepo.findAll();
+            for (Demande demande : demandeRepo.findAll()){
+                demandes.add(modelMapper.map(demande, DemandeDTOforDevis.class));
+            }
         }
 
         if (demandes.isEmpty()) {
