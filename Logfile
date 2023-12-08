@@ -1178,3 +1178,472 @@ java.lang.RuntimeException: Contrat not found with ID: 1
 2023-12-03T23:42:50.990+01:00  INFO 18004 --- [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
 2023-12-03T23:42:50.991+01:00  INFO 18004 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
 2023-12-03T23:42:51.005+01:00  INFO 18004 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 13 ms
+2023-12-08T09:03:28.536+01:00  INFO 21632 --- [main] c.r.rentalHive.RentalHiveApplication     : Starting RentalHiveApplication using Java 17.0.9 with PID 21632 (C:\Users\Youcode\Desktop\RentalHive\target\classes started by Youcode in C:\Users\Youcode\Desktop\RentalHive)
+2023-12-08T09:03:28.540+01:00  INFO 21632 --- [main] c.r.rentalHive.RentalHiveApplication     : No active profile set, falling back to 1 default profile: "default"
+2023-12-08T09:03:29.392+01:00  INFO 21632 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-12-08T09:03:29.571+01:00  INFO 21632 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 171 ms. Found 8 JPA repository interfaces.
+2023-12-08T09:03:30.261+01:00  INFO 21632 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2023-12-08T09:03:30.273+01:00  INFO 21632 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-12-08T09:03:30.273+01:00  INFO 21632 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.15]
+2023-12-08T09:03:30.379+01:00  INFO 21632 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-12-08T09:03:30.380+01:00  INFO 21632 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1780 ms
+2023-12-08T09:03:30.585+01:00  INFO 21632 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-12-08T09:03:30.771+01:00  INFO 21632 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@7f3ca64a
+2023-12-08T09:03:30.773+01:00  INFO 21632 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-12-08T09:03:32.316+01:00  INFO 21632 --- [main] liquibase.changelog                      : Reading from rental_hive.databasechangelog
+2023-12-08T09:03:32.485+01:00  INFO 21632 --- [main] liquibase.lockservice                    : Successfully acquired change log lock
+2023-12-08T09:03:32.487+01:00  INFO 21632 --- [main] liquibase.command                        : Using deploymentId: 2022612487
+2023-12-08T09:03:32.490+01:00  INFO 21632 --- [main] liquibase.changelog                      : Reading from rental_hive.databasechangelog
+2023-12-08T09:03:32.607+01:00 ERROR 21632 --- [main] liquibase.changelog                      : ChangeSet db/changelog/2023/12/05-02-changelog.xml::1701765042449-1::Youcode (generated) encountered an exception.
+2023-12-08T09:03:32.611+01:00  INFO 21632 --- [main] liquibase.command                        : Update command encountered an exception.
+2023-12-08T09:03:32.616+01:00  INFO 21632 --- [main] liquibase.lockservice                    : Successfully released change log lock
+2023-12-08T09:03:32.617+01:00  INFO 21632 --- [main] liquibase.command                        : Command execution complete
+2023-12-08T09:03:32.618+01:00  WARN 21632 --- [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'liquibase' defined in class path resource [org/springframework/boot/autoconfigure/liquibase/LiquibaseAutoConfiguration$LiquibaseConfiguration.class]: liquibase.exception.LiquibaseException: liquibase.exception.MigrationFailedException: Migration failed for changeset db/changelog/2023/12/05-02-changelog.xml::1701765042449-1::Youcode (generated):
+     Reason: liquibase.exception.DatabaseException: Table 'archive' already exists [Failed SQL: (1050) CREATE TABLE rental_hive.archive (id_archieve BIGINT AUTO_INCREMENT NOT NULL, related_entity_type VARCHAR(255) NOT NULL, related_entity_id BIGINT NOT NULL, comment VARCHAR(255) NULL, archived_date datetime NOT NULL, archived_by VARCHAR(255) NOT NULL, archived_reason VARCHAR(255) NULL, CONSTRAINT pk_archive PRIMARY KEY (id_archieve))]
+2023-12-08T09:03:32.619+01:00  INFO 21632 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-12-08T09:03:32.628+01:00  INFO 21632 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-12-08T09:03:32.632+01:00  INFO 21632 --- [main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2023-12-08T09:03:32.644+01:00  INFO 21632 --- [main] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2023-12-08T09:03:32.662+01:00 ERROR 21632 --- [main] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'liquibase' defined in class path resource [org/springframework/boot/autoconfigure/liquibase/LiquibaseAutoConfiguration$LiquibaseConfiguration.class]: liquibase.exception.LiquibaseException: liquibase.exception.MigrationFailedException: Migration failed for changeset db/changelog/2023/12/05-02-changelog.xml::1701765042449-1::Youcode (generated):
+     Reason: liquibase.exception.DatabaseException: Table 'archive' already exists [Failed SQL: (1050) CREATE TABLE rental_hive.archive (id_archieve BIGINT AUTO_INCREMENT NOT NULL, related_entity_type VARCHAR(255) NOT NULL, related_entity_id BIGINT NOT NULL, comment VARCHAR(255) NULL, archived_date datetime NOT NULL, archived_by VARCHAR(255) NOT NULL, archived_reason VARCHAR(255) NULL, CONSTRAINT pk_archive PRIMARY KEY (id_archieve))]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1770) ~[spring-beans-6.0.13.jar:6.0.13]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:598) ~[spring-beans-6.0.13.jar:6.0.13]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:520) ~[spring-beans-6.0.13.jar:6.0.13]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325) ~[spring-beans-6.0.13.jar:6.0.13]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.0.13.jar:6.0.13]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323) ~[spring-beans-6.0.13.jar:6.0.13]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-6.0.13.jar:6.0.13]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:312) ~[spring-beans-6.0.13.jar:6.0.13]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-6.0.13.jar:6.0.13]
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1166) ~[spring-context-6.0.13.jar:6.0.13]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:940) ~[spring-context-6.0.13.jar:6.0.13]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:616) ~[spring-context-6.0.13.jar:6.0.13]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.1.5.jar:3.1.5]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:738) ~[spring-boot-3.1.5.jar:3.1.5]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:440) ~[spring-boot-3.1.5.jar:3.1.5]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:316) ~[spring-boot-3.1.5.jar:3.1.5]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1306) ~[spring-boot-3.1.5.jar:3.1.5]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1295) ~[spring-boot-3.1.5.jar:3.1.5]
+	at com.rentalHive.rentalHive.RentalHiveApplication.main(RentalHiveApplication.java:12) ~[classes/:na]
+Caused by: liquibase.exception.CommandExecutionException: liquibase.exception.LiquibaseException: liquibase.exception.MigrationFailedException: Migration failed for changeset db/changelog/2023/12/05-02-changelog.xml::1701765042449-1::Youcode (generated):
+     Reason: liquibase.exception.DatabaseException: Table 'archive' already exists [Failed SQL: (1050) CREATE TABLE rental_hive.archive (id_archieve BIGINT AUTO_INCREMENT NOT NULL, related_entity_type VARCHAR(255) NOT NULL, related_entity_id BIGINT NOT NULL, comment VARCHAR(255) NULL, archived_date datetime NOT NULL, archived_by VARCHAR(255) NOT NULL, archived_reason VARCHAR(255) NULL, CONSTRAINT pk_archive PRIMARY KEY (id_archieve))]
+	at liquibase.command.CommandScope.execute(CommandScope.java:237) ~[liquibase-core-4.24.0.jar:na]
+	at liquibase.Liquibase.lambda$update$0(Liquibase.java:222) ~[liquibase-core-4.24.0.jar:na]
+	at liquibase.Scope.lambda$child$0(Scope.java:184) ~[liquibase-core-4.24.0.jar:na]
+	at liquibase.Scope.child(Scope.java:193) ~[liquibase-core-4.24.0.jar:na]
+	at liquibase.Scope.child(Scope.java:183) ~[liquibase-core-4.24.0.jar:na]
+	at liquibase.Scope.child(Scope.java:162) ~[liquibase-core-4.24.0.jar:na]
+	at liquibase.Liquibase.runInScope(Liquibase.java:1371) ~[liquibase-core-4.24.0.jar:na]
+	at liquibase.Liquibase.update(Liquibase.java:211) ~[liquibase-core-4.24.0.jar:na]
+	at liquibase.Liquibase.update(Liquibase.java:193) ~[liquibase-core-4.24.0.jar:na]
+	at liquibase.integration.spring.SpringLiquibase.performUpdate(SpringLiquibase.java:331) ~[liquibase-core-4.24.0.jar:na]
+	at liquibase.integration.spring.SpringLiquibase.afterPropertiesSet(SpringLiquibase.java:286) ~[liquibase-core-4.24.0.jar:na]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1817) ~[spring-beans-6.0.13.jar:6.0.13]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1766) ~[spring-beans-6.0.13.jar:6.0.13]
+	... 18 common frames omitted
+Caused by: liquibase.exception.LiquibaseException: liquibase.exception.MigrationFailedException: Migration failed for changeset db/changelog/2023/12/05-02-changelog.xml::1701765042449-1::Youcode (generated):
+     Reason: liquibase.exception.DatabaseException: Table 'archive' already exists [Failed SQL: (1050) CREATE TABLE rental_hive.archive (id_archieve BIGINT AUTO_INCREMENT NOT NULL, related_entity_type VARCHAR(255) NOT NULL, related_entity_id BIGINT NOT NULL, comment VARCHAR(255) NULL, archived_date datetime NOT NULL, archived_by VARCHAR(255) NOT NULL, archived_reason VARCHAR(255) NULL, CONSTRAINT pk_archive PRIMARY KEY (id_archieve))]
+	at liquibase.changelog.ChangeLogIterator.run(ChangeLogIterator.java:122) ~[liquibase-core-4.24.0.jar:na]
+	at liquibase.command.core.AbstractUpdateCommandStep.lambda$doRun$1(AbstractUpdateCommandStep.java:105) ~[liquibase-core-4.24.0.jar:na]
+	at liquibase.Scope.lambda$child$0(Scope.java:184) ~[liquibase-core-4.24.0.jar:na]
+	at liquibase.Scope.child(Scope.java:193) ~[liquibase-core-4.24.0.jar:na]
+	at liquibase.Scope.child(Scope.java:183) ~[liquibase-core-4.24.0.jar:na]
+	at liquibase.Scope.child(Scope.java:162) ~[liquibase-core-4.24.0.jar:na]
+	at liquibase.command.core.AbstractUpdateCommandStep.doRun(AbstractUpdateCommandStep.java:104) ~[liquibase-core-4.24.0.jar:na]
+	at liquibase.command.core.AbstractUpdateCommandStep.lambda$run$0(AbstractUpdateCommandStep.java:63) ~[liquibase-core-4.24.0.jar:na]
+	at liquibase.Scope.lambda$child$0(Scope.java:184) ~[liquibase-core-4.24.0.jar:na]
+	at liquibase.Scope.child(Scope.java:193) ~[liquibase-core-4.24.0.jar:na]
+	at liquibase.Scope.child(Scope.java:183) ~[liquibase-core-4.24.0.jar:na]
+	at liquibase.Scope.child(Scope.java:162) ~[liquibase-core-4.24.0.jar:na]
+	at liquibase.command.core.AbstractUpdateCommandStep.run(AbstractUpdateCommandStep.java:62) ~[liquibase-core-4.24.0.jar:na]
+	at liquibase.command.core.UpdateCommandStep.run(UpdateCommandStep.java:106) ~[liquibase-core-4.24.0.jar:na]
+	at liquibase.command.CommandScope.execute(CommandScope.java:214) ~[liquibase-core-4.24.0.jar:na]
+	... 30 common frames omitted
+Caused by: liquibase.exception.MigrationFailedException: Migration failed for changeset db/changelog/2023/12/05-02-changelog.xml::1701765042449-1::Youcode (generated):
+     Reason: liquibase.exception.DatabaseException: Table 'archive' already exists [Failed SQL: (1050) CREATE TABLE rental_hive.archive (id_archieve BIGINT AUTO_INCREMENT NOT NULL, related_entity_type VARCHAR(255) NOT NULL, related_entity_id BIGINT NOT NULL, comment VARCHAR(255) NULL, archived_date datetime NOT NULL, archived_by VARCHAR(255) NOT NULL, archived_reason VARCHAR(255) NULL, CONSTRAINT pk_archive PRIMARY KEY (id_archieve))]
+	at liquibase.changelog.ChangeSet.execute(ChangeSet.java:785) ~[liquibase-core-4.24.0.jar:na]
+	at liquibase.changelog.visitor.UpdateVisitor.executeAcceptedChange(UpdateVisitor.java:118) ~[liquibase-core-4.24.0.jar:na]
+	at liquibase.changelog.visitor.UpdateVisitor.visit(UpdateVisitor.java:68) ~[liquibase-core-4.24.0.jar:na]
+	at liquibase.changelog.ChangeLogIterator$2.lambda$run$0(ChangeLogIterator.java:110) ~[liquibase-core-4.24.0.jar:na]
+	at liquibase.Scope.lambda$child$0(Scope.java:184) ~[liquibase-core-4.24.0.jar:na]
+	at liquibase.Scope.child(Scope.java:193) ~[liquibase-core-4.24.0.jar:na]
+	at liquibase.Scope.child(Scope.java:183) ~[liquibase-core-4.24.0.jar:na]
+	at liquibase.Scope.child(Scope.java:162) ~[liquibase-core-4.24.0.jar:na]
+	at liquibase.Scope.child(Scope.java:250) ~[liquibase-core-4.24.0.jar:na]
+	at liquibase.changelog.ChangeLogIterator$2.run(ChangeLogIterator.java:100) ~[liquibase-core-4.24.0.jar:na]
+	at liquibase.Scope.lambda$child$0(Scope.java:184) ~[liquibase-core-4.24.0.jar:na]
+	at liquibase.Scope.child(Scope.java:193) ~[liquibase-core-4.24.0.jar:na]
+	at liquibase.Scope.child(Scope.java:183) ~[liquibase-core-4.24.0.jar:na]
+	at liquibase.Scope.child(Scope.java:162) ~[liquibase-core-4.24.0.jar:na]
+	at liquibase.Scope.child(Scope.java:250) ~[liquibase-core-4.24.0.jar:na]
+	at liquibase.Scope.child(Scope.java:254) ~[liquibase-core-4.24.0.jar:na]
+	at liquibase.changelog.ChangeLogIterator.run(ChangeLogIterator.java:74) ~[liquibase-core-4.24.0.jar:na]
+	... 44 common frames omitted
+Caused by: liquibase.exception.DatabaseException: Table 'archive' already exists [Failed SQL: (1050) CREATE TABLE rental_hive.archive (id_archieve BIGINT AUTO_INCREMENT NOT NULL, related_entity_type VARCHAR(255) NOT NULL, related_entity_id BIGINT NOT NULL, comment VARCHAR(255) NULL, archived_date datetime NOT NULL, archived_by VARCHAR(255) NOT NULL, archived_reason VARCHAR(255) NULL, CONSTRAINT pk_archive PRIMARY KEY (id_archieve))]
+	at liquibase.executor.jvm.JdbcExecutor$ExecuteStatementCallback.doInStatement(JdbcExecutor.java:468) ~[liquibase-core-4.24.0.jar:na]
+	at liquibase.executor.jvm.JdbcExecutor.execute(JdbcExecutor.java:77) ~[liquibase-core-4.24.0.jar:na]
+	at liquibase.executor.jvm.JdbcExecutor.execute(JdbcExecutor.java:177) ~[liquibase-core-4.24.0.jar:na]
+	at liquibase.database.AbstractJdbcDatabase.execute(AbstractJdbcDatabase.java:1291) ~[liquibase-core-4.24.0.jar:na]
+	at liquibase.database.AbstractJdbcDatabase.executeStatements(AbstractJdbcDatabase.java:1273) ~[liquibase-core-4.24.0.jar:na]
+	at liquibase.changelog.ChangeSet.execute(ChangeSet.java:744) ~[liquibase-core-4.24.0.jar:na]
+	... 60 common frames omitted
+Caused by: java.sql.SQLSyntaxErrorException: Table 'archive' already exists
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:121) ~[mysql-connector-j-8.1.0.jar:8.1.0]
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122) ~[mysql-connector-j-8.1.0.jar:8.1.0]
+	at com.mysql.cj.jdbc.StatementImpl.executeInternal(StatementImpl.java:763) ~[mysql-connector-j-8.1.0.jar:8.1.0]
+	at com.mysql.cj.jdbc.StatementImpl.execute(StatementImpl.java:648) ~[mysql-connector-j-8.1.0.jar:8.1.0]
+	at com.zaxxer.hikari.pool.ProxyStatement.execute(ProxyStatement.java:94) ~[HikariCP-5.0.1.jar:na]
+	at com.zaxxer.hikari.pool.HikariProxyStatement.execute(HikariProxyStatement.java) ~[HikariCP-5.0.1.jar:na]
+	at liquibase.executor.jvm.JdbcExecutor$ExecuteStatementCallback.doInStatement(JdbcExecutor.java:462) ~[liquibase-core-4.24.0.jar:na]
+	... 65 common frames omitted
+
+2023-12-08T09:05:36.274+01:00  INFO 25852 --- [main] c.r.rentalHive.RentalHiveApplication     : Starting RentalHiveApplication using Java 17.0.9 with PID 25852 (C:\Users\Youcode\Desktop\RentalHive\target\classes started by Youcode in C:\Users\Youcode\Desktop\RentalHive)
+2023-12-08T09:05:36.277+01:00  INFO 25852 --- [main] c.r.rentalHive.RentalHiveApplication     : No active profile set, falling back to 1 default profile: "default"
+2023-12-08T09:05:37.123+01:00  INFO 25852 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-12-08T09:05:37.311+01:00  INFO 25852 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 176 ms. Found 8 JPA repository interfaces.
+2023-12-08T09:05:37.938+01:00  INFO 25852 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2023-12-08T09:05:37.952+01:00  INFO 25852 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-12-08T09:05:37.953+01:00  INFO 25852 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.15]
+2023-12-08T09:05:38.059+01:00  INFO 25852 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-12-08T09:05:38.060+01:00  INFO 25852 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1693 ms
+2023-12-08T09:05:38.249+01:00  INFO 25852 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-12-08T09:05:38.431+01:00  INFO 25852 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@7f3ca64a
+2023-12-08T09:05:38.434+01:00  INFO 25852 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-12-08T09:05:38.870+01:00  INFO 25852 --- [main] liquibase.command                        : Command execution complete
+2023-12-08T09:05:38.873+01:00  WARN 25852 --- [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'liquibase' defined in class path resource [org/springframework/boot/autoconfigure/liquibase/LiquibaseAutoConfiguration$LiquibaseConfiguration.class]: liquibase.exception.ChangeLogParseException: liquibase.exception.SetupException: The file db/changelog/2023/12/05-02-changelog.xml was not found in the configured search path:
+    - Spring classpath
+More locations can be added with the 'searchPath' parameter.
+2023-12-08T09:05:38.874+01:00  INFO 25852 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-12-08T09:05:38.885+01:00  INFO 25852 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-12-08T09:05:38.889+01:00  INFO 25852 --- [main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2023-12-08T09:05:38.906+01:00  INFO 25852 --- [main] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2023-12-08T09:05:38.924+01:00 ERROR 25852 --- [main] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'liquibase' defined in class path resource [org/springframework/boot/autoconfigure/liquibase/LiquibaseAutoConfiguration$LiquibaseConfiguration.class]: liquibase.exception.ChangeLogParseException: liquibase.exception.SetupException: The file db/changelog/2023/12/05-02-changelog.xml was not found in the configured search path:
+    - Spring classpath
+More locations can be added with the 'searchPath' parameter.
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1770) ~[spring-beans-6.0.13.jar:6.0.13]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:598) ~[spring-beans-6.0.13.jar:6.0.13]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:520) ~[spring-beans-6.0.13.jar:6.0.13]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325) ~[spring-beans-6.0.13.jar:6.0.13]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.0.13.jar:6.0.13]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323) ~[spring-beans-6.0.13.jar:6.0.13]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-6.0.13.jar:6.0.13]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:312) ~[spring-beans-6.0.13.jar:6.0.13]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-6.0.13.jar:6.0.13]
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1166) ~[spring-context-6.0.13.jar:6.0.13]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:940) ~[spring-context-6.0.13.jar:6.0.13]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:616) ~[spring-context-6.0.13.jar:6.0.13]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.1.5.jar:3.1.5]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:738) ~[spring-boot-3.1.5.jar:3.1.5]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:440) ~[spring-boot-3.1.5.jar:3.1.5]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:316) ~[spring-boot-3.1.5.jar:3.1.5]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1306) ~[spring-boot-3.1.5.jar:3.1.5]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1295) ~[spring-boot-3.1.5.jar:3.1.5]
+	at com.rentalHive.rentalHive.RentalHiveApplication.main(RentalHiveApplication.java:12) ~[classes/:na]
+Caused by: liquibase.exception.CommandExecutionException: liquibase.exception.ChangeLogParseException: liquibase.exception.SetupException: The file db/changelog/2023/12/05-02-changelog.xml was not found in the configured search path:
+    - Spring classpath
+More locations can be added with the 'searchPath' parameter.
+	at liquibase.command.CommandScope.execute(CommandScope.java:237) ~[liquibase-core-4.24.0.jar:na]
+	at liquibase.Liquibase.lambda$update$0(Liquibase.java:222) ~[liquibase-core-4.24.0.jar:na]
+	at liquibase.Scope.lambda$child$0(Scope.java:184) ~[liquibase-core-4.24.0.jar:na]
+	at liquibase.Scope.child(Scope.java:193) ~[liquibase-core-4.24.0.jar:na]
+	at liquibase.Scope.child(Scope.java:183) ~[liquibase-core-4.24.0.jar:na]
+	at liquibase.Scope.child(Scope.java:162) ~[liquibase-core-4.24.0.jar:na]
+	at liquibase.Liquibase.runInScope(Liquibase.java:1371) ~[liquibase-core-4.24.0.jar:na]
+	at liquibase.Liquibase.update(Liquibase.java:211) ~[liquibase-core-4.24.0.jar:na]
+	at liquibase.Liquibase.update(Liquibase.java:193) ~[liquibase-core-4.24.0.jar:na]
+	at liquibase.integration.spring.SpringLiquibase.performUpdate(SpringLiquibase.java:331) ~[liquibase-core-4.24.0.jar:na]
+	at liquibase.integration.spring.SpringLiquibase.afterPropertiesSet(SpringLiquibase.java:286) ~[liquibase-core-4.24.0.jar:na]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1817) ~[spring-beans-6.0.13.jar:6.0.13]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1766) ~[spring-beans-6.0.13.jar:6.0.13]
+	... 18 common frames omitted
+Caused by: liquibase.exception.ChangeLogParseException: liquibase.exception.SetupException: The file db/changelog/2023/12/05-02-changelog.xml was not found in the configured search path:
+    - Spring classpath
+More locations can be added with the 'searchPath' parameter.
+	at liquibase.parser.core.xml.AbstractChangeLogParser.parse(AbstractChangeLogParser.java:25) ~[liquibase-core-4.24.0.jar:na]
+	at liquibase.command.core.helpers.DatabaseChangelogCommandStep.lambda$getDatabaseChangeLog$0(DatabaseChangelogCommandStep.java:129) ~[liquibase-core-4.24.0.jar:na]
+	at liquibase.Scope.child(Scope.java:193) ~[liquibase-core-4.24.0.jar:na]
+	at liquibase.Scope.child(Scope.java:169) ~[liquibase-core-4.24.0.jar:na]
+	at liquibase.command.core.helpers.DatabaseChangelogCommandStep.getDatabaseChangeLog(DatabaseChangelogCommandStep.java:128) ~[liquibase-core-4.24.0.jar:na]
+	at liquibase.command.core.helpers.DatabaseChangelogCommandStep.run(DatabaseChangelogCommandStep.java:87) ~[liquibase-core-4.24.0.jar:na]
+	at liquibase.command.CommandScope.execute(CommandScope.java:214) ~[liquibase-core-4.24.0.jar:na]
+	... 30 common frames omitted
+Caused by: liquibase.exception.SetupException: The file db/changelog/2023/12/05-02-changelog.xml was not found in the configured search path:
+    - Spring classpath
+More locations can be added with the 'searchPath' parameter.
+	at liquibase.changelog.DatabaseChangeLog.handleChildNode(DatabaseChangeLog.java:462) ~[liquibase-core-4.24.0.jar:na]
+	at liquibase.changelog.DatabaseChangeLog.load(DatabaseChangeLog.java:385) ~[liquibase-core-4.24.0.jar:na]
+	at liquibase.parser.core.xml.AbstractChangeLogParser.parse(AbstractChangeLogParser.java:23) ~[liquibase-core-4.24.0.jar:na]
+	... 36 common frames omitted
+Caused by: liquibase.exception.ChangeLogParseException: The file db/changelog/2023/12/05-02-changelog.xml was not found in the configured search path:
+    - Spring classpath
+More locations can be added with the 'searchPath' parameter.
+	at liquibase.changelog.DatabaseChangeLog.include(DatabaseChangeLog.java:936) ~[liquibase-core-4.24.0.jar:na]
+	at liquibase.changelog.DatabaseChangeLog.handleChildNode(DatabaseChangeLog.java:452) ~[liquibase-core-4.24.0.jar:na]
+	... 38 common frames omitted
+
+2023-12-08T09:06:00.653+01:00  INFO 26372 --- [main] c.r.rentalHive.RentalHiveApplication     : Starting RentalHiveApplication using Java 17.0.9 with PID 26372 (C:\Users\Youcode\Desktop\RentalHive\target\classes started by Youcode in C:\Users\Youcode\Desktop\RentalHive)
+2023-12-08T09:06:00.655+01:00  INFO 26372 --- [main] c.r.rentalHive.RentalHiveApplication     : No active profile set, falling back to 1 default profile: "default"
+2023-12-08T09:06:01.534+01:00  INFO 26372 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-12-08T09:06:01.749+01:00  INFO 26372 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 203 ms. Found 8 JPA repository interfaces.
+2023-12-08T09:06:02.333+01:00  INFO 26372 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2023-12-08T09:06:02.344+01:00  INFO 26372 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-12-08T09:06:02.345+01:00  INFO 26372 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.15]
+2023-12-08T09:06:02.443+01:00  INFO 26372 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-12-08T09:06:02.443+01:00  INFO 26372 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1736 ms
+2023-12-08T09:06:02.607+01:00  INFO 26372 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-12-08T09:06:02.797+01:00  INFO 26372 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@7f3ca64a
+2023-12-08T09:06:02.799+01:00  INFO 26372 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-12-08T09:06:04.080+01:00  INFO 26372 --- [main] liquibase.changelog                      : Reading from rental_hive.databasechangelog
+2023-12-08T09:06:04.168+01:00  INFO 26372 --- [main] liquibase.changelog                      : Change failed validation!
+2023-12-08T09:06:04.170+01:00  INFO 26372 --- [main] liquibase.command                        : Command execution complete
+2023-12-08T09:06:04.171+01:00  WARN 26372 --- [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'liquibase' defined in class path resource [org/springframework/boot/autoconfigure/liquibase/LiquibaseAutoConfiguration$LiquibaseConfiguration.class]: liquibase.exception.ValidationFailedException: Validation Failed:
+     1 changes have validation failures
+          Cannot add a non-primary key identity column, db/changelog/2023/12/08-01-changelog.xml::1702022713998-4::Youcode (generated)
+
+2023-12-08T09:06:04.171+01:00  INFO 26372 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-12-08T09:06:04.179+01:00  INFO 26372 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-12-08T09:06:04.182+01:00  INFO 26372 --- [main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2023-12-08T09:06:04.198+01:00  INFO 26372 --- [main] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2023-12-08T09:06:04.219+01:00 ERROR 26372 --- [main] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'liquibase' defined in class path resource [org/springframework/boot/autoconfigure/liquibase/LiquibaseAutoConfiguration$LiquibaseConfiguration.class]: liquibase.exception.ValidationFailedException: Validation Failed:
+     1 changes have validation failures
+          Cannot add a non-primary key identity column, db/changelog/2023/12/08-01-changelog.xml::1702022713998-4::Youcode (generated)
+
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1770) ~[spring-beans-6.0.13.jar:6.0.13]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:598) ~[spring-beans-6.0.13.jar:6.0.13]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:520) ~[spring-beans-6.0.13.jar:6.0.13]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325) ~[spring-beans-6.0.13.jar:6.0.13]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.0.13.jar:6.0.13]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323) ~[spring-beans-6.0.13.jar:6.0.13]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-6.0.13.jar:6.0.13]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:312) ~[spring-beans-6.0.13.jar:6.0.13]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-6.0.13.jar:6.0.13]
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1166) ~[spring-context-6.0.13.jar:6.0.13]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:940) ~[spring-context-6.0.13.jar:6.0.13]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:616) ~[spring-context-6.0.13.jar:6.0.13]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.1.5.jar:3.1.5]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:738) ~[spring-boot-3.1.5.jar:3.1.5]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:440) ~[spring-boot-3.1.5.jar:3.1.5]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:316) ~[spring-boot-3.1.5.jar:3.1.5]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1306) ~[spring-boot-3.1.5.jar:3.1.5]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1295) ~[spring-boot-3.1.5.jar:3.1.5]
+	at com.rentalHive.rentalHive.RentalHiveApplication.main(RentalHiveApplication.java:12) ~[classes/:na]
+Caused by: liquibase.exception.CommandExecutionException: liquibase.exception.ValidationFailedException: Validation Failed:
+     1 changes have validation failures
+          Cannot add a non-primary key identity column, db/changelog/2023/12/08-01-changelog.xml::1702022713998-4::Youcode (generated)
+
+	at liquibase.command.CommandScope.execute(CommandScope.java:237) ~[liquibase-core-4.24.0.jar:na]
+	at liquibase.Liquibase.lambda$update$0(Liquibase.java:222) ~[liquibase-core-4.24.0.jar:na]
+	at liquibase.Scope.lambda$child$0(Scope.java:184) ~[liquibase-core-4.24.0.jar:na]
+	at liquibase.Scope.child(Scope.java:193) ~[liquibase-core-4.24.0.jar:na]
+	at liquibase.Scope.child(Scope.java:183) ~[liquibase-core-4.24.0.jar:na]
+	at liquibase.Scope.child(Scope.java:162) ~[liquibase-core-4.24.0.jar:na]
+	at liquibase.Liquibase.runInScope(Liquibase.java:1371) ~[liquibase-core-4.24.0.jar:na]
+	at liquibase.Liquibase.update(Liquibase.java:211) ~[liquibase-core-4.24.0.jar:na]
+	at liquibase.Liquibase.update(Liquibase.java:193) ~[liquibase-core-4.24.0.jar:na]
+	at liquibase.integration.spring.SpringLiquibase.performUpdate(SpringLiquibase.java:331) ~[liquibase-core-4.24.0.jar:na]
+	at liquibase.integration.spring.SpringLiquibase.afterPropertiesSet(SpringLiquibase.java:286) ~[liquibase-core-4.24.0.jar:na]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1817) ~[spring-beans-6.0.13.jar:6.0.13]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1766) ~[spring-beans-6.0.13.jar:6.0.13]
+	... 18 common frames omitted
+Caused by: liquibase.exception.ValidationFailedException: Validation Failed:
+     1 changes have validation failures
+          Cannot add a non-primary key identity column, db/changelog/2023/12/08-01-changelog.xml::1702022713998-4::Youcode (generated)
+
+	at liquibase.changelog.DatabaseChangeLog.validate(DatabaseChangeLog.java:353) ~[liquibase-core-4.24.0.jar:na]
+	at liquibase.command.core.helpers.DatabaseChangelogCommandStep.run(DatabaseChangelogCommandStep.java:92) ~[liquibase-core-4.24.0.jar:na]
+	at liquibase.command.CommandScope.execute(CommandScope.java:214) ~[liquibase-core-4.24.0.jar:na]
+	... 30 common frames omitted
+
+2023-12-08T09:07:42.526+01:00  INFO 15324 --- [main] c.r.rentalHive.RentalHiveApplication     : Starting RentalHiveApplication using Java 17.0.9 with PID 15324 (C:\Users\Youcode\Desktop\RentalHive\target\classes started by Youcode in C:\Users\Youcode\Desktop\RentalHive)
+2023-12-08T09:07:42.529+01:00  INFO 15324 --- [main] c.r.rentalHive.RentalHiveApplication     : No active profile set, falling back to 1 default profile: "default"
+2023-12-08T09:07:43.567+01:00  INFO 15324 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-12-08T09:07:43.760+01:00  INFO 15324 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 181 ms. Found 8 JPA repository interfaces.
+2023-12-08T09:07:44.359+01:00  INFO 15324 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2023-12-08T09:07:44.372+01:00  INFO 15324 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-12-08T09:07:44.372+01:00  INFO 15324 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.15]
+2023-12-08T09:07:44.484+01:00  INFO 15324 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-12-08T09:07:44.485+01:00  INFO 15324 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1897 ms
+2023-12-08T09:07:44.659+01:00  INFO 15324 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-12-08T09:07:44.852+01:00  INFO 15324 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@77724cbe
+2023-12-08T09:07:44.861+01:00  INFO 15324 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-12-08T09:07:45.634+01:00  INFO 15324 --- [main] liquibase.changelog                      : Creating database history table with name: rental_hive.databasechangelog
+2023-12-08T09:07:45.776+01:00  INFO 15324 --- [main] liquibase.changelog                      : Reading from rental_hive.databasechangelog
+2023-12-08T09:07:45.811+01:00  WARN 15324 --- [main] liquibase.executor                       : Name 'PK_DATABASECHANGELOGLOCK' ignored for PRIMARY key.
+2023-12-08T09:07:45.916+01:00  INFO 15324 --- [main] liquibase.changelog                      : Change failed validation!
+2023-12-08T09:07:45.918+01:00  INFO 15324 --- [main] liquibase.command                        : Command execution complete
+2023-12-08T09:07:45.920+01:00  WARN 15324 --- [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'liquibase' defined in class path resource [org/springframework/boot/autoconfigure/liquibase/LiquibaseAutoConfiguration$LiquibaseConfiguration.class]: liquibase.exception.ValidationFailedException: Validation Failed:
+     1 changes have validation failures
+          Cannot add a non-primary key identity column, db/changelog/2023/12/08-01-changelog.xml::1702022713998-4::Youcode (generated)
+
+2023-12-08T09:07:45.920+01:00  INFO 15324 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-12-08T09:07:45.929+01:00  INFO 15324 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-12-08T09:07:45.931+01:00  INFO 15324 --- [main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2023-12-08T09:07:45.945+01:00  INFO 15324 --- [main] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2023-12-08T09:07:45.969+01:00 ERROR 15324 --- [main] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'liquibase' defined in class path resource [org/springframework/boot/autoconfigure/liquibase/LiquibaseAutoConfiguration$LiquibaseConfiguration.class]: liquibase.exception.ValidationFailedException: Validation Failed:
+     1 changes have validation failures
+          Cannot add a non-primary key identity column, db/changelog/2023/12/08-01-changelog.xml::1702022713998-4::Youcode (generated)
+
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1770) ~[spring-beans-6.0.13.jar:6.0.13]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:598) ~[spring-beans-6.0.13.jar:6.0.13]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:520) ~[spring-beans-6.0.13.jar:6.0.13]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325) ~[spring-beans-6.0.13.jar:6.0.13]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.0.13.jar:6.0.13]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323) ~[spring-beans-6.0.13.jar:6.0.13]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-6.0.13.jar:6.0.13]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:312) ~[spring-beans-6.0.13.jar:6.0.13]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-6.0.13.jar:6.0.13]
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1166) ~[spring-context-6.0.13.jar:6.0.13]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:940) ~[spring-context-6.0.13.jar:6.0.13]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:616) ~[spring-context-6.0.13.jar:6.0.13]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.1.5.jar:3.1.5]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:738) ~[spring-boot-3.1.5.jar:3.1.5]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:440) ~[spring-boot-3.1.5.jar:3.1.5]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:316) ~[spring-boot-3.1.5.jar:3.1.5]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1306) ~[spring-boot-3.1.5.jar:3.1.5]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1295) ~[spring-boot-3.1.5.jar:3.1.5]
+	at com.rentalHive.rentalHive.RentalHiveApplication.main(RentalHiveApplication.java:12) ~[classes/:na]
+Caused by: liquibase.exception.CommandExecutionException: liquibase.exception.ValidationFailedException: Validation Failed:
+     1 changes have validation failures
+          Cannot add a non-primary key identity column, db/changelog/2023/12/08-01-changelog.xml::1702022713998-4::Youcode (generated)
+
+	at liquibase.command.CommandScope.execute(CommandScope.java:237) ~[liquibase-core-4.24.0.jar:na]
+	at liquibase.Liquibase.lambda$update$0(Liquibase.java:222) ~[liquibase-core-4.24.0.jar:na]
+	at liquibase.Scope.lambda$child$0(Scope.java:184) ~[liquibase-core-4.24.0.jar:na]
+	at liquibase.Scope.child(Scope.java:193) ~[liquibase-core-4.24.0.jar:na]
+	at liquibase.Scope.child(Scope.java:183) ~[liquibase-core-4.24.0.jar:na]
+	at liquibase.Scope.child(Scope.java:162) ~[liquibase-core-4.24.0.jar:na]
+	at liquibase.Liquibase.runInScope(Liquibase.java:1371) ~[liquibase-core-4.24.0.jar:na]
+	at liquibase.Liquibase.update(Liquibase.java:211) ~[liquibase-core-4.24.0.jar:na]
+	at liquibase.Liquibase.update(Liquibase.java:193) ~[liquibase-core-4.24.0.jar:na]
+	at liquibase.integration.spring.SpringLiquibase.performUpdate(SpringLiquibase.java:331) ~[liquibase-core-4.24.0.jar:na]
+	at liquibase.integration.spring.SpringLiquibase.afterPropertiesSet(SpringLiquibase.java:286) ~[liquibase-core-4.24.0.jar:na]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1817) ~[spring-beans-6.0.13.jar:6.0.13]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1766) ~[spring-beans-6.0.13.jar:6.0.13]
+	... 18 common frames omitted
+Caused by: liquibase.exception.ValidationFailedException: Validation Failed:
+     1 changes have validation failures
+          Cannot add a non-primary key identity column, db/changelog/2023/12/08-01-changelog.xml::1702022713998-4::Youcode (generated)
+
+	at liquibase.changelog.DatabaseChangeLog.validate(DatabaseChangeLog.java:353) ~[liquibase-core-4.24.0.jar:na]
+	at liquibase.command.core.helpers.DatabaseChangelogCommandStep.run(DatabaseChangelogCommandStep.java:92) ~[liquibase-core-4.24.0.jar:na]
+	at liquibase.command.CommandScope.execute(CommandScope.java:214) ~[liquibase-core-4.24.0.jar:na]
+	... 30 common frames omitted
+
+2023-12-08T09:09:23.095+01:00  INFO 29904 --- [main] c.r.rentalHive.RentalHiveApplication     : Starting RentalHiveApplication using Java 17.0.9 with PID 29904 (C:\Users\Youcode\Desktop\RentalHive\target\classes started by Youcode in C:\Users\Youcode\Desktop\RentalHive)
+2023-12-08T09:09:23.100+01:00  INFO 29904 --- [main] c.r.rentalHive.RentalHiveApplication     : No active profile set, falling back to 1 default profile: "default"
+2023-12-08T09:09:23.925+01:00  INFO 29904 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-12-08T09:09:24.117+01:00  INFO 29904 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 182 ms. Found 8 JPA repository interfaces.
+2023-12-08T09:09:24.694+01:00  INFO 29904 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2023-12-08T09:09:24.708+01:00  INFO 29904 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-12-08T09:09:24.708+01:00  INFO 29904 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.15]
+2023-12-08T09:09:24.811+01:00  INFO 29904 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-12-08T09:09:24.812+01:00  INFO 29904 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1640 ms
+2023-12-08T09:09:24.988+01:00  INFO 29904 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-12-08T09:09:25.168+01:00  INFO 29904 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@58833798
+2023-12-08T09:09:25.171+01:00  INFO 29904 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-12-08T09:09:26.520+01:00  INFO 29904 --- [main] liquibase.changelog                      : Reading from rental_hive.databasechangelog
+2023-12-08T09:09:26.686+01:00  INFO 29904 --- [main] liquibase.lockservice                    : Successfully acquired change log lock
+2023-12-08T09:09:26.687+01:00  INFO 29904 --- [main] liquibase.command                        : Using deploymentId: 2022966687
+2023-12-08T09:09:26.690+01:00  INFO 29904 --- [main] liquibase.changelog                      : Reading from rental_hive.databasechangelog
+2023-12-08T09:09:26.799+01:00  WARN 29904 --- [main] liquibase.executor                       : Name 'pk_archive' ignored for PRIMARY key.
+2023-12-08T09:09:26.799+01:00  INFO 29904 --- [main] liquibase.changelog                      : Table archive created
+2023-12-08T09:09:26.801+01:00  INFO 29904 --- [main] liquibase.changelog                      : ChangeSet db/changelog/2023/12/08-01-changelog.xml::1702022935130-1::Youcode (generated) ran successfully in 29ms
+2023-12-08T09:09:26.824+01:00  WARN 29904 --- [main] liquibase.executor                       : Name 'pk_conditions' ignored for PRIMARY key.
+2023-12-08T09:09:26.824+01:00  INFO 29904 --- [main] liquibase.changelog                      : Table conditions created
+2023-12-08T09:09:26.825+01:00  INFO 29904 --- [main] liquibase.changelog                      : ChangeSet db/changelog/2023/12/08-01-changelog.xml::1702022935130-2::Youcode (generated) ran successfully in 15ms
+2023-12-08T09:09:26.846+01:00  WARN 29904 --- [main] liquibase.executor                       : Name 'pk_contrat' ignored for PRIMARY key.
+2023-12-08T09:09:26.846+01:00  INFO 29904 --- [main] liquibase.changelog                      : Table contrat created
+2023-12-08T09:09:26.847+01:00  INFO 29904 --- [main] liquibase.changelog                      : ChangeSet db/changelog/2023/12/08-01-changelog.xml::1702022935130-3::Youcode (generated) ran successfully in 15ms
+2023-12-08T09:09:26.870+01:00  WARN 29904 --- [main] liquibase.executor                       : Name 'pk_demande' ignored for PRIMARY key.
+2023-12-08T09:09:26.870+01:00  INFO 29904 --- [main] liquibase.changelog                      : Table demande created
+2023-12-08T09:09:26.872+01:00  INFO 29904 --- [main] liquibase.changelog                      : ChangeSet db/changelog/2023/12/08-01-changelog.xml::1702022935130-4::Youcode (generated) ran successfully in 16ms
+2023-12-08T09:09:26.894+01:00  INFO 29904 --- [main] liquibase.changelog                      : Table demande_equipement created
+2023-12-08T09:09:26.895+01:00  INFO 29904 --- [main] liquibase.changelog                      : ChangeSet db/changelog/2023/12/08-01-changelog.xml::1702022935130-5::Youcode (generated) ran successfully in 17ms
+2023-12-08T09:09:26.915+01:00  WARN 29904 --- [main] liquibase.executor                       : Name 'pk_devis' ignored for PRIMARY key.
+2023-12-08T09:09:26.915+01:00  INFO 29904 --- [main] liquibase.changelog                      : Table devis created
+2023-12-08T09:09:26.916+01:00  INFO 29904 --- [main] liquibase.changelog                      : ChangeSet db/changelog/2023/12/08-01-changelog.xml::1702022935130-6::Youcode (generated) ran successfully in 15ms
+2023-12-08T09:09:26.936+01:00  WARN 29904 --- [main] liquibase.executor                       : Name 'pk_equipment' ignored for PRIMARY key.
+2023-12-08T09:09:26.936+01:00  INFO 29904 --- [main] liquibase.changelog                      : Table equipment created
+2023-12-08T09:09:26.937+01:00  INFO 29904 --- [main] liquibase.changelog                      : ChangeSet db/changelog/2023/12/08-01-changelog.xml::1702022935130-7::Youcode (generated) ran successfully in 14ms
+2023-12-08T09:09:26.955+01:00  WARN 29904 --- [main] liquibase.executor                       : Name 'pk_image' ignored for PRIMARY key.
+2023-12-08T09:09:26.956+01:00  INFO 29904 --- [main] liquibase.changelog                      : Table image created
+2023-12-08T09:09:26.957+01:00  INFO 29904 --- [main] liquibase.changelog                      : ChangeSet db/changelog/2023/12/08-01-changelog.xml::1702022935130-8::Youcode (generated) ran successfully in 16ms
+2023-12-08T09:09:26.986+01:00  WARN 29904 --- [main] liquibase.executor                       : Name 'pk_rentalrecord' ignored for PRIMARY key.
+2023-12-08T09:09:26.986+01:00  INFO 29904 --- [main] liquibase.changelog                      : Table rental_record created
+2023-12-08T09:09:26.987+01:00  INFO 29904 --- [main] liquibase.changelog                      : ChangeSet db/changelog/2023/12/08-01-changelog.xml::1702022935130-9::Youcode (generated) ran successfully in 24ms
+2023-12-08T09:09:27.012+01:00  WARN 29904 --- [main] liquibase.executor                       : Name 'pk_role' ignored for PRIMARY key.
+2023-12-08T09:09:27.012+01:00  INFO 29904 --- [main] liquibase.changelog                      : Table role created
+2023-12-08T09:09:27.013+01:00  INFO 29904 --- [main] liquibase.changelog                      : ChangeSet db/changelog/2023/12/08-01-changelog.xml::1702022935130-10::Youcode (generated) ran successfully in 17ms
+2023-12-08T09:09:27.032+01:00  WARN 29904 --- [main] liquibase.executor                       : Name 'pk_user' ignored for PRIMARY key.
+2023-12-08T09:09:27.033+01:00  INFO 29904 --- [main] liquibase.changelog                      : Table user created
+2023-12-08T09:09:27.034+01:00  INFO 29904 --- [main] liquibase.changelog                      : ChangeSet db/changelog/2023/12/08-01-changelog.xml::1702022935130-11::Youcode (generated) ran successfully in 15ms
+2023-12-08T09:09:27.056+01:00  INFO 29904 --- [main] liquibase.changelog                      : Table user_role created
+2023-12-08T09:09:27.057+01:00  INFO 29904 --- [main] liquibase.changelog                      : ChangeSet db/changelog/2023/12/08-01-changelog.xml::1702022935130-12::Youcode (generated) ran successfully in 16ms
+2023-12-08T09:09:27.087+01:00  INFO 29904 --- [main] liquibase.changelog                      : Unique constraint added to contrat(devis_id)
+2023-12-08T09:09:27.088+01:00  INFO 29904 --- [main] liquibase.changelog                      : ChangeSet db/changelog/2023/12/08-01-changelog.xml::1702022935130-13::Youcode (generated) ran successfully in 25ms
+2023-12-08T09:09:27.110+01:00  INFO 29904 --- [main] liquibase.changelog                      : Unique constraint added to devis(demande_id)
+2023-12-08T09:09:27.110+01:00  INFO 29904 --- [main] liquibase.changelog                      : ChangeSet db/changelog/2023/12/08-01-changelog.xml::1702022935130-14::Youcode (generated) ran successfully in 14ms
+2023-12-08T09:09:27.170+01:00  INFO 29904 --- [main] liquibase.changelog                      : Foreign key constraint added to conditions (contrat_id)
+2023-12-08T09:09:27.170+01:00  INFO 29904 --- [main] liquibase.changelog                      : ChangeSet db/changelog/2023/12/08-01-changelog.xml::1702022935130-15::Youcode (generated) ran successfully in 54ms
+2023-12-08T09:09:27.264+01:00  INFO 29904 --- [main] liquibase.changelog                      : Foreign key constraint added to contrat (devis_id)
+2023-12-08T09:09:27.265+01:00  INFO 29904 --- [main] liquibase.changelog                      : ChangeSet db/changelog/2023/12/08-01-changelog.xml::1702022935130-16::Youcode (generated) ran successfully in 86ms
+2023-12-08T09:09:27.339+01:00  INFO 29904 --- [main] liquibase.changelog                      : Foreign key constraint added to contrat (user_id)
+2023-12-08T09:09:27.340+01:00  INFO 29904 --- [main] liquibase.changelog                      : ChangeSet db/changelog/2023/12/08-01-changelog.xml::1702022935130-17::Youcode (generated) ran successfully in 66ms
+2023-12-08T09:09:27.411+01:00  INFO 29904 --- [main] liquibase.changelog                      : Foreign key constraint added to demande (user_id)
+2023-12-08T09:09:27.412+01:00  INFO 29904 --- [main] liquibase.changelog                      : ChangeSet db/changelog/2023/12/08-01-changelog.xml::1702022935130-18::Youcode (generated) ran successfully in 63ms
+2023-12-08T09:09:27.535+01:00  INFO 29904 --- [main] liquibase.changelog                      : Foreign key constraint added to devis (demande_id)
+2023-12-08T09:09:27.536+01:00  INFO 29904 --- [main] liquibase.changelog                      : ChangeSet db/changelog/2023/12/08-01-changelog.xml::1702022935130-19::Youcode (generated) ran successfully in 113ms
+2023-12-08T09:09:27.608+01:00  INFO 29904 --- [main] liquibase.changelog                      : Foreign key constraint added to image (equipment_id)
+2023-12-08T09:09:27.608+01:00  INFO 29904 --- [main] liquibase.changelog                      : ChangeSet db/changelog/2023/12/08-01-changelog.xml::1702022935130-20::Youcode (generated) ran successfully in 63ms
+2023-12-08T09:09:27.667+01:00  INFO 29904 --- [main] liquibase.changelog                      : Foreign key constraint added to rental_record (equipment_id)
+2023-12-08T09:09:27.668+01:00  INFO 29904 --- [main] liquibase.changelog                      : ChangeSet db/changelog/2023/12/08-01-changelog.xml::1702022935130-21::Youcode (generated) ran successfully in 52ms
+2023-12-08T09:09:27.734+01:00  INFO 29904 --- [main] liquibase.changelog                      : Foreign key constraint added to rental_record (user_id)
+2023-12-08T09:09:27.735+01:00  INFO 29904 --- [main] liquibase.changelog                      : ChangeSet db/changelog/2023/12/08-01-changelog.xml::1702022935130-22::Youcode (generated) ran successfully in 60ms
+2023-12-08T09:09:27.800+01:00  INFO 29904 --- [main] liquibase.changelog                      : Foreign key constraint added to demande_equipement (demande_id)
+2023-12-08T09:09:27.800+01:00  INFO 29904 --- [main] liquibase.changelog                      : ChangeSet db/changelog/2023/12/08-01-changelog.xml::1702022935130-23::Youcode (generated) ran successfully in 59ms
+2023-12-08T09:09:27.875+01:00  INFO 29904 --- [main] liquibase.changelog                      : Foreign key constraint added to demande_equipement (equipment_id)
+2023-12-08T09:09:27.876+01:00  INFO 29904 --- [main] liquibase.changelog                      : ChangeSet db/changelog/2023/12/08-01-changelog.xml::1702022935130-24::Youcode (generated) ran successfully in 65ms
+2023-12-08T09:09:27.945+01:00  INFO 29904 --- [main] liquibase.changelog                      : Foreign key constraint added to user_role (role_id)
+2023-12-08T09:09:27.947+01:00  INFO 29904 --- [main] liquibase.changelog                      : ChangeSet db/changelog/2023/12/08-01-changelog.xml::1702022935130-25::Youcode (generated) ran successfully in 65ms
+2023-12-08T09:09:28.025+01:00  INFO 29904 --- [main] liquibase.changelog                      : Foreign key constraint added to user_role (user_id)
+2023-12-08T09:09:28.026+01:00  INFO 29904 --- [main] liquibase.changelog                      : ChangeSet db/changelog/2023/12/08-01-changelog.xml::1702022935130-26::Youcode (generated) ran successfully in 69ms
+2023-12-08T09:09:28.034+01:00  INFO 29904 --- [main] liquibase.util                           : UPDATE SUMMARY
+2023-12-08T09:09:28.034+01:00  INFO 29904 --- [main] liquibase.util                           : Run:                         26
+2023-12-08T09:09:28.034+01:00  INFO 29904 --- [main] liquibase.util                           : Previously run:               0
+2023-12-08T09:09:28.034+01:00  INFO 29904 --- [main] liquibase.util                           : Filtered out:                 0
+2023-12-08T09:09:28.034+01:00  INFO 29904 --- [main] liquibase.util                           : -------------------------------
+2023-12-08T09:09:28.034+01:00  INFO 29904 --- [main] liquibase.util                           : Total change sets:           26
+2023-12-08T09:09:28.034+01:00  INFO 29904 --- [main] liquibase.util                           : Update summary generated
+2023-12-08T09:09:28.036+01:00  INFO 29904 --- [main] liquibase.command                        : Update command completed successfully.
+2023-12-08T09:09:28.041+01:00  INFO 29904 --- [main] liquibase.lockservice                    : Successfully released change log lock
+2023-12-08T09:09:28.041+01:00  INFO 29904 --- [main] liquibase.command                        : Command execution complete
+2023-12-08T09:09:28.131+01:00  INFO 29904 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-12-08T09:09:28.259+01:00  INFO 29904 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.2.13.Final
+2023-12-08T09:09:28.264+01:00  INFO 29904 --- [main] org.hibernate.cfg.Environment            : HHH000406: Using bytecode reflection optimizer
+2023-12-08T09:09:28.716+01:00  INFO 29904 --- [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2023-12-08T09:09:28.802+01:00  WARN 29904 --- [main] org.hibernate.dialect.Dialect            : HHH000511: The 5.5.0 version for [org.hibernate.dialect.MySQLDialect] is no longer supported, hence certain features may not work properly. The minimum supported version is 5.7.0. Check the community dialects project for available legacy versions.
+2023-12-08T09:09:30.180+01:00  INFO 29904 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2023-12-08T09:09:30.183+01:00  INFO 29904 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-12-08T09:09:30.701+01:00  INFO 29904 --- [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2023-12-08T09:09:31.530+01:00  WARN 29904 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-12-08T09:09:32.025+01:00  INFO 29904 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2023-12-08T09:09:32.038+01:00  INFO 29904 --- [main] c.r.rentalHive.RentalHiveApplication     : Started RentalHiveApplication in 9.634 seconds (process running for 10.526)
+2023-12-08T09:10:48.304+01:00  INFO 29904 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-12-08T09:10:48.321+01:00  INFO 29904 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-12-08T09:10:48.493+01:00  INFO 29904 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 172 ms
