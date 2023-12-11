@@ -23,6 +23,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/devis")
 @RequiredArgsConstructor
+@CrossOrigin(origins = "http://localhost:4200")
 public class DevisController {
 //    private final DevisServiceImpl devisService;
     private final IDevisService devisService;
@@ -82,6 +83,15 @@ public class DevisController {
         }catch (NoSuchElementException e){
             CustomResponse response = new CustomResponse("No such devis for this demande  ", null);
             return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @GetMapping("/demandes/{demande_id}/devis/exists")
+    public ResponseEntity<Boolean> isDevisExists(@PathVariable long demande_id){
+        if (devisService.isExists(demande_id)){
+            return new ResponseEntity<>(true, HttpStatus.OK);
+        }else {
+            return new ResponseEntity<>(false, HttpStatus.OK);
         }
     }
 }

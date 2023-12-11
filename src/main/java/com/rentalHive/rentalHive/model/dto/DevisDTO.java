@@ -13,11 +13,14 @@ import lombok.NoArgsConstructor;
 @Builder
 public class DevisDTO {
 
+    private Long id;
+
     private DemandeDTOforDevis demande;
 
     private double totalPrix;
 
     private String commentaire;
-    private devisStatus devisStatus;
+    private boolean approved;
+
 
 }

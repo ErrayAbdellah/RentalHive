@@ -7,6 +7,7 @@ import com.rentalHive.rentalHive.model.entities.Demande;
 import com.rentalHive.rentalHive.model.entities.Equipment;
 import com.rentalHive.rentalHive.model.entities.User;
 import com.rentalHive.rentalHive.repository.IDemandeRepo;
+import com.rentalHive.rentalHive.repository.IDevisRepo;
 import com.rentalHive.rentalHive.repository.IEquipmentRepo;
 import com.rentalHive.rentalHive.repository.IUserRepo;
 import com.rentalHive.rentalHive.service.IDemandeService;
@@ -29,11 +30,15 @@ public class DemandeServiceImpl implements IDemandeService {
     private final IDemandeRepo demandeRepo;
     private final IUserRepo userRepo;
     private final IEquipmentRepo equipmentRepo;
+    private final IDevisRepo devisRepo;
 
     @Autowired
-    public DemandeServiceImpl(IDemandeRepo demandeRepo, IUserRepo userRepo,
-                              IEquipmentRepo equipmentRepo) {
+    public DemandeServiceImpl(IDemandeRepo demandeRepo,
+                              IUserRepo userRepo,
+                              IEquipmentRepo equipmentRepo,
+                              IDevisRepo devisRepo) {
         this.demandeRepo = demandeRepo;
+        this.devisRepo = devisRepo;
         this.userRepo = userRepo;
         this.equipmentRepo = equipmentRepo;
     }
@@ -104,11 +109,17 @@ public class DemandeServiceImpl implements IDemandeService {
 
         if (state != null){
             for (Demande demande : demandeRepo.findDemandeByState(state)){
-                demandes.add(modelMapper.map(demande, DemandeDTOforDevis.class));
+                boolean isDevisExists = devisRepo.existsDevisByDemande_Id(demande.getId());
+                DemandeDTOforDevis mappedDemandeDTO = modelMapper.map(demande, DemandeDTOforDevis.class);
+                mappedDemandeDTO.setDevisExists(isDevisExists);
+                demandes.add(mappedDemandeDTO);
             }
         } else {
             for (Demande demande : demandeRepo.findAll()){
-                demandes.add(modelMapper.map(demande, DemandeDTOforDevis.class));
+                boolean isDevisExists = devisRepo.existsDevisByDemande_Id(demande.getId());
+                DemandeDTOforDevis mappedDemandeDTO = modelMapper.map(demande, DemandeDTOforDevis.class);
+                mappedDemandeDTO.setDevisExists(isDevisExists);
+                demandes.add(mappedDemandeDTO);
             }
         }
 

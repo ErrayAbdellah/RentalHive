@@ -45,4 +45,5 @@ public class DemandeDTO {
 
     @NotEmpty(message = "Equipment IDs list cannot be empty")
     private List<Long> equipmentIds;
+
 }

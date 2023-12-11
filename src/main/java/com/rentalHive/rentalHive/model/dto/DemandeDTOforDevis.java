@@ -47,4 +47,9 @@ public class DemandeDTOforDevis {
 
     @NotEmpty(message = "Equipment IDs list cannot be empty")
     private List<Long> equipmentIds;
+
+    private List<EquipmentDTO> equipment;
+
+    private boolean isDevisExists;
+
 }
